@@ -1,0 +1,46 @@
+[
+    {
+        "id": "about",
+        "title": "About",
+        "files": [
+            {
+                "id": "me",
+                "title": "Me"
+            },
+            {
+                "id": "cv",
+                "title": "CV"
+            }
+        ],
+        "metadata": {
+            "date": "x"
+        }
+    },
+    {
+        "id": "work",
+        "title": "Work",
+        "files": [
+            {
+                "id": "webdev"
+            }
+        ]
+    },
+    {
+        "id": "maker",
+        "title": "Maker",
+        "files": [
+            {
+                "id": "webdev"
+            }
+        ]
+    },
+    {
+        "id": "design",
+        "title": "Design",
+        "files": [
+            {
+                "id": "webdev"
+            }
+        ]
+    }
+]
