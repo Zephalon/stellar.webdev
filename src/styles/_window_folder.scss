@@ -1,0 +1,85 @@
+@use 'settings';
+
+.window_folder {
+    display: flex;
+    flex-flow:column nowrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    width: 100vw;
+    height: 100vh; 
+    position: absolute;
+
+    &-inner {
+        height: 50vh;
+        background-color: settings.$color-active;
+        width: 75vw;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        border: 0.5rem solid settings.$color-active;
+    }
+
+    &-info {
+        flex-basis: 20rem;
+        flex-grow: 1;
+        text-align:center;
+        color: settings.$color-medium;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-icon {
+        display: inline-block;
+        border-radius: 100%;
+        height: 10rem;
+        width: 10rem;
+        margin: 0 auto;
+        background-color: settings.$color-medium;
+        margin-top: 1.5rem;
+    }
+
+    &-title {
+        color: settings.$color-medium;
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1em 0;
+
+        .highlight {
+            background: linear-gradient(180deg, rgba(settings.$color-dark, 0) 60%, settings.$color-dark 50%);
+        }
+    }
+
+    button {
+        margin-top: auto;
+    }
+
+    &-content {
+        flex-basis: 0;
+        flex-grow: 999;
+        max-height: 100%;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        background-color: settings.$color-light;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background-color: settings.$color-medium;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: settings.$color-active;
+        }
+
+        &-inner {
+            padding: 0.5rem 1.5rem;
+            margin-right: 0.5rem;
+            display:inline-block;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    }
+}

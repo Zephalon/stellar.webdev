@@ -1,0 +1,44 @@
+@use 'settings';
+
+.folder_view {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 1rem 0 0 0;
+    padding: 0;
+
+    .file_wrapper {
+        width: 10rem;
+        margin: 0 1rem 1rem 0;
+
+        .file {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            text-align: center;
+
+            &-icon {
+                width: 100%;
+                min-height: 10rem;
+                background-color: settings.$color-medium;
+            }
+
+            h3 {
+                text-transform: lowercase;
+
+                .highlight {
+                    background: linear-gradient(180deg, rgba(settings.$color-medium, 0) 60%, settings.$color-medium 50%);
+                }
+            }
+
+            &-extension {
+                font-weight: normal;
+                vertical-align: baseline;
+                font-size: 0.75em;
+            }
+        }
+    }
+}

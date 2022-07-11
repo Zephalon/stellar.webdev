@@ -1,5 +1,11 @@
 @use 'styles/_normalize.scss';
 @use 'styles/_global.scss';
+@use 'styles/_typography.scss';
 @use 'styles/_desktop.scss';
 @use 'styles/_folders.scss';
 @use 'styles/_file_viewer.scss';
+@use 'styles/_logotype.scss';
+@use 'styles/_window_folder.scss';
+@use 'styles/_folder_view.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,600&display=swap');

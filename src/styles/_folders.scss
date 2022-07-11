@@ -1,3 +1,42 @@
+@use 'settings';
+
 .folders {
-    
+    z-index: 100;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    .folder {
+        display: block;
+        min-width: 15em;
+        min-height: 15em;
+        text-align: center;
+        align-self: center;
+
+        &-inner {
+            text-align: center;
+        }
+
+        &-planet {
+            width: 10em;
+            height: 10em;
+            background-color: settings.$color-active;
+            border-radius: 100%;
+            display: inline-block;
+        }
+
+        h2 {
+            text-transform: lowercase;
+
+            .highlight {
+                background: linear-gradient(180deg, rgba(settings.$color-medium, 0) 60%, settings.$color-medium 50%);
+            }
+        }
+    }
 }

@@ -5,11 +5,11 @@
         "files": [
             {
                 "id": "me",
-                "title": "Me"
+                "title": "About Me"
             },
             {
                 "id": "cv",
-                "title": "CV"
+                "title": "Curriculum Vitae"
             }
         ],
         "metadata": {

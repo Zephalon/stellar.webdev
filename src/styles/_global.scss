@@ -6,6 +6,13 @@ html, body, #root, .app {
     width: 100vw;
     height: 100vh;
     position: absolute;
+    overflow: hidden;
+}
+
+html, body {
+    font-size: settings.$base-size;
+    color: settings.$color-dark;
+    font-family: settings.$font-family-text;
 }
 
 .app {

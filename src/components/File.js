@@ -13,11 +13,12 @@ class File extends Component {
 
   render() {
     return (
-      <li onClick={this.openFile.bind(this)} className="file" key={this.props.id}>
-        <div className="title">
-          {this.props.title ? this.props.title : this.props.id}.md
+      <div className="file" onClick={this.openFile.bind(this)} key={this.props.id}>
+        <div className="file-icon">&nbsp;</div>
+        <div className="file-title">
+          <h3><span class="highlight">{this.props.title ? this.props.title : this.props.id}<span className="file-extension">.md</span></span></h3>
         </div>
-      </li>
+      </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Folders from "./Folders";
 import WindowFolder from "./WindowFolder";
+import Logotype from "./Logotype";
 import content from "../content.json";
 
 class Desktop extends Component {
@@ -84,13 +85,13 @@ class Desktop extends Component {
 
     let active_folder = '';
     if (open_folder_id) {
-      console.log(open_file_id);
       let folder = this.getContentById(open_folder_id);
       active_folder = <WindowFolder key={folder} id={folder.id} files={folder.files} closeWindow={this.closeWindow.bind(this)} openFile={open_file_id} />;
     }
 
     return (
       <div className="desktop" key={this.props.id}>
+        <Logotype />
         <Folders content={content} openWindow={this.openWindow.bind(this)} />
         {active_folder}
       </div >

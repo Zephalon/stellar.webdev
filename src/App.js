@@ -14,9 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="app" key={this.props.id}>
-        <header className="app-header">
-
-        </header>
+        <header className="app-header"></header>
         <Desktop />
       </div>
     );

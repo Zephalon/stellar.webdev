@@ -23,17 +23,28 @@ class WindowFolder extends Window {
     let { files, openFile } = this.props;
 
     let file = files.filter(file => file.id === openFile);
-    let view = file.length ? <FileView folder={this.props.id} id={file[0].id} title={file[0].title} closeFile={this.closeFile.bind(this)}/> : <FolderView files={this.props.files} openFile={this.openFile.bind(this)} />;
+    let view = file.length ? <FileView folder={this.props.id} id={file[0].id} title={file[0].title} closeFile={this.closeFile.bind(this)} /> : <FolderView files={this.props.files} openFile={this.openFile.bind(this)} />;
 
     return (
       <div className="window_folder">
-        <div className="folder_title">{this.props.id}</div>
-        <div className="folder_content">
-          {view}
+        <div className="window_folder-inner">
+          <div className="window_folder-info">
+            <div className="window_folder-icon">&nbsp;</div>
+            <div className="window_folder-meta">
+              <div className="window_folder-title"><span class="highlight">{this.props.id}</span></div>
+              <div>Gravity: Attractive</div>
+              <div>Main Composition: CoFFe2</div>
+            </div>
+            {<button onClick={this.props.closeWindow}>
+              Close Folder
+            </button>}
+          </div>
+          <div className="window_folder-content">
+            <div className="window_folder-content-inner">
+              {view}
+            </div>
+          </div>
         </div>
-        {<button onClick={this.props.closeWindow}>
-          Close Folder
-        </button>}
       </div>
     )
   }

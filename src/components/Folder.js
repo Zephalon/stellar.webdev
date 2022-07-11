@@ -14,7 +14,10 @@ class Folder extends Component {
   render() {
     return (
       <li onClick={this.openFolder.bind(this)} className="folder" key={this.props.id}>
-        <h2>{this.props.title}</h2>
+        <div className="folder-inner">
+          <div className="folder-planet"></div>
+          <h2><span class="highlight">{this.props.title}</span></h2>
+        </div>
       </li>
     );
   }

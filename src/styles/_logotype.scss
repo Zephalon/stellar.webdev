@@ -1,0 +1,21 @@
+@use 'settings';
+
+.logotype {
+    width: 100vw;
+    position: absolute;
+    z-index: 50;
+    border-bottom: 0.25rem solid settings.$color-dark;
+
+    &-inner {
+        color: settings.$color-active;
+        background-color: settings.$color-medium;
+        float:left;
+        border-right: 0.25rem solid settings.$color-dark;
+
+        h1 {
+            font-weight: normal;
+            font-size: 3em;
+            padding: 0em 1em;
+        }
+    }
+}
