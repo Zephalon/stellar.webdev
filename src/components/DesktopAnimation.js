@@ -8,8 +8,9 @@ class DesktopAnimation extends Component {
     super(props);
     this.state = {};
 
-    this.getSunPosition();
-    this.getPlanetPositions();
+    // ToDo: this on resize
+    let sun = this.getSunPosition();
+    this.getPlanetPositions(sun.center);
   }
 
   y = 0;
@@ -52,7 +53,8 @@ class DesktopAnimation extends Component {
       }
     }
 
-    let speed = 0;
+    let speed = 0.005;
+    let stop_rotation = true;
     let mouse_shadows = true;
     p5.clear();
 
@@ -63,8 +65,9 @@ class DesktopAnimation extends Component {
 
     // ToDo: if this stays like this, please don't hire me
     const folder = document.getElementById('window_folder-inner');
+
     if (folder) {
-      speed = 0.005;
+      stop_rotation = false;
       mouse_shadows = false;
 
       const boundaries = this.getElementBoundaries(folder);
@@ -102,15 +105,6 @@ class DesktopAnimation extends Component {
 
     // animate each planet
     this.planets.forEach(planet => {
-      let planet_size = planet.boundaries.width * 0.6 * planet.size;
-      let orbit = p5.dist(this.sun.center.x, this.sun.center.y, planet.center.x, planet.center.y);
-      let planet_speed = (planet_size + 1 / orbit) * 0.01;
-
-      let position = {
-        x: this.sun.center.x + orbit * Math.cos(this.angle * planet_speed),
-        y: this.sun.center.y + orbit * Math.sin(this.angle * planet_speed)
-      }
-
       // create planet orbit
       /*p5.stroke(this.colors.secondary);
       p5.strokeWeight(1);
@@ -126,24 +120,31 @@ class DesktopAnimation extends Component {
       p5.stroke(this.colors.secondary);
       p5.strokeWeight(1);
       p5.noFill();
-      p5.ellipse(this.sun.center.x, this.sun.center.y, orbit * 2);
+      p5.ellipse(this.sun.center.x, this.sun.center.y, planet.orbit * 2);
     });
 
     this.planets.forEach(planet => {
       let planet_size = planet.boundaries.width * 0.6 * planet.size;
-      let orbit = p5.dist(this.sun.center.x, this.sun.center.y, planet.center.x, planet.center.y);
-      let planet_speed = (planet_size + 1 / orbit) * 0.01;
+      let planet_speed = (planet_size + 1 / planet.orbit) * 0.01;
 
+      // set position
       let position = {
-        x: this.sun.center.x + orbit * Math.cos(this.angle * planet_speed),
-        y: this.sun.center.y + orbit * Math.sin(this.angle * planet_speed)
+        x: this.sun.center.x + planet.orbit * Math.cos(planet.angle),
+        y: this.sun.center.y + planet.orbit * Math.sin(planet.angle)
+      }
+
+      if (!stop_rotation) {
+        position = {
+          x: this.sun.center.x + planet.orbit * Math.cos(this.angle * planet_speed),
+          y: this.sun.center.y + planet.orbit * Math.sin(this.angle * planet_speed)
+        }
       }
 
       // create planet shadows
       let light_source = {
         x: mouse_shadows ? p5.mouseX : this.sun.center.x,
         y: mouse_shadows ? p5.mouseY : this.sun.center.y,
-        distance: mouse_shadows ? p5.dist(p5.mouseX, p5.mouseY, planet.center.x, planet.center.y) * 0.3 : orbit * 0.5
+        distance: mouse_shadows ? p5.dist(p5.mouseX, p5.mouseY, planet.center.x, planet.center.y) * 0.3 : planet.orbit * 0.5
       }
 
       let light_angle = this.getAngle(light_source.x, light_source.y, position.x, position.y);
@@ -177,28 +178,44 @@ class DesktopAnimation extends Component {
         y: Math.round(boundaries.top + boundaries.height * 0.5)
       }
     };
+
+    return this.sun;
   }
 
-  getPlanetPositions() {
+  getPlanetPositions(sun_center) {
     let planets = [];
 
     content.forEach(folder => {
       const element = document.getElementById('folder-' + folder.id);
       const boundaries = this.getElementBoundaries(element);
+      let center = {
+        x: Math.round(boundaries.left + boundaries.width * 0.5),
+        y: Math.round(boundaries.top + boundaries.height * 0.5)
+      };
 
       planets.push({
         id: folder.id,
         element: element,
         boundaries: boundaries,
         size: folder.size,
-        center: {
-          x: Math.round(boundaries.left + boundaries.width * 0.5),
-          y: Math.round(boundaries.top + boundaries.height * 0.5)
-        }
-      })
+        center: center,
+        orbit: Math.round(this.getDistance(sun_center.x, sun_center.y, center.x, center.y)),
+        angle: Math.round(this.getAngle(sun_center.x, sun_center.y, center.x, center.y))
+      });
     });
 
     this.planets = planets;
+
+    console.log(planets);
+
+    return this.planets;
+  }
+
+  getDistance(x1, y1, x2, y2) {
+    let y = x2 - x1;
+    let x = y2 - y1;
+
+    return Math.sqrt(x * x + y * y);
   }
 
   getAngle(x1, y1, x2, y2) {
