@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
 import './App.scss';
-import DesktopAnimation from "./DesktopAnimation";
 import Desktop from "./components/Desktop";
 
 class App extends Component {

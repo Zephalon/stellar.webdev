@@ -7,16 +7,17 @@ class Folder extends Component {
     };
   }
 
+  // relay to parent
   openFolder() {
     this.props.openWindow(this.props.id);
   }
 
   render() {
     return (
-      <li onClick={this.openFolder.bind(this)} className="folder" key={this.props.id}>
+      <li id={"folder-" + this.props.id} className="folder" key={this.props.id} onClick={this.openFolder.bind(this)} >
         <div className="folder-inner">
           <div className="folder-planet"></div>
-          <h2><span class="highlight">{this.props.title}</span></h2>
+          <h2><span className="highlight">{this.props.title}</span></h2>
         </div>
       </li>
     );

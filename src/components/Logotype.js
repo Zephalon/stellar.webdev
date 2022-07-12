@@ -11,7 +11,7 @@ class Logotype extends Component {
       <div className="logotype">
         <div className="logotype-inner">
         <h1>
-          stellar#<strong>webdev</strong>
+          <sub>stellar</sub><br />DESIGN<span>&</span><strong>CODE</strong>
         </h1>
       </div>
       </div>

@@ -23,14 +23,14 @@
             &-icon {
                 width: 100%;
                 min-height: 10rem;
-                background-color: settings.$color-medium;
+                background-color: settings.$color-secondary;
             }
 
             h3 {
                 text-transform: lowercase;
 
                 .highlight {
-                    background: linear-gradient(180deg, rgba(settings.$color-medium, 0) 60%, settings.$color-medium 50%);
+                    background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
                 }
             }
 

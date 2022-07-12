@@ -12,14 +12,16 @@ class FileView extends Window {
     };
   }
 
-  closeFile() {
-    this.props.closeFile(this.props.id);
-  }
-
   async componentDidMount() {
     this.getContent();
   }
 
+  // relay to parent
+  closeFile() {
+    this.props.closeFile(this.props.id);
+  }
+
+  // load content and convert markdown to html
   async getContent() {
     let content = this.state.content;
     
@@ -42,6 +44,7 @@ class FileView extends Window {
     }
   }
 
+  // request content from markdown file
   async requestData() {
     const res = await axios('/content/' + this.props.folder + '/' + this.props.id + '.md');
     return await res.data;
@@ -51,6 +54,7 @@ class FileView extends Window {
     let { content } = this.state;
     let loading = false;
 
+    // fetch content if not yet loaded
     if (content[this.props.id] === undefined) {
       this.getContent();
       loading = true;

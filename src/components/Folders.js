@@ -7,16 +7,9 @@ class Folders extends Component {
     this.state = {};
   }
 
-  /*mapFolders (folders) {
-    return folders.map(folder => {
-      <Folder key={folder.id} title={folder.title} body={folder.body} openFolder={this.openFolder}/>
-    });
-}*/
-
   render() {
     return (
       <ul className="folders">
-        {/* this.mapFolders(this.state.folders) */}
         {this.props.content.map((folder) =>
 
           <Folder key={folder.id} id={folder.id} title={folder.title} openWindow={this.props.openWindow} />

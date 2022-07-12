@@ -4,4 +4,22 @@
     width: 100vw;
     height: 100vh;
     position: absolute;
+
+    #sun {
+        // background-color: settings.$color-active;
+        position: absolute;
+        width: 200vh;
+        height: 200vh;
+        left: -175vh;
+        top: -50vh;
+        border-radius: 100vh;
+        z-index: 10;
+    }
+
+    #background-animation {
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        position: absolute;
+    }
 }

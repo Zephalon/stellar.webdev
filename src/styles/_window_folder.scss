@@ -13,10 +13,10 @@
     &-inner {
         height: 50vh;
         background-color: settings.$color-active;
-        width: 75vw;
+        width: 50vw;
         display: flex;
         flex-wrap: wrap;
-        border-radius: 0.5rem;
+        border-radius: 0 0.5rem 0.5rem 0;
         overflow: hidden;
         border: 0.5rem solid settings.$color-active;
     }
@@ -25,7 +25,7 @@
         flex-basis: 20rem;
         flex-grow: 1;
         text-align:center;
-        color: settings.$color-medium;
+        color: settings.$color-secondary;
         display: flex;
         flex-direction: column;
     }
@@ -36,12 +36,12 @@
         height: 10rem;
         width: 10rem;
         margin: 0 auto;
-        background-color: settings.$color-medium;
+        background-color: settings.$color-secondary;
         margin-top: 1.5rem;
     }
 
     &-title {
-        color: settings.$color-medium;
+        color: settings.$color-secondary;
         font-size: 2rem;
         font-weight: 600;
         padding: 1em 0;
@@ -68,7 +68,7 @@
         }
         
         &::-webkit-scrollbar-track {
-            background-color: settings.$color-medium;
+            background-color: settings.$color-secondary;
         }
         
         &::-webkit-scrollbar-thumb {

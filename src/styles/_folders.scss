@@ -3,14 +3,14 @@
 .folders {
     z-index: 100;
     display: flex;
-    width: 100vw;
+    width: 75vw;
     height: 100vh;
     position: absolute;
     flex-wrap: nowrap;
     justify-content: space-around;
     overflow: hidden;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 25vw;
 
     .folder {
         display: block;
@@ -25,8 +25,9 @@
 
         &-planet {
             width: 10em;
-            height: 10em;
-            background-color: settings.$color-active;
+            height: 11em;
+            //background-color: settings.$color-active;
+            //border: 1px solid red;
             border-radius: 100%;
             display: inline-block;
         }
@@ -35,7 +36,7 @@
             text-transform: lowercase;
 
             .highlight {
-                background: linear-gradient(180deg, rgba(settings.$color-medium, 0) 60%, settings.$color-medium 50%);
+                background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
             }
         }
     }

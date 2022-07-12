@@ -7,6 +7,7 @@ class File extends Component {
     };
   }
 
+  // relay to parent
   openFile() {
     this.props.openFile(this.props.id);
   }
@@ -16,7 +17,7 @@ class File extends Component {
       <div className="file" onClick={this.openFile.bind(this)} key={this.props.id}>
         <div className="file-icon">&nbsp;</div>
         <div className="file-title">
-          <h3><span class="highlight">{this.props.title ? this.props.title : this.props.id}<span className="file-extension">.md</span></span></h3>
+          <h3><span className="highlight">{this.props.title ? this.props.title : this.props.id}<span className="file-extension">.md</span></span></h3>
         </div>
       </div>
     );

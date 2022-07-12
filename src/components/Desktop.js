@@ -3,19 +3,25 @@ import Folders from "./Folders";
 import WindowFolder from "./WindowFolder";
 import Logotype from "./Logotype";
 import content from "../content.json";
+import DesktopAnimation from "./DesktopAnimation";
 
 class Desktop extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open_folder_id: null,
-      open_file_id: null
+      open_file_id: null,
+      loaded: false
     };
   }
 
   async componentDidMount() {
-    this.navigateHash();
+    this.navigateHash(); // navigate to folder or page if hash is set
     window.addEventListener('hashchange', this.navigateHash.bind(this), false);
+
+    this.setState((state, props) => {
+      return { loaded: true };
+    });
   }
 
   // navigate to the set location
@@ -24,6 +30,7 @@ class Desktop extends Component {
     let requested_location = window.location.hash.substring(2);
     [requested_folder, requested_file] = requested_location.split('/');
 
+    // set navigation state
     this.setState((state, props) => {
       return {
         open_folder_id: requested_folder ? requested_folder : null,
@@ -32,9 +39,8 @@ class Desktop extends Component {
     });
   }
 
+  // open the content window
   openWindow(id) {
-    console.log('open: ' + id);
-
     // search for the content and open it
     let content = this.getContentById(id);
 
@@ -45,17 +51,20 @@ class Desktop extends Component {
     }
   }
 
+  // close the conten window
   closeWindow() {
-    window.history.replaceState(null, null, ' ');
+    window.history.replaceState(null, null, ' '); // reset hash in url
 
     this.setState((state, props) => {
       return { open_folder_id: null };
     });
   }
 
+  // fetch content (page, folder) by id
   getContentById(id) {
     let result = null;
 
+    // folders
     content.forEach(folder => {
       if (folder.id === id) {
         result = {
@@ -65,23 +74,26 @@ class Desktop extends Component {
         }
       }
 
-      folder.files.forEach(file => {
-        if (file.id === id) {
-          result = {
-            id: id,
-            type: 'file',
-            folder: folder.id,
-            path: 'content/' + folder.id + '/' + file.id
+      // files
+      if (folder.files) {
+        folder.files.forEach(file => {
+          if (file.id === id) {
+            result = {
+              id: id,
+              type: 'file',
+              folder: folder.id,
+              path: 'content/' + folder.id + '/' + file.id
+            }
           }
-        }
-      });
+        });
+      }
     });
 
     return result;
   }
 
   render() {
-    let { open_folder_id, open_file_id } = this.state;
+    let { open_folder_id, open_file_id, loaded } = this.state;
 
     let active_folder = '';
     if (open_folder_id) {
@@ -89,8 +101,15 @@ class Desktop extends Component {
       active_folder = <WindowFolder key={folder} id={folder.id} files={folder.files} closeWindow={this.closeWindow.bind(this)} openFile={open_file_id} />;
     }
 
+    let animation = '';
+    if (loaded) {
+      animation = <DesktopAnimation test={content} />;
+    }
+
     return (
       <div className="desktop" key={this.props.id}>
+        <div id="sun"></div>
+        {animation}
         <Logotype />
         <Folders content={content} openWindow={this.openWindow.bind(this)} />
         {active_folder}

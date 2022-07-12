@@ -1,7 +1,28 @@
 [
     {
-        "id": "about",
-        "title": "About",
+        "id": "webdev",
+        "title": "webdev",
+        "size": 1,
+        "files": [
+            {
+                "id": "webdev2"
+            }
+        ]
+    },
+    {
+        "id": "maker",
+        "title": "Maker",
+        "size": 0.7,
+        "files": [
+            {
+                "id": "maker2"
+            }
+        ]
+    },
+    {
+        "id": "about_me",
+        "title": "About Me",
+        "size": 0.8,
         "files": [
             {
                 "id": "me",
@@ -11,36 +32,11 @@
                 "id": "cv",
                 "title": "Curriculum Vitae"
             }
-        ],
-        "metadata": {
-            "date": "x"
-        }
-    },
-    {
-        "id": "work",
-        "title": "Work",
-        "files": [
-            {
-                "id": "webdev"
-            }
         ]
     },
     {
-        "id": "maker",
-        "title": "Maker",
-        "files": [
-            {
-                "id": "webdev"
-            }
-        ]
-    },
-    {
-        "id": "design",
-        "title": "Design",
-        "files": [
-            {
-                "id": "webdev"
-            }
-        ]
+        "id": "contact",
+        "title": "Contact",
+        "size": 0.5
     }
 ]

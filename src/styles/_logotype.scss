@@ -1,21 +1,29 @@
 @use 'settings';
 
 .logotype {
-    width: 100vw;
+    width: 75vw;
     position: absolute;
     z-index: 50;
-    border-bottom: 0.25rem solid settings.$color-dark;
+    left: 20vh;
+    //border-bottom: 0.25rem solid settings.$color-dark;
 
     &-inner {
         color: settings.$color-active;
-        background-color: settings.$color-medium;
+        //background-color: settings.$color-secondary;
         float:left;
-        border-right: 0.25rem solid settings.$color-dark;
+        //border-right: 0.25rem solid settings.$color-dark;
 
         h1 {
-            font-weight: normal;
             font-size: 3em;
             padding: 0em 1em;
+
+            span {
+                font-weight: normal;
+            }
+
+            strong {
+                font-family: "Syne Mono", monospace;
+            }
         }
     }
 }
