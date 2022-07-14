@@ -23,7 +23,6 @@ class WindowFolder extends Window {
     let { files, openFile } = this.props;
 
     // select file or folder view
-    console.log(this.props);
     let file = files.filter(file => file.id === openFile);
     let view = file.length ? <FileView folder={this.props.id} id={file[0].id} title={file[0].title} closeFile={this.closeFile.bind(this)} /> : <FolderView files={this.props.files} openFile={this.openFile.bind(this)} />;
 

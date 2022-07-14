@@ -3,6 +3,7 @@
         "id": "webdev",
         "title": "webdev",
         "size": 1,
+        "type": "Planet",
         "files": [
             {
                 "id": "webdev2"
@@ -13,6 +14,7 @@
         "id": "maker",
         "title": "Maker",
         "size": 0.7,
+        "type": "Planet",
         "files": [
             {
                 "id": "maker2"
@@ -23,6 +25,7 @@
         "id": "about_me",
         "title": "About Me",
         "size": 0.8,
+        "type": "Planet",
         "files": [
             {
                 "id": "me",
@@ -37,6 +40,7 @@
     {
         "id": "contact",
         "title": "Contact",
+        "type": "Satellite",
         "size": 0.5
     }
 ]
