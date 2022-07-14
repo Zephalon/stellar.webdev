@@ -103,7 +103,7 @@ class Desktop extends Component {
 
     let animation = '';
     if (loaded) {
-      animation = <DesktopAnimation test={content} />;
+      animation = <DesktopAnimation content_open={this.state.open_folder_id ? true : false} />;
     }
 
     return (

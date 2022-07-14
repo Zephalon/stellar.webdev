@@ -18,6 +18,10 @@ class MathPack {
     static randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
+
+    static clamp(number, min, max) {
+        return Math.min(Math.max(number, min), max);
+    }
 }
 
 export default MathPack;

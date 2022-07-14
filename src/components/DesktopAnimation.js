@@ -35,7 +35,7 @@ class DesktopAnimation extends Component {
     this.state = {};
 
     // ToDo: this on resize
-    this.sun = new Sun('sun', this.colors.active);
+    this.sun = new Sun('sun', this.colors.secondary);
 
     // create planets
     content.forEach(folder => {
@@ -58,10 +58,6 @@ class DesktopAnimation extends Component {
 
   // p5.draw
   draw = (p5) => {
-    // temporary!
-    let stop_rotation = true;
-    let mouse_shadows = true;
-
     p5.clear();
 
     this.starfield.forEach(star => star.render(p5)); // render the starfield
@@ -72,9 +68,6 @@ class DesktopAnimation extends Component {
 
     // render the folder shadow
     if (folder) {
-      stop_rotation = false;
-      mouse_shadows = false;
-
       const boundaries = MathPack.getElementBoundaries(folder);
 
       // ToDo: get the closest edges to the sun
@@ -86,14 +79,14 @@ class DesktopAnimation extends Component {
 
       // the two vectors to the closest folder edges
       let folder_vectors = [
-        p5.createVector(folder_points[0].x - this.sun.center.x, folder_points[0].y - this.sun.center.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
-        p5.createVector(folder_points[1].x - this.sun.center.x, folder_points[1].y - this.sun.center.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
+        p5.createVector(folder_points[0].x - this.sun.x, folder_points[0].y - this.sun.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
+        p5.createVector(folder_points[1].x - this.sun.x, folder_points[1].y - this.sun.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
       ];
       // ToDo: replace "width" with something more clever
 
       // sun ray to folde edges (does not look good)
-      // p5.fill(this.colors.secondary);
-      // p5.triangle(this.sun.center.x, this.sun.center.y, folder_points[0].x, folder_points[0].y, folder_points[1].x, folder_points[1].y);
+      //p5.fill(this.colors.secondary);
+      //p5.triangle(this.sun.x, this.sun.y, folder_points[0].x, folder_points[0].y, folder_points[1].x, folder_points[1].y);
 
       // create window shadow
       p5.fill(this.colors.dark);
@@ -111,11 +104,12 @@ class DesktopAnimation extends Component {
 
     // current light source
     let light_source = {
-      x: mouse_shadows ? p5.mouseX : this.sun.x,
-      y: mouse_shadows ? p5.mouseY : this.sun.y
+      x: !this.props.content_open ? p5.mouseX : this.sun.x,
+      y: !this.props.content_open ? p5.mouseY : this.sun.y
     }
 
     // animate each planet
+    this.planets.forEach(planet => planet.move(this.props.content_open));
     this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
     this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
     this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active));
