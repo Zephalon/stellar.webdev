@@ -1,76 +1,81 @@
 import React, { Component } from 'react';
 import Sketch from "react-p5";
-import { Vector } from "p5"
 import content from "../content.json";
+import Sun from "../classes/Sun.js";
+import MiniStar from "../classes/MiniStar.js";
+import Planet from "../classes/Planet.js";
+import MathPack from "../classes/MathPack.js";
 
 class DesktopAnimation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-
-    // ToDo: this on resize
-    let sun = this.getSunPosition();
-    this.getPlanetPositions(sun.center);
-  }
-
-  y = 0;
-  direction = '^';
-
-  canvas_size = {
-    width: document.documentElement.clientWidth,
-    height: document.documentElement.clientHeight
-  };
-  sun = null;
-  planets = null;
+  // settings
   colors = {
     light: '#F2E2C4',
     dark: '#261D11',
     active: '#A6290D',
     secondary: '#F2B705'
+  };
+  settings = {
+    starfield_count: 100,
+    starfield_size: 8,
+    starfield_speed: 0.00005
   }
-  folder_shadow_length = 0
 
-  angle = 0;
+  // state
+  canvas_size = {
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight
+  };
+  sun = null;
+  planets = [];
+  starfield = [];
+  folder_shadow_length = 0;
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    // ToDo: this on resize
+    this.sun = new Sun('sun', this.colors.active);
+
+    // create planets
+    content.forEach(folder => {
+      this.planets.push(new Planet(folder.id, folder.size, this.sun));
+    });
+
+    // create starfield
+    for (let i = 0; i < this.settings.starfield_count; i++) {
+      this.starfield.push(new MiniStar(this.settings.starfield_size, this.settings.starfield_speed, this.sun, this.canvas_size, this.colors.secondary));
+    }
+  }
+
+  // p5.setup
   setup = (p5, canvasParentRef) => {
-    // ToDo: do not create twice!
-    p5.createCanvas(this.canvas_size.width, this.canvas_size.height).parent(canvasParentRef);
+    this.p5 = p5;
 
-    //p5.blendMode(p5.ADD);
+    // ToDo: do not run setup twice!
+    p5.createCanvas(this.canvas_size.width, this.canvas_size.height).parent(canvasParentRef);
   };
 
+  // p5.draw
   draw = (p5) => {
-    // ToDo: Remove this here
-    function gradientLine(x1, y1, x2, y2, c1, c2, sz) {
-      const d = p5.dist(x1, y1, x2, y2)
-      for (let i = 0; i < d; i++) {
-        const step = p5.map(i, 0, d, 0, 1)
-        const x = p5.lerp(x1, x2, step)
-        const y = p5.lerp(y1, y2, step)
-        const c = p5.lerpColor(c1, c2, step)
-        p5.fill(c)
-        p5.ellipse(x, y, sz, sz)
-      }
-    }
-
-    let speed = 0.005;
+    // temporary!
     let stop_rotation = true;
     let mouse_shadows = true;
+
     p5.clear();
 
-    // create the sun
-    p5.noStroke();
-    p5.fill(this.colors.active);
-    p5.ellipse(this.sun.center.x, this.sun.center.y, this.sun.boundaries.width);
+    this.starfield.forEach(star => star.render(p5)); // render the starfield
+    this.sun.render(p5); // render the sun
 
     // ToDo: if this stays like this, please don't hire me
     const folder = document.getElementById('window_folder-inner');
 
+    // render the folder shadow
     if (folder) {
       stop_rotation = false;
       mouse_shadows = false;
 
-      const boundaries = this.getElementBoundaries(folder);
+      const boundaries = MathPack.getElementBoundaries(folder);
 
       // ToDo: get the closest edges to the sun
 
@@ -79,14 +84,15 @@ class DesktopAnimation extends Component {
         { x: Math.round(boundaries.left), y: Math.round(boundaries.top + boundaries.height) }
       ];
 
+      // the two vectors to the closest folder edges
       let folder_vectors = [
         p5.createVector(folder_points[0].x - this.sun.center.x, folder_points[0].y - this.sun.center.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
         p5.createVector(folder_points[1].x - this.sun.center.x, folder_points[1].y - this.sun.center.y).normalize().setMag(this.canvas_size.width * this.folder_shadow_length * 0.05),
       ];
       // ToDo: replace "width" with something more clever
 
-      // sun ray
-      p5.fill(this.colors.secondary);
+      // sun ray to folde edges (does not look good)
+      // p5.fill(this.colors.secondary);
       // p5.triangle(this.sun.center.x, this.sun.center.y, folder_points[0].x, folder_points[0].y, folder_points[1].x, folder_points[1].y);
 
       // create window shadow
@@ -98,134 +104,22 @@ class DesktopAnimation extends Component {
       p5.vertex(folder_points[1].x, folder_points[1].y);
       p5.endShape(p5.CLOSE);
 
-      this.folder_shadow_length = this.folder_shadow_length >= 20 ? 20 : ++this.folder_shadow_length;
+      this.folder_shadow_length = this.folder_shadow_length >= 20 ? 20 : ++this.folder_shadow_length; // increment for animation
     } else {
-      this.folder_shadow_length = 0;
+      this.folder_shadow_length = 0; // reset
+    }
+
+    // current light source
+    let light_source = {
+      x: mouse_shadows ? p5.mouseX : this.sun.x,
+      y: mouse_shadows ? p5.mouseY : this.sun.y
     }
 
     // animate each planet
-    this.planets.forEach(planet => {
-      // create planet orbit
-      /*p5.stroke(this.colors.secondary);
-      p5.strokeWeight(1);
-      p5.noFill();
-      p5.ellipse(planet.center.x, planet.center.y, planet.boundaries.width * 1);*/
-
-      // create sun orbit
-      /*p5.stroke(this.colors.light);
-      p5.strokeWeight(10);
-      p5.noFill();
-      p5.ellipse(this.sun.center.x, this.sun.center.y, orbit * 2);*/
-
-      p5.stroke(this.colors.secondary);
-      p5.strokeWeight(1);
-      p5.noFill();
-      p5.ellipse(this.sun.center.x, this.sun.center.y, planet.orbit * 2);
-    });
-
-    this.planets.forEach(planet => {
-      let planet_size = planet.boundaries.width * 0.6 * planet.size;
-      let planet_speed = (planet_size + 1 / planet.orbit) * 0.01;
-
-      // set position
-      let position = {
-        x: this.sun.center.x + planet.orbit * Math.cos(planet.angle),
-        y: this.sun.center.y + planet.orbit * Math.sin(planet.angle)
-      }
-
-      if (!stop_rotation) {
-        position = {
-          x: this.sun.center.x + planet.orbit * Math.cos(this.angle * planet_speed),
-          y: this.sun.center.y + planet.orbit * Math.sin(this.angle * planet_speed)
-        }
-      }
-
-      // create planet shadows
-      let light_source = {
-        x: mouse_shadows ? p5.mouseX : this.sun.center.x,
-        y: mouse_shadows ? p5.mouseY : this.sun.center.y,
-        distance: mouse_shadows ? p5.dist(p5.mouseX, p5.mouseY, planet.center.x, planet.center.y) * 0.3 : planet.orbit * 0.5
-      }
-
-      let light_angle = this.getAngle(light_source.x, light_source.y, position.x, position.y);
-      let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source.distance);
-
-      p5.strokeWeight(planet_size * 1);
-      p5.stroke(this.colors.dark);
-      p5.line(position.x, position.y, position.x + shadow_vector.x, position.y + shadow_vector.y);
-      // gradientLine(position.x, position.y, position.x + shadow_vector.x, position.y + shadow_vector.y, p5.color(this.colors.secondary), p5.color(242, 183, 5, 0), planet_size);
-
-      // create planets
-      p5.noStroke();
-      p5.fill(this.colors.active);
-      p5.ellipse(position.x, position.y, planet_size);
-
-      // p5.image(this.layers.planets, 0, 0);
-    });
-
-    this.angle += speed;
+    this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
+    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
+    this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active));
   };
-
-  getSunPosition() {
-    const element = document.getElementById('sun');
-    const boundaries = this.getElementBoundaries(element);
-
-    this.sun = {
-      element: element,
-      boundaries: boundaries,
-      center: {
-        x: Math.round(boundaries.left + boundaries.width * 0.5),
-        y: Math.round(boundaries.top + boundaries.height * 0.5)
-      }
-    };
-
-    return this.sun;
-  }
-
-  getPlanetPositions(sun_center) {
-    let planets = [];
-
-    content.forEach(folder => {
-      const element = document.getElementById('folder-' + folder.id);
-      const boundaries = this.getElementBoundaries(element);
-      let center = {
-        x: Math.round(boundaries.left + boundaries.width * 0.5),
-        y: Math.round(boundaries.top + boundaries.height * 0.5)
-      };
-
-      planets.push({
-        id: folder.id,
-        element: element,
-        boundaries: boundaries,
-        size: folder.size,
-        center: center,
-        orbit: Math.round(this.getDistance(sun_center.x, sun_center.y, center.x, center.y)),
-        angle: Math.round(this.getAngle(sun_center.x, sun_center.y, center.x, center.y))
-      });
-    });
-
-    this.planets = planets;
-
-    console.log(planets);
-
-    return this.planets;
-  }
-
-  getDistance(x1, y1, x2, y2) {
-    let y = x2 - x1;
-    let x = y2 - y1;
-
-    return Math.sqrt(x * x + y * y);
-  }
-
-  getAngle(x1, y1, x2, y2) {
-    return Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
-  }
-
-  // get the element boundaries...
-  getElementBoundaries(element) {
-    return !element ? null : element.getBoundingClientRect();
-  }
 
   render() {
     return (

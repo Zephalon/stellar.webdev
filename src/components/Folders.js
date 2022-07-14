@@ -11,7 +11,6 @@ class Folders extends Component {
     return (
       <ul className="folders">
         {this.props.content.map((folder) =>
-
           <Folder key={folder.id} id={folder.id} title={folder.title} openWindow={this.props.openWindow} />
         )}
       </ul>

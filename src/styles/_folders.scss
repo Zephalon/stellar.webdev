@@ -18,6 +18,7 @@
         min-height: 15em;
         text-align: center;
         align-self: center;
+        cursor: pointer;
 
         &-inner {
             text-align: center;
@@ -25,18 +26,26 @@
 
         &-planet {
             width: 10em;
-            height: 11em;
+            height: 12em;
             //background-color: settings.$color-active;
             //border: 1px solid red;
             border-radius: 100%;
             display: inline-block;
         }
 
-        h2 {
-            text-transform: lowercase;
+        &-title {
+            text-align: center;
+            display: block;
 
-            .highlight {
-                background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
+            h2 {
+                text-transform: lowercase;
+                background-color: settings.$color-light;
+                display: inline-block;
+                //color: settings.$color-active;
+    
+                .highlight {
+                    background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
+                }
             }
         }
     }
