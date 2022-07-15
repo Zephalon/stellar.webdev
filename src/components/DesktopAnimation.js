@@ -17,16 +17,12 @@ class DesktopAnimation extends Component {
     secondary: '#F2B705'
   };
   settings = {
-    starfield_count: 100,
+    starfield_count: 150,
     starfield_size: 8,
-    starfield_speed: 0.00005
+    starfield_speed: 0.1
   }
 
   // state
-  canvas_size = {
-    width: document.documentElement.clientWidth,
-    height: document.documentElement.clientHeight
-  };
   planets = [];
   starfield = [];
 
@@ -49,8 +45,11 @@ class DesktopAnimation extends Component {
 
     // create starfield
     for (let i = 0; i < this.settings.starfield_count; i++) {
-      this.starfield.push(new MiniStar(this.settings.starfield_size, this.settings.starfield_speed, this.sun, this.canvas_size, this.colors.secondary));
-    }
+      this.starfield.push(new MiniStar(this.settings.starfield_size, this.settings.starfield_speed, this.sun, this.colors.secondary));
+    }    this.canvas_size = {
+      width: document.documentElement.clientWidth,
+      height: document.documentElement.clientHeight
+    };
 
     this.content_shadow = new ContentShadow('window_folder-inner', this.sun, this.colors.dark); // create folder shadow
   }
@@ -60,8 +59,17 @@ class DesktopAnimation extends Component {
     this.p5 = p5;
 
     // ToDo: do not run setup twice!
-    p5.createCanvas(this.canvas_size.width, this.canvas_size.height).parent(canvasParentRef);
+    p5.createCanvas(0, 0).parent(canvasParentRef);
+
+    this.resizeP5Canvas.bind(p5)();
+
+    window.addEventListener('resize', this.resizeP5Canvas.bind(p5), true);
   };
+
+  // resize canvas on window resize
+  resizeP5Canvas() {
+    this.resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
+  }
 
   // p5.draw
   draw = (p5) => {

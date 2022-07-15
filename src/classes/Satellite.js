@@ -7,6 +7,8 @@ class Satellite extends Planet {
         super.renderPlanet(p5, color, light_source);
 
         // ToDo: render satellite
+        let position = this.getPosition();
+        let light_angle = MathPack.getAngle(light_source.x, light_source.y, position.x, position.y);
     }
 }
 

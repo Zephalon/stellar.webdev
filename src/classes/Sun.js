@@ -11,9 +11,7 @@ class Sun {
 
         this.calculatePosition();
 
-        window.addEventListener('resize', function (event) {
-            this.calculatePosition();
-        }, true);
+        window.addEventListener('resize', this.calculatePosition.bind(this), true);
     }
 
     // calculate the suns' center
