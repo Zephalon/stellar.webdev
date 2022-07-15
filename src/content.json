@@ -1,7 +1,7 @@
 [
     {
         "id": "webdev",
-        "title": "webdev",
+        "title": "Webdev",
         "size": 1,
         "type": "Planet",
         "files": [
@@ -23,13 +23,13 @@
     },
     {
         "id": "about_me",
-        "title": "About Me",
+        "title": "Mehr",
         "size": 0.8,
         "type": "Planet",
         "files": [
             {
                 "id": "me",
-                "title": "About Me"
+                "title": "Ein wirklich langer Dateiname"
             },
             {
                 "id": "cv",

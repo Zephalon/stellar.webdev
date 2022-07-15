@@ -1,0 +1,102 @@
+@use 'settings';
+
+body {
+    font-family: settings.$font-family-text;
+    font-weight: settings.$font-weight-normal;
+    line-height: 1.4;
+    color: settings.$color-dark;
+    font-size: settings.$base-size;
+
+    @media (max-width: 727px) {
+        font-size: settings.$base-size - 2px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: settings.$base-size - 4px;
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+strong,
+b {
+    font-weight: settings.$font-weight-bold;
+}
+
+a {
+    color: settings.$color-active;
+    text-decoration: none;
+
+    &:hover {
+        // todo
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.headline {
+    font-family: settings.$font-family-headline;
+    font-weight: settings.$font-weight-bold;
+    margin: 1em 0 0.25em 0;
+    word-break: break-word;
+    line-height: 1.2em;
+}
+
+h1, .h1{
+    font-size: 3em;
+}
+
+h2, .h2 {
+    font-size: 2em;
+}
+
+h3, .h3 {
+    font-size: 1.5em;
+}
+
+h4, h5, h6, .h4, .h5, .h6 {
+    font-size: 1.25em;
+}
+
+.button,
+button,
+input[type='submit'] {
+    display: inline-block;
+    text-decoration: none;
+    border: 0;
+
+    &:hover {
+        // todo
+    }
+
+    &.disabled {
+        opacity: .3;
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+.color {
+    &-active {
+        color: settings.$color-active;
+    }
+
+    &-secondary {
+        color: settings.$color-secondary;
+    }
+
+    &-dark {
+        color: settings.$color-dark;
+    }
+
+    &-light {
+        color: settings.$color-light;
+    }
+}

@@ -10,6 +10,7 @@ class Planet {
 
         // setup
         this.element = document.getElementById('folder-' + id);
+        this.base_size = 0;
 
         this.planetaryCalculations();
 
@@ -21,7 +22,7 @@ class Planet {
         window.addEventListener('resize', this.planetaryCalculations.bind(this), true);
     }
 
-    precalculated_positons = {}; // saved positions
+    precalculated_positons = {}; // position lookup table
 
     // calculate the planets' center
     planetaryCalculations() {
@@ -37,7 +38,7 @@ class Planet {
         this.size = this.boundaries.width * 0.6 * this.size_factor;
         this.speed_factor = (this.size + 1 / this.orbit) * 0.01; // ???
         this.acceleration = 0.001 * (1 / this.size);
-        this.max_speed = (this.size + 1 / this.orbit) * 0.0025;
+        this.max_speed = (this.size + 1 / this.orbit) * 0.001;
 
         this.precalculated_positons = {};
     }
@@ -51,7 +52,7 @@ class Planet {
     renderOrbit(p5, color) {
         // draw
         p5.stroke(color);
-        p5.strokeWeight(2);
+        p5.strokeWeight(2 * this.base_size);
         p5.noFill();
         p5.ellipse(this.sun.x, this.sun.y, this.orbit * 2);
     }
@@ -61,10 +62,10 @@ class Planet {
         let position = this.getPosition();
         let light_source_distance = MathPack.getDistance(light_source.x, light_source.y, position.x, position.y);
         let light_angle = MathPack.getAngle(light_source.x, light_source.y, position.x, position.y);
-        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source_distance);
+        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source_distance * this.base_size);
 
         // draw
-        p5.strokeWeight(this.size * 1);
+        p5.strokeWeight(this.size * this.base_size);
         p5.stroke(color);
         p5.line(position.x, position.y, position.x + shadow_vector.x, position.y + shadow_vector.y);
     }
@@ -76,9 +77,14 @@ class Planet {
         // draw
         p5.noStroke();
         p5.fill(color);
-        p5.ellipse(position.x, position.y, this.size);
+        p5.ellipse(position.x, position.y, this.size * this.base_size);
 
         p5.ellipse(this.center.x, this.center.y, 10);
+
+        if (this.base_size < 1) {
+            this.base_size += (1 - this.base_size) * 0.025;
+            if (this.base_size > 1) this.base_size = 1; // cap at 1
+        }
     }
 
     // move the planet
@@ -86,7 +92,7 @@ class Planet {
         let angle_to_default = Math.abs(this.angle - this.default_angle);
         if (this.angle > this.default_angle) angle_to_default = Math.abs(angle_to_default - 360);
 
-        if (orbit_sun || (angle_to_default > 0 && this.angle < angle_to_default + 45)) {
+        if (orbit_sun || angle_to_default > 300) {
             // orbit around the sun
             this.velocity += this.acceleration;
             this.speed += this.velocity;
@@ -94,7 +100,7 @@ class Planet {
             this.angle += this.speed;
         } else if (angle_to_default > 0) {
             // return to origin
-            this.speed = angle_to_default * 0.25;
+            this.speed = angle_to_default * 0.2;
             this.angle += this.speed;
             if (angle_to_default < 0.1) this.angle = 0;
         }

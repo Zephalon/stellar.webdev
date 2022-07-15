@@ -1,0 +1,14 @@
+@use '../settings';
+
+.folders {
+    z-index: 100;
+    display: flex;
+    width: 75vw;
+    height: 100vh;
+    position: absolute;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 0 0 25vw;
+}

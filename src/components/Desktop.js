@@ -69,6 +69,7 @@ class Desktop extends Component {
       if (folder.id === id) {
         result = {
           id: id,
+          title: folder.title,
           type: 'folder',
           files: folder.files,
         }
@@ -98,7 +99,7 @@ class Desktop extends Component {
     let active_folder = '';
     if (open_folder_id) {
       let folder = this.getContentById(open_folder_id);
-      active_folder = <WindowFolder key={folder} id={folder.id} files={folder.files} closeWindow={this.closeWindow.bind(this)} openFile={open_file_id} />;
+      active_folder = <WindowFolder key={folder} id={folder.id} title={folder.title} files={folder.files} closeWindow={this.closeWindow.bind(this)} openFile={open_file_id} />;
     }
 
     let animation = '';

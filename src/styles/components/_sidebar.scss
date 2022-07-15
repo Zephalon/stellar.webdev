@@ -1,0 +1,51 @@
+@use '../settings';
+
+.sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    text-align: center;
+    color: settings.$color-secondary;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1em;
+
+    &-icon {
+        height: 15rem;
+        width: 15rem;
+        margin: 0 auto;
+        background-color: settings.$color-secondary;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 0 1em 0;
+    }
+
+    &-folder {
+        .sidebar-icon {
+            border-radius: 0 100% 100% 100%;
+        }
+    }
+
+    &-title {
+        color: settings.$color-secondary;
+        color: settings.$color-dark;
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1em 0;
+        // text-transform: lowercase;
+        margin: 0;
+
+        .highlight {
+            background: linear-gradient(180deg, rgba(settings.$color-light, 0) 60%, settings.$color-light 50%);
+        }
+    }
+
+    button {
+        display: inline-block;
+        background-color: settings.$color-secondary;
+        font-weight: settings.$font-weight-bold;
+        height: 5em;
+        border-radius: 0 1em 0 0;
+    }
+}

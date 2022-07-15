@@ -1,0 +1,45 @@
+@use '../settings';
+
+.file_view {
+    &-inner {
+        padding: 0.5em 0;
+        h1:first-child {
+            margin-top: 0;
+        }
+
+        ul {
+            margin-left: -1.5em;
+        }
+
+        hr {
+            border-top: 1px solid settings.$color-dark;
+            margin: 1.5em 0 0.5em 0;
+        }
+
+        blockquote {
+            //border-left: 3px solid settings.$color-secondary;
+            margin: 1em 0;
+            padding: 0 2.5em;
+            position: relative;
+
+            &:before, &:after {
+                position: absolute;
+                font-size: 3em;
+                font-family: settings.$font-family-headline;
+                line-height: 1;
+            }
+
+            &:before {
+                content: '„';
+                top: -0.75em;
+                left: 0;
+            }
+            
+            &:after {
+                content: '“';
+                bottom: -0.5em;
+                right: 0;
+            }
+        }
+    }
+}

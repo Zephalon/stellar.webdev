@@ -1,4 +1,4 @@
-@use 'settings';
+@use '../settings';
 
 .window_folder {
     display: flex;
@@ -16,39 +16,10 @@
         width: 50vw;
         display: flex;
         flex-wrap: wrap;
-        border-radius: 0 0.5rem 0.5rem 0;
+        border-radius: 0 1em 1em 0;
         overflow: hidden;
-        border: 0.5rem solid settings.$color-active;
-    }
-
-    &-info {
-        flex-basis: 20rem;
-        flex-grow: 1;
-        text-align:center;
-        color: settings.$color-secondary;
-        display: flex;
-        flex-direction: column;
-    }
-
-    &-icon {
-        display: inline-block;
-        border-radius: 100%;
-        height: 10rem;
-        width: 10rem;
-        margin: 0 auto;
-        background-color: settings.$color-secondary;
-        margin-top: 1.5rem;
-    }
-
-    &-title {
-        color: settings.$color-secondary;
-        font-size: 2rem;
-        font-weight: 600;
-        padding: 1em 0;
-
-        .highlight {
-            background: linear-gradient(180deg, rgba(settings.$color-dark, 0) 60%, settings.$color-dark 50%);
-        }
+        border: 1em solid settings.$color-active;
+        border-right-width: 0;
     }
 
     button {
@@ -64,15 +35,15 @@
         background-color: settings.$color-light;
 
         &::-webkit-scrollbar {
-            width: 10px;
+            width: 1em;
         }
         
         &::-webkit-scrollbar-track {
-            background-color: settings.$color-secondary;
+            background-color: settings.$color-active;
         }
         
         &::-webkit-scrollbar-thumb {
-            background-color: settings.$color-active;
+            background-color: settings.$color-secondary;
         }
 
         &-inner {

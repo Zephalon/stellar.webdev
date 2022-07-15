@@ -1,0 +1,23 @@
+@use '../settings';
+
+.logotype {
+    width: 75vw;
+    position: absolute;
+    z-index: 50;
+    left: -7em;
+    top: calc(50vh - 8em);
+
+    &-inner {
+        color: settings.$color-dark;
+        transform: rotate(-90deg);
+        position: absolute;
+
+        h1 {
+            font-size: 5em;
+
+            strong {
+                font-family: "Syne Mono", monospace;
+            }
+        }
+    }
+}

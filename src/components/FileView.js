@@ -16,17 +16,12 @@ class FileView extends Window {
     this.getContent();
   }
 
-  // relay to parent
-  closeFile() {
-    this.props.closeFile(this.props.id);
-  }
-
   // load content and convert markdown to html
   async getContent() {
     let content = this.state.content;
     
     if (!this.state.content[this.props.id]) {
-      content[this.props.id] = '404 - File Not Found';
+      content[this.props.id] = 'Lade...';
 
       (async () => {
         try {
@@ -35,6 +30,7 @@ class FileView extends Window {
           content[this.props.id] = result.value.toString();
         } catch (e) {
           console.warn(e);
+          content[this.props.id] = '404 - File Not Found';
         }
 
         this.setState((state, props) => ({
@@ -62,10 +58,10 @@ class FileView extends Window {
 
     return (
       <div className="file_view">
-        <div dangerouslySetInnerHTML={{ __html: content[this.props.id] }}></div>
-        {<button onClick={this.closeFile.bind(this)}>
+        <div className="file_view-inner" dangerouslySetInnerHTML={{ __html: content[this.props.id] }}></div>
+        {/*<button onClick={this.props.closeFile}>
           Close File
-        </button>}
+    </button>*/}
       </div>
     )
   }

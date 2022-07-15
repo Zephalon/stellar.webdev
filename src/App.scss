@@ -1,11 +1,14 @@
 @use 'styles/_normalize.scss';
 @use 'styles/_global.scss';
 @use 'styles/_typography.scss';
-@use 'styles/_desktop.scss';
-@use 'styles/_folders.scss';
-@use 'styles/_file_viewer.scss';
-@use 'styles/_logotype.scss';
-@use 'styles/_window_folder.scss';
-@use 'styles/_folder_view.scss';
+@use 'styles/components/_desktop.scss';
+@use 'styles/components/_folders.scss';
+@use 'styles/components/_folder.scss';
+@use 'styles/components/_file_view.scss';
+@use 'styles/components/_logotype.scss';
+@use 'styles/components/_window_folder.scss';
+@use 'styles/components/_folder_view.scss';
+@use 'styles/components/_sidebar.scss';
+@use 'styles/components/_file.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Syne+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Playfair+Display:wght@700&family=Syne+Mono&display=swap');

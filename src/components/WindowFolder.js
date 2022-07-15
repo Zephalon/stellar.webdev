@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Window from "./Window";
 import FolderView from "./FolderView";
 import FileView from "./FileView";
+import SidebarFolder from "./SidebarFolder";
+import SidebarFile from "./SidebarFile";
 
 class WindowFolder extends Window {
   constructor(props) {
@@ -14,32 +16,29 @@ class WindowFolder extends Window {
     this.setLocationHash(file_id);
   }
 
-    // open file -> reset hash, render
-  closeFile(file_id) {
+  // open file -> reset hash, render
+  closeFile() {
     this.setLocationHash();
   }
 
   render() {
     let { files, openFile } = this.props;
 
-    // select file or folder view
+    // get open file
     let file = files.filter(file => file.id === openFile);
-    let view = file.length ? <FileView folder={this.props.id} id={file[0].id} title={file[0].title} closeFile={this.closeFile.bind(this)} /> : <FolderView files={this.props.files} openFile={this.openFile.bind(this)} />;
+    file = file.length ? file[0] : null;
+
+    // select file or folder view
+    let view = file ? <FileView folder={this.props.id} id={file.id} title={file.title} closeFile={this.closeFile.bind(this)} /> : <FolderView files={this.props.files} openFile={this.openFile.bind(this)} />;
+
+    // set sidebar
+    let sidebar = file ? <SidebarFile id={file.id} title={file.title} closeFile={this.closeFile.bind(this)} /> : <SidebarFolder title={this.props.title} closeWindow={this.props.closeWindow} />
+    console.log(sidebar);
 
     return (
       <div className="window_folder">
-        <div id="window_folder-inner" className="window_folder-inner"> 
-          <div className="window_folder-info">
-            <div className="window_folder-icon">&nbsp;</div>
-            <div className="window_folder-meta">
-              <div className="window_folder-title"><span className="highlight">{this.props.id}</span></div>
-              <div>Gravity: Attractive</div>
-              <div>Main Composition: Co<sup>2</sup>Fe<sup>2</sup></div>
-            </div>
-            {<button onClick={this.props.closeWindow}>
-              Close Folder
-            </button>}
-          </div>
+        <div id="window_folder-inner" className="window_folder-inner">
+          {sidebar}
           <div className="window_folder-content">
             <div className="window_folder-content-inner">
               {view}
