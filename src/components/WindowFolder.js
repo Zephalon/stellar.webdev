@@ -35,11 +35,11 @@ class WindowFolder extends Window {
     let sidebar = file ? <SidebarFile id={file.id} title={file.title} closeFile={this.closeFile.bind(this)} /> : <SidebarFolder title={this.props.title} closeWindow={this.props.closeWindow} />
 
     return (
-      <div className="window_folder">
-        <div id="window_folder-inner" className="window_folder-inner">
+      <div className="window window-folder">
+        <div id="window-inner" className="window-inner window-folder-inner">
           {sidebar}
-          <div className="window_folder-content">
-            <div className="window_folder-content-inner">
+          <div className="window-content window-folder-content">
+            <div className="window-content-inner window-folder-content-inner">
               {view}
             </div>
           </div>

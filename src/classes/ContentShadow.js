@@ -27,6 +27,8 @@ class ContentShadow {
         let element = document.getElementById(id);
         let boundaries = MathBook.getElementBoundaries(element);
 
+        if (!boundaries) return null;
+
         let edges = [
             { x: Math.round(boundaries.left), y: Math.round(boundaries.top) },
             { x: Math.round(boundaries.left), y: Math.round(boundaries.top + boundaries.height) },
@@ -42,7 +44,7 @@ class ContentShadow {
     }
 
     render(p5) {
-        if (!this.active) return;
+        if (!this.active || !this.edges) return;
 
         // the two vectors to the closest folder edges
         let base_length = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight);

@@ -1,0 +1,35 @@
+@use '../settings';
+
+.window {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    width: 100vw;
+    height: 100vh; 
+    position: absolute;
+
+    &-inner {
+        height: 40em;
+        max-height: calc(100vh - 4em);
+        width: 60em;
+        max-width: calc(100vw - 4em);;
+        background-color: settings.$color-active;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 0 1em 1em 0;
+        overflow: hidden;
+        border: 1em solid settings.$color-active;
+        border-right-width: 0;
+
+        @media (max-aspect-ratio: 1/1) {
+            border-radius: 0 0 1em 1em;
+             height: 60em;
+        }
+
+        @media (max-width: 727px) {
+            flex-flow: column;
+        }
+    }
+}

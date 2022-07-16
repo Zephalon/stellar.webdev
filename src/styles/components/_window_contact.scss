@@ -1,13 +1,11 @@
 @use '../settings';
 
-.window-folder {
-    button {
-        margin-top: auto;
+.window-contact {
+    &-inner {
+        height: 20em;
     }
 
     &-content {
-        flex-basis: 30rem;
-        flex-grow: 999;
         max-height: 100%;
         box-sizing: border-box;
         overflow-y: scroll;

@@ -3,8 +3,8 @@
         "id": "human",
         "title": "Mensch",
         "size": 0.8,
-        "type": "planet",
-        "open": "folder",
+        "render": "planet",
+        "type": "folder",
         "files": [
             {
                 "id": "about_me",
@@ -20,8 +20,8 @@
         "id": "work",
         "title": "Arbeit",
         "size": 1,
-        "type": "planet",
-        "open": "folder",
+        "render": "planet",
+        "type": "folder",
         "files": [
             {
                 "id": "webdev2"
@@ -31,16 +31,16 @@
     {
         "id": "contact",
         "title": "Kontakt",
-        "type": "satellite",
         "size": 0.7,
-        "open": "window"
+        "render": "satellite",
+        "type": "contact"
     },
     {
         "id": "source",
         "title": "GitHub",
-        "type": "stargate",
         "size": 0.6,
-        "open": "url",
+        "render": "stargate",
+        "type": "url",
         "url": "https://github.com/Zephalon/stellar.webdev" 
     }
 ]

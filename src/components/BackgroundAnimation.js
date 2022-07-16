@@ -44,7 +44,7 @@ class DesktopAnimation extends Component {
       'stargate': Stargate
     }
     content.forEach(folder => {
-      this.planets.push(new classMap[folder.type](folder.id, folder.size, this.sun));
+      this.planets.push(new classMap[folder.render](folder.id, folder.size, this.sun));
     });
 
     // create starfield
@@ -55,7 +55,7 @@ class DesktopAnimation extends Component {
       height: document.documentElement.clientHeight
     };
 
-    this.content_shadow = new ContentShadow('window_folder-inner', this.sun, this.colors.dark); // create folder shadow
+    this.content_shadow = new ContentShadow('window-inner', this.sun, this.colors.dark); // create folder shadow
   }
 
   // p5.setup

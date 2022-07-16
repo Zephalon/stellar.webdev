@@ -121,7 +121,6 @@ class Planet {
         p5.noStroke();
         p5.fill(color);
         p5.ellipse(position.x, position.y, this.size * this.base_size);
-        p5.ellipse(this.center.x, this.center.y, 10); // position dot
 
         if (this.base_size < 1) {
             this.base_size += (1 - this.base_size) * 0.1;
