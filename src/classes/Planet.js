@@ -63,19 +63,18 @@ class Planet {
 
         // get distance to light source
         let light_source_distance = MathBook.getDistance(light_source.x, light_source.y, position.x, position.y);
-        light_source_distance = MathBook.clamp(light_source_distance, 0, 500)* intensity;
-
+        let shadow_length = MathBook.clamp(500 - light_source_distance, this.size, 500);
 
         let light_angle = Math.round(MathBook.getAngle(light_source.x, light_source.y, position.x, position.y));
-        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source_distance * this.base_size);
+        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), shadow_length * this.base_size);
         let shadow_vector_normalized = shadow_vector.copy().normalize();
 
         // move this code
-        let pattern_density = 14;
-        let pattern_size = 14;
+        let pattern_density = 8;
+        let pattern_size = 12;
 
-        let ray_count = Math.floor(this.size * 0.5 * this.base_size / pattern_density);
-        let dot_count = Math.floor(light_source_distance * this.base_size / pattern_density);
+        let ray_count = Math.floor((this.size - 2 - (pattern_size - pattern_density)) * 0.5 * this.base_size / pattern_density);
+        let dot_count = Math.floor(shadow_length * this.base_size / pattern_density);
 
         [-90, 90].forEach(direction => {
             for (let ray = 0; ray <= ray_count; ray++) {
