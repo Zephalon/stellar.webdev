@@ -2,34 +2,52 @@
 
 .folder {
     display: block;
-    min-width: 15em;
-    min-height: 15em;
     text-align: center;
     align-self: center;
     cursor: pointer;
+    width: 100%;
+    max-width: 15vw;
+
+    @media (max-aspect-ratio: 1/1) {
+        max-width: 100%;
+        height: 100%;
+        max-height: 5em;
+    }
 
     &-inner {
         text-align: center;
+        position: relative;
     }
 
     &-planet {
+        height: 10em;
         width: 10em;
-        height: 12em;
-        //background-color: settings.$color-active;
-        //border: 1px solid red;
-        border-radius: 100%;
         display: inline-block;
+        //border: 1px solid green;
+
+        @media (max-aspect-ratio: 1/1) {
+            max-width: 5vh;
+        }
     }
 
     &-title {
         text-align: center;
         display: block;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        padding-top: 0.5em;
+
+        @media (max-aspect-ratio: 1/1) {
+
+        }
 
         h2 {
             // text-transform: lowercase;
             //background-color: settings.$color-light;
             display: inline-block;
             color: settings.$color-active;
+            margin: 0;
 
             .highlight {
                 background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);

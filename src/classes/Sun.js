@@ -1,4 +1,4 @@
-import MathPack from "./MathPack.js";
+import MathBook from "./MathBook.js";
 
 class Sun {
     constructor(id, color) {
@@ -16,7 +16,7 @@ class Sun {
 
     // calculate the suns' center
     calculatePosition() {
-        this.boundaries = MathPack.getElementBoundaries(this.element);
+        this.boundaries = MathBook.getElementBoundaries(this.element);
 
         this.x = Math.round(this.boundaries.left + this.boundaries.width * 0.5);
         this.y = Math.round(this.boundaries.top + this.boundaries.height * 0.5);

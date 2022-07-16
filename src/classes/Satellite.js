@@ -1,4 +1,4 @@
-import MathPack from "./MathPack.js";
+import MathBook from "./MathBook.js";
 import Planet from "../classes/Planet.js";
 
 class Satellite extends Planet {
@@ -8,7 +8,7 @@ class Satellite extends Planet {
 
         // ToDo: render satellite
         let position = this.getPosition();
-        let light_angle = MathPack.getAngle(light_source.x, light_source.y, position.x, position.y);
+        let light_angle = MathBook.getAngle(light_source.x, light_source.y, position.x, position.y);
     }
 }
 

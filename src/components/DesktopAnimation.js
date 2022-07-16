@@ -6,7 +6,7 @@ import MiniStar from "../classes/MiniStar.js";
 import Planet from "../classes/Planet.js";
 import Satellite from "../classes/Satellite.js";
 import ContentShadow from "../classes/ContentShadow.js";
-import MathPack from "../classes/MathPack.js";
+import MathBook from "../classes/MathBook.js";
 
 class DesktopAnimation extends Component {
   // settings
@@ -25,13 +25,15 @@ class DesktopAnimation extends Component {
   // state
   planets = [];
   starfield = [];
+  rotation = false;
+  rotation_x_offset = null;
 
   constructor(props) {
     super(props);
     this.state = {};
 
     // ToDo: this on resize
-  
+
     this.sun = new Sun('sun', this.colors.secondary); // create sun
 
     // create planets
@@ -46,7 +48,7 @@ class DesktopAnimation extends Component {
     // create starfield
     for (let i = 0; i < this.settings.starfield_count; i++) {
       this.starfield.push(new MiniStar(this.settings.starfield_size, this.settings.starfield_speed, this.sun, this.colors.secondary));
-    }    this.canvas_size = {
+    } this.canvas_size = {
       width: document.documentElement.clientWidth,
       height: document.documentElement.clientHeight
     };
@@ -79,10 +81,7 @@ class DesktopAnimation extends Component {
     this.sun.render(p5); // render the sun
 
     // current light source
-    let light_source = {
-      x: !this.props.content_open ? p5.mouseX : this.sun.x,
-      y: !this.props.content_open ? p5.mouseY : this.sun.y
-    }
+    let light_source = this.props.content_open ? this.sun : this.getUserLightsource(p5);
 
     // handle the content shadow
     this.content_shadow.setStatus(this.props.content_open);
@@ -91,9 +90,43 @@ class DesktopAnimation extends Component {
     // animate each planet
     this.planets.forEach(planet => planet.move(this.props.content_open));
     this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
-    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
+    if (light_source.x !== 0 && light_source.y !== 0) {
+      this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
+    }
+    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, this.sun));
     this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active, light_source));
   };
+
+  // get user light source for animation
+  getUserLightsource(p5) {
+    // default light source
+    let light_source = {
+      x: p5.mouseX,
+      y: p5.mouseY
+    };
+
+    if (p5.rotationX || p5.rotationY) {
+      // device has accelerometer
+      let max_angle = 30;
+
+      if (this.rotation_x_offset === null) this.rotation_x_offset = MathBook.clamp(p5.rotationX, 25, 45);
+
+      let rotation = {
+        x: MathBook.clamp(p5.rotationY, max_angle * -1, max_angle),
+        y: MathBook.clamp(p5.rotationX - this.rotation_x_offset, max_angle * -1, max_angle)
+      }
+      light_source = {
+        x: document.documentElement.clientWidth * (0.5 + rotation.x * (0.5 / max_angle)),
+        y: document.documentElement.clientHeight * (0.5 + rotation.y * (0.5 / max_angle))
+      };
+    }
+
+    p5.noStroke();
+    p5.fill(this.colors.active);
+    p5.ellipse(light_source.x, light_source.y, 10);
+
+    return light_source;
+  }
 
   render() {
     return (

@@ -1,4 +1,4 @@
-import MathPack from "./MathPack.js";
+import MathBook from "./MathBook.js";
 
 class MiniStar {
     constructor(size, speed, sun, color) {
@@ -9,16 +9,16 @@ class MiniStar {
         // setup
         this.proportional_orbit = Math.random();
         this.getOrbit();
-        this.size = MathPack.randomInt(5, 10) * 0.1 * size;
+        this.size = MathBook.randomInt(5, 10) * 0.1 * size;
         this.speed = this.size * 0.001 * speed * (1 - this.proportional_orbit);
-        this.angle = MathPack.randomInt(-180, 180);
+        this.angle = MathBook.randomInt(-180, 180);
 
         window.addEventListener('resize', this.getOrbit.bind(this), true);
     }
 
     // get the orbit
     getOrbit() {
-        this.orbit = this.proportional_orbit * document.documentElement.clientWidth + Math.abs(this.sun.x);
+        this.orbit = this.proportional_orbit * Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) + Math.max(Math.abs(this.sun.y), Math.abs(this.sun.x));
     }
 
     render(p5) {
@@ -26,7 +26,6 @@ class MiniStar {
             x: this.sun.x + this.orbit * Math.cos(this.angle),
             y: this.sun.y + this.orbit * Math.sin(this.angle)
         }
-        if (position.y > document.documentElement.clientHeight) this.angle += 300;
 
         // draw
         p5.noStroke();

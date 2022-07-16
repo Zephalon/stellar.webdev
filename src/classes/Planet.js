@@ -1,4 +1,4 @@
-import MathPack from "./MathPack.js";
+import MathBook from "./MathBook.js";
 import { Vector } from "p5"
 
 class Planet {
@@ -26,7 +26,7 @@ class Planet {
 
     // calculate the planets' center
     planetaryCalculations() {
-        this.boundaries = MathPack.getElementBoundaries(this.element);
+        this.boundaries = MathBook.getElementBoundaries(this.element);
 
         this.center = {
             x: Math.round(this.boundaries.left + this.boundaries.width * 0.5),
@@ -34,8 +34,8 @@ class Planet {
         };
 
         this.orbit = this.getOrbit();
-        this.default_angle = Math.round(MathPack.getAngle(this.sun.x, this.sun.y, this.center.x, this.center.y));
-        this.size = this.boundaries.width * 0.6 * this.size_factor;
+        this.default_angle = Math.round(MathBook.getAngle(this.sun.x, this.sun.y, this.center.x, this.center.y));
+        this.size = Math.min(this.boundaries.width, this.boundaries.height) * 1 * this.size_factor;
         this.speed_factor = (this.size + 1 / this.orbit) * 0.01; // ???
         this.acceleration = 0.001 * (1 / this.size);
         this.max_speed = (this.size + 1 / this.orbit) * 0.001;
@@ -45,7 +45,7 @@ class Planet {
 
     // get the orbit
     getOrbit() {
-        return Math.round(MathPack.getDistance(this.sun.x, this.sun.y, this.center.x, this.center.y));
+        return Math.round(MathBook.getDistance(this.sun.x, this.sun.y, this.center.x, this.center.y));
     }
 
     // render the planet's orbit (line)
@@ -60,8 +60,8 @@ class Planet {
     // render the planets shadow, based on the light source
     renderShadow(p5, color, light_source = this.sun) {
         let position = this.getPosition();
-        let light_source_distance = MathPack.getDistance(light_source.x, light_source.y, position.x, position.y);
-        let light_angle = MathPack.getAngle(light_source.x, light_source.y, position.x, position.y);
+        let light_source_distance = MathBook.getDistance(light_source.x, light_source.y, position.x, position.y);
+        let light_angle = MathBook.getAngle(light_source.x, light_source.y, position.x, position.y);
         let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source_distance * this.base_size);
 
         // draw
@@ -102,7 +102,7 @@ class Planet {
             // return to origin
             this.speed = angle_to_default * 0.2;
             this.angle += this.speed;
-            if (angle_to_default < 0.1) this.angle = 0;
+            if (angle_to_default < 0.1) this.angle = this.default_angle;
         }
 
         if (this.angle > 360) this.angle -= 360;

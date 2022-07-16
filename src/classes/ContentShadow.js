@@ -1,4 +1,4 @@
-import MathPack from "./MathPack.js";
+import MathBook from "./MathBook.js";
 
 class ContentShadow {
     constructor(id, sun, color) {
@@ -25,17 +25,17 @@ class ContentShadow {
     // get content window
     getElement(id) {
         let element = document.getElementById(id);
-        let boundaries = MathPack.getElementBoundaries(element);
+        let boundaries = MathBook.getElementBoundaries(element);
 
         let edges = [
             { x: Math.round(boundaries.left), y: Math.round(boundaries.top) },
             { x: Math.round(boundaries.left), y: Math.round(boundaries.top + boundaries.height) },
-            { x: Math.round(boundaries.left + boundaries.width), y: Math.round(boundaries.top + boundaries.height) },
+            { x: Math.round(boundaries.left + boundaries.width), y: Math.round(boundaries.top) },
             { x: Math.round(boundaries.left + boundaries.width), y: Math.round(boundaries.top + boundaries.height) }
         ];
 
         // sort by distance to 'sun'
-        edges.map(edge => edge.distance = MathPack.getDistance(this.sun.x, this.sun.y, edge.x, edge.y));
+        edges.map(edge => edge.distance = MathBook.getDistance(this.sun.x, this.sun.y, edge.x, edge.y));
         edges.sort((a, b) => (a.distance > b.distance) ? 1 : -1);
 
         this.edges = edges;
@@ -45,9 +45,10 @@ class ContentShadow {
         if (!this.active) return;
 
         // the two vectors to the closest folder edges
+        let base_length = Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight);
         let folder_vectors = [
-            p5.createVector(this.edges[0].x - this.sun.x, this.edges[0].y - this.sun.y).normalize().setMag(document.documentElement.clientWidth * this.folder_shadow_length * 0.05),
-            p5.createVector(this.edges[1].x - this.sun.x, this.edges[1].y - this.sun.y).normalize().setMag(document.documentElement.clientWidth * this.folder_shadow_length * 0.05),
+            p5.createVector(this.edges[0].x - this.sun.x, this.edges[0].y - this.sun.y).normalize().setMag(base_length * this.folder_shadow_length * 0.05 * 1.5),
+            p5.createVector(this.edges[1].x - this.sun.x, this.edges[1].y - this.sun.y).normalize().setMag(base_length * this.folder_shadow_length * 0.05 * 1.5),
         ];
 
         // draw

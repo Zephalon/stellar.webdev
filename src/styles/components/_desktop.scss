@@ -14,6 +14,13 @@
         top: -50vh;
         border-radius: 100vh;
         z-index: 10;
+
+        @media (max-aspect-ratio: 1/1) {
+            width: 200vw;
+            height: 200vw;
+            left: -50vw;
+            top: -175vw;
+        }
     }
 
     #background-animation {

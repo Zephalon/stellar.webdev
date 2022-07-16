@@ -2,23 +2,31 @@
 
 .sidebar {
     flex-basis: 15rem;
-    flex-grow: 1;
     text-align: center;
     color: settings.$color-secondary;
     display: flex;
     flex-direction: column;
     padding-right: 1em;
 
+    @media (max-width: 727px) {
+        order: 1;
+        flex-basis: 0;
+        margin-top: 1em;
+    }
+
     &-icon {
-        height: 15rem;
-        width: 15rem;
         margin: 0 auto;
-        background-color: settings.$color-secondary;
         margin-top: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 0 0 1em 0;
+
+        @media (min-width: 728px) {
+            height: 15rem;
+            width: 15rem;
+            background-color: settings.$color-secondary;
+        }
     }
 
     &-folder {
@@ -28,16 +36,24 @@
     }
 
     &-title {
-        color: settings.$color-secondary;
         color: settings.$color-dark;
-        font-size: 2rem;
+        font-size: 2em;
         font-weight: 600;
         padding: 1em 0;
-        // text-transform: lowercase;
         margin: 0;
 
         .highlight {
             background: linear-gradient(180deg, rgba(settings.$color-light, 0) 60%, settings.$color-light 50%);
+        }
+
+        @media (max-width: 727px) {
+            color: settings.$color-secondary;
+            padding: 0.5em 0 1em 0;
+            display: none;
+
+            .highlight {
+                background: transparent;
+            }
         }
     }
 
@@ -47,5 +63,10 @@
         font-weight: settings.$font-weight-bold;
         height: 5em;
         border-radius: 0 1em 0 0;
+
+        @media (max-width: 727px) {
+            //display: none;
+            border-radius: 0 0 0.75em 0.75em;
+        }
     }
 }
