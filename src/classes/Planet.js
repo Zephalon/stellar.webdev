@@ -10,7 +10,7 @@ class Planet {
 
         // setup
         this.element = document.getElementById('folder-' + id);
-        this.base_size = 0;
+        this.base_size = 0; // for animation
 
         this.planetaryCalculations();
 
@@ -58,16 +58,61 @@ class Planet {
     }
 
     // render the planets shadow, based on the light source
-    renderShadow(p5, color, light_source = this.sun) {
+    renderShadow(p5, color, light_source = this.sun, intensity = 1) {
         let position = this.getPosition();
+
+        // get distance to light source
         let light_source_distance = MathBook.getDistance(light_source.x, light_source.y, position.x, position.y);
-        let light_angle = MathBook.getAngle(light_source.x, light_source.y, position.x, position.y);
+        light_source_distance = MathBook.clamp(light_source_distance, 0, 500)* intensity;
+
+
+        let light_angle = Math.round(MathBook.getAngle(light_source.x, light_source.y, position.x, position.y));
         let shadow_vector = Vector.fromAngle(p5.radians(light_angle), light_source_distance * this.base_size);
+        let shadow_vector_normalized = shadow_vector.copy().normalize();
+
+        // move this code
+        let pattern_density = 14;
+        let pattern_size = 14;
+
+        let ray_count = Math.floor(this.size * 0.5 * this.base_size / pattern_density);
+        let dot_count = Math.floor(light_source_distance * this.base_size / pattern_density);
+
+        [-90, 90].forEach(direction => {
+            for (let ray = 0; ray <= ray_count; ray++) {
+                let right_angle = shadow_vector_normalized.copy().rotate(direction);
+                p5.strokeWeight(1);
+                p5.stroke(color);
+
+                let ray_position = {
+                    x: position.x + right_angle.x * pattern_density * ray,
+                    y: position.y + right_angle.y * pattern_density * ray
+                }
+
+                //p5.line(ray_position.x, ray_position.y, ray_position.x + shadow_vector.x, ray_position.y + shadow_vector.y);
+
+                
+                for (let dot = 1; dot <= dot_count; dot++) {
+                    let dot_position = {
+                        x: ray_position.x + shadow_vector_normalized.x * pattern_density * dot,
+                        y: ray_position.y + shadow_vector_normalized.y * pattern_density * dot
+                    }
+
+                    // draw
+                    p5.noStroke();
+                    p5.fill(color);
+                    p5.ellipse(dot_position.x, dot_position.y, pattern_size * (1 - (dot / dot_count)));
+                }
+
+                //p5.line(line_position.x, line_position.y, line_position.x + shadow_vector.x, line_position.y + shadow_vector.y);
+                //console.log(shadow_vector);
+            }
+
+        });
 
         // draw
         p5.strokeWeight(this.size * this.base_size);
         p5.stroke(color);
-        p5.line(position.x, position.y, position.x + shadow_vector.x, position.y + shadow_vector.y);
+        //p5.line(position.x, position.y, position.x + shadow_vector.x, position.y + shadow_vector.y);
     }
 
     // render the planet
@@ -78,8 +123,7 @@ class Planet {
         p5.noStroke();
         p5.fill(color);
         p5.ellipse(position.x, position.y, this.size * this.base_size);
-
-        p5.ellipse(this.center.x, this.center.y, 10);
+        p5.ellipse(this.center.x, this.center.y, 10); // position dot
 
         if (this.base_size < 1) {
             this.base_size += (1 - this.base_size) * 0.025;
