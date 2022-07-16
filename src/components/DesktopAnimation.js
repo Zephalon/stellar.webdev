@@ -5,6 +5,7 @@ import Sun from "../classes/Sun.js";
 import MiniStar from "../classes/MiniStar.js";
 import Planet from "../classes/Planet.js";
 import Satellite from "../classes/Satellite.js";
+import Stargate from "../classes/Stargate.js";
 import ContentShadow from "../classes/ContentShadow.js";
 import MathBook from "../classes/MathBook.js";
 
@@ -38,8 +39,9 @@ class DesktopAnimation extends Component {
 
     // create planets
     const classMap = {
-      'Planet': Planet,
-      'Satellite': Satellite
+      'planet': Planet,
+      'satellite': Satellite,
+      'stargate': Stargate
     }
     content.forEach(folder => {
       this.planets.push(new classMap[folder.type](folder.id, folder.size, this.sun));
@@ -90,10 +92,7 @@ class DesktopAnimation extends Component {
     // animate each planet
     this.planets.forEach(planet => planet.move(this.props.content_open));
     this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
-    if (light_source.x !== 0 && light_source.y !== 0) {
-      this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
-    }
-    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, this.sun));
+    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
     this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active, light_source));
   };
 

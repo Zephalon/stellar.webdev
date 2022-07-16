@@ -1,35 +1,13 @@
 [
     {
-        "id": "webdev",
-        "title": "Webdev",
+        "id": "human",
+        "title": "Mensch",
         "size": 1,
-        "type": "Planet",
+        "type": "planet",
         "files": [
             {
-                "id": "webdev2"
-            }
-        ]
-    },
-    {
-        "id": "maker",
-        "title": "Maker",
-        "size": 0.7,
-        "type": "Planet",
-        "files": [
-            {
-                "id": "maker2"
-            }
-        ]
-    },
-    {
-        "id": "about_me",
-        "title": "Mehr",
-        "size": 0.8,
-        "type": "Planet",
-        "files": [
-            {
-                "id": "me",
-                "title": "Ein wirklich langer Dateiname"
+                "id": "about_me",
+                "title": "Über mich"
             },
             {
                 "id": "cv",
@@ -38,9 +16,26 @@
         ]
     },
     {
+        "id": "work",
+        "title": "Arbeit",
+        "size": 1,
+        "type": "planet",
+        "files": [
+            {
+                "id": "webdev2"
+            }
+        ]
+    },
+    {
         "id": "contact",
-        "title": "Contact",
-        "type": "Satellite",
+        "title": "Kontakt",
+        "type": "satellite",
+        "size": 0.5
+    },
+    {
+        "id": "source",
+        "title": "Resource",
+        "type": "satellite",
         "size": 0.5
     }
 ]
