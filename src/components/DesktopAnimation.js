@@ -79,6 +79,8 @@ class DesktopAnimation extends Component {
   draw = (p5) => {
     p5.clear();
 
+    //console.log(p5.frameRate());
+
     this.starfield.forEach(star => star.render(p5)); // render the starfield
     this.sun.render(p5); // render the sun
 
@@ -92,7 +94,12 @@ class DesktopAnimation extends Component {
     // animate each planet
     this.planets.forEach(planet => planet.move(this.props.content_open));
     this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
-    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, light_source));
+
+    //if (light_source.x !== 0 && light_source.y !== 0) {
+      this.planets.forEach(planet => planet.renderShadow(p5, this.colors.active, light_source));
+    //}
+    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, this.sun, 0.5));
+
     this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active, light_source));
   };
 
@@ -120,6 +127,9 @@ class DesktopAnimation extends Component {
       };
     }
 
+    if (light_source.x === 0 && light_source.y === 0) return this.sun;
+
+    // set light source dot
     p5.noStroke();
     p5.fill(this.colors.active);
     p5.ellipse(light_source.x, light_source.y, 10);

@@ -1,0 +1,12 @@
+@use '../settings';
+
+#background-animation, .react-p5, .p5Canvas {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    position: absolute;
+    //border: 2px solid blue;
+    //box-sizing: border-box;
+}

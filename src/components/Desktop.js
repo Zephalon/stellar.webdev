@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Folders from "./Folders";
 import WindowFolder from "./WindowFolder";
 import Logotype from "./Logotype";
+import Introduction from "./Introduction";
 import content from "../content.json";
 import DesktopAnimation from "./DesktopAnimation";
 
@@ -111,6 +112,7 @@ class Desktop extends Component {
       <div className="desktop" key={this.props.id}>
         <div id="sun"></div>
         {animation}
+        <Introduction />
         <Logotype />
         <Folders content={content} openWindow={this.openWindow.bind(this)} />
         {active_folder}

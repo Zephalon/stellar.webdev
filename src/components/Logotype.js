@@ -11,7 +11,7 @@ class Logotype extends Component {
       <div className="logotype">
         <div className="logotype-inner">
         <h1>
-          DESIGN<span>&</span><strong>CODE</strong>
+        let <span>me</span> = <span>yourFullstackWebdev</span>();
         </h1>
       </div>
       </div>

@@ -33,7 +33,6 @@ class WindowFolder extends Window {
 
     // set sidebar
     let sidebar = file ? <SidebarFile id={file.id} title={file.title} closeFile={this.closeFile.bind(this)} /> : <SidebarFolder title={this.props.title} closeWindow={this.props.closeWindow} />
-    console.log(sidebar);
 
     return (
       <div className="window_folder">
