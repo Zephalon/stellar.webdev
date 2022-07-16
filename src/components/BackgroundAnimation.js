@@ -15,7 +15,8 @@ class DesktopAnimation extends Component {
     light: '#F2E2C4',
     dark: '#261D11',
     active: '#A6290D',
-    secondary: '#F2B705'
+    secondary: '#F2B705',
+    black: '#120e08'
   };
   settings = {
     starfield_count: 150,
@@ -55,7 +56,7 @@ class DesktopAnimation extends Component {
       height: document.documentElement.clientHeight
     };
 
-    this.content_shadow = new ContentShadow('window-inner', this.sun, this.colors.dark); // create folder shadow
+    this.content_shadow = new ContentShadow('window-inner', this.sun, this.colors.black); // create folder shadow
   }
 
   // p5.setup
@@ -84,9 +85,6 @@ class DesktopAnimation extends Component {
     this.starfield.forEach(star => star.render(p5)); // render the starfield
     this.sun.render(p5); // render the sun
 
-    // current light source
-    let light_source = this.props.content_open ? this.sun : this.getUserLightsource(p5);
-
     // handle the content shadow
     this.content_shadow.setStatus(this.props.content_open);
     this.content_shadow.render(p5);
@@ -95,12 +93,13 @@ class DesktopAnimation extends Component {
     this.planets.forEach(planet => planet.move(this.props.content_open));
     this.planets.forEach(planet => planet.renderOrbit(p5, this.colors.secondary));
 
-    //if (light_source.x !== 0 && light_source.y !== 0) {
-      this.planets.forEach(planet => planet.renderShadow(p5, this.colors.active, light_source));
-    //}
-    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.dark, this.sun, 0.5));
+    if (!this.props.content_open) {
+      let user_light_source = this.getUserLightsource(p5);
+      this.planets.forEach(planet => planet.renderShadow(p5, this.colors.active, user_light_source));
+    }
+    this.planets.forEach(planet => planet.renderShadow(p5, this.colors.black, this.sun, 0.5));
 
-    this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active, light_source));
+    this.planets.forEach(planet => planet.renderPlanet(p5, this.colors.active, this.sun));
   };
 
   // get user light source for animation
@@ -126,8 +125,6 @@ class DesktopAnimation extends Component {
         y: document.documentElement.clientHeight * (0.5 + rotation.y * (0.5 / max_angle))
       };
     }
-
-    if (light_source.x === 0 && light_source.y === 0) return this.sun;
 
     // set light source dot
     p5.noStroke();

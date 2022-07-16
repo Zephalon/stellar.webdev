@@ -37,8 +37,8 @@
     },
     {
         "id": "source",
-        "title": "GitHub",
-        "size": 0.6,
+        "title": "Code",
+        "size": 0.5,
         "render": "stargate",
         "type": "url",
         "url": "https://github.com/Zephalon/stellar.webdev" 

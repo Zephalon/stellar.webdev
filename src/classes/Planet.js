@@ -61,9 +61,11 @@ class Planet {
     renderShadow(p5, color, light_source = this.sun, intensity = 1) {
         let position = this.getPosition();
 
+        if (!light_source.x && !light_source.y) return false;
+
         // get distance to light source
         let light_source_distance = MathBook.getDistance(light_source.x, light_source.y, position.x, position.y);
-        let shadow_length = MathBook.clamp(500 - light_source_distance, this.size * 0.75, this.size * 2);
+        let shadow_length = MathBook.clamp(500 - light_source_distance, this.size * 1, this.size * 2.25);
 
         // get angle to light source and the ray it casts
         let light_angle = Math.round(MathBook.getAngle(light_source.x, light_source.y, position.x, position.y));
