@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Folders from "./Folders";
-import WindowFolder from "./WindowFolder";
-import WindowContact from "./WindowContact";
+import PlanetarySystem from "./PlanetarySystem";
+import SatelliteSystem from "./SatelliteSystem";
 import Logotype from "./Logotype";
-import Introduction from "./Introduction";
 import content from "../content.json";
-import BackgroundAnimation from "./BackgroundAnimation";
+import AnimationSystem from "./AnimationSystem";
+import AnimationSatellites from "./AnimationSatellites";
 
 class Desktop extends Component {
   constructor(props) {
@@ -100,7 +99,7 @@ class Desktop extends Component {
 
     let window = '';
 
-    if (open_window_id) {
+    /*if (open_window_id) {
       let content = this.getContentById(open_window_id);
 
       if (content.type === 'folder') {
@@ -110,21 +109,28 @@ class Desktop extends Component {
       if (content.type === 'contact') {
         window = <WindowContact key={content} id={content.id} title={content.title} closeWindow={this.closeWindow.bind(this)} />;
       }
-    }
+    }*/
+
+    let system = <PlanetarySystem content={content} openWindow={this.openWindow.bind(this)} />;
 
     let animation = '';
     if (loaded) {
-      animation = <BackgroundAnimation content_open={this.state.open_window_id ? true : false} />;
+      animation = <AnimationSystem content_open={this.state.open_window_id ? true : false} />;
+    }
+
+    if (open_window_id) {
+      let content = this.getContentById(open_window_id);
+
+      animation = <AnimationSatellites content={content} />;
+      system = <SatelliteSystem files={content.files} openWindow={this.openWindow.bind(this)} />;
     }
 
     return (
       <div className="desktop" key={this.props.id}>
         <div id="sun"></div>
         {animation}
-        <Introduction />
         <Logotype />
-        <Folders content={content} openWindow={this.openWindow.bind(this)} />
-        {window}
+        {system}
       </div >
     );
   }

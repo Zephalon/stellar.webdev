@@ -6,10 +6,10 @@ class Planet {
         // props
         this.id = id;
         this.sun = sun;
-        this.size_factor = size_factor;
+        this.size_factor = size_factor ? size_factor : 1;
 
         // setup
-        this.element = document.getElementById('folder-' + id);
+        this.element = document.getElementById(id);
         this.base_size = 0; // for animation
 
         this.planetaryCalculations();
@@ -27,6 +27,8 @@ class Planet {
     // calculate the planets' center
     planetaryCalculations() {
         this.boundaries = MathBook.getElementBoundaries(this.element);
+
+        if (!this.boundaries) console.warn('Invalid element ID provided: #' + this.id);
 
         this.center = {
             x: Math.round(this.boundaries.left + this.boundaries.width * 0.5),

@@ -2,16 +2,11 @@
 @use 'styles/_global.scss';
 @use 'styles/_typography.scss';
 @use 'styles/components/_desktop.scss';
-@use 'styles/components/_folders.scss';
-@use 'styles/components/_folder.scss';
+@use 'styles/components/_system.scss';
+@use 'styles/components/_planet.scss';
 @use 'styles/components/_file_view.scss';
 @use 'styles/components/_logotype.scss';
-@use 'styles/components/_introduction.scss';
-@use 'styles/components/_window.scss';
-@use 'styles/components/_window_folder.scss';
-@use 'styles/components/_window_contact.scss';
 @use 'styles/components/_folder_view.scss';
-@use 'styles/components/_sidebar.scss';
 @use 'styles/components/_file.scss';
 @use 'styles/components/_background_animation.scss';
 
