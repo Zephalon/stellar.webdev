@@ -9,7 +9,7 @@ class Planet extends Component {
 
   // relay to parent
   open() {
-    this.props.openWindow(this.props.id);
+    this.props.openPlanet(this.props.id);
   }
 
   render() {

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import PlanetarySystem from "./PlanetarySystem";
-import SatelliteSystem from "./SatelliteSystem";
+import SystemPlanetary from "./SystemPlanetary";
+import SystemSatellite from "./SystemSatellite";
+import SystemLunar from "./SystemLunar";
 import Logotype from "./Logotype";
 import content from "../content.json";
 import AnimationSystem from "./AnimationSystem";
 import AnimationSatellites from "./AnimationSatellites";
+import AnimationLunar from "./AnimationLunar";
 
 class Desktop extends Component {
   constructor(props) {
@@ -40,20 +42,34 @@ class Desktop extends Component {
     });
   }
 
-  // open the content window
-  openWindow(id) {
+  // open the planetary content
+  openPlanet(id) {
     // search for the content and open it
     let content = this.getContentById(id);
 
     if (content && ['folder', 'contact'].includes(content.type)) {
       window.location.hash = '#/' + id;
     } else {
-      console.warn('Invalid Content ID: ' + id);
+      console.warn('Invalid Folder ID: ' + id);
     }
   }
 
-  // close the conten window
-  closeWindow() {
+  // open the lunar content
+  openMoon(id) {
+    // search for the content and open it
+    let content = this.getContentById(id);
+
+    console.log(content);
+
+    if (content && ['file'].includes(content.type)) {
+      window.location.hash = '#/' + this.state.open_window_id + (id ? '/' + id : '');
+    } else {
+      console.warn('Invalid File ID: ' + id);
+    }
+  }
+
+  // close all conent
+  reset() {
     window.history.replaceState(null, null, ' '); // reset hash in url
 
     this.setState((state, props) => {
@@ -111,18 +127,24 @@ class Desktop extends Component {
       }
     }*/
 
-    let system = <PlanetarySystem content={content} openWindow={this.openWindow.bind(this)} />;
+    let system = <SystemPlanetary content={content} openPlanet={this.openPlanet.bind(this)} />;
 
     let animation = '';
     if (loaded) {
       animation = <AnimationSystem content_open={this.state.open_window_id ? true : false} />;
     }
 
-    if (open_window_id) {
+
+    if (open_file_id) {
+      let content = this.getContentById(open_file_id);
+
+      animation = <AnimationLunar content={content} />;
+      system = <SystemLunar folder={open_window_id} file={open_file_id} />;
+    } else if (open_window_id) {
       let content = this.getContentById(open_window_id);
 
       animation = <AnimationSatellites content={content} />;
-      system = <SatelliteSystem files={content.files} openWindow={this.openWindow.bind(this)} />;
+      system = <SystemSatellite files={content.files} openPlanet={this.openMoon.bind(this)} />;
     }
 
     return (

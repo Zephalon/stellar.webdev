@@ -3,7 +3,7 @@ import Sketch from "react-p5";
 import content from "../content.json";
 import settings from "../animation_settings.json";
 import Sun from "../classes/Sun.js";
-import MiniStar from "../classes/MiniStar.js";
+import Starfield from "../classes/Starfield.js";
 import Planet from "../classes/Planet.js";
 import Satellite from "../classes/Satellite.js";
 import Stargate from "../classes/Stargate.js";
@@ -12,7 +12,6 @@ import Animation from "./Animation.js";
 class AnimationSystem extends Animation {
   // state
   planets = [];
-  starfield = [];
   rotation = false;
   rotation_x_offset = null;
 
@@ -21,7 +20,10 @@ class AnimationSystem extends Animation {
     this.state = {};
 
     this.sun = new Sun('sun', settings.colors.secondary); // create sun
+    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary); // create starfield
+  }
 
+  async componentDidMount() {
     // create planets
     const classMap = {
       'planet': Planet,
@@ -29,16 +31,9 @@ class AnimationSystem extends Animation {
       'stargate': Stargate
     }
     content.forEach(folder => {
-      this.planets.push(new classMap[folder.render]('folder-' + folder.id, folder.size, this.sun));
+      this.planets.push(new classMap[folder.render]('planet-' + folder.id, folder.size, this.sun));
     });
 
-    // create starfield
-    for (let i = 0; i < settings.starfield.count; i++) {
-      this.starfield.push(new MiniStar(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary));
-    } this.canvas_size = {
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight
-    };
   }
 
   // p5.setup
@@ -64,8 +59,8 @@ class AnimationSystem extends Animation {
 
     //console.log(p5.frameRate());
 
-    this.starfield.forEach(star => star.render(p5)); // render the starfield
-    this.sun.render(p5); // render the sun
+    this.starfield.render(p5);
+    this.sun.render(p5);
 
     // animate each planet
     this.planets.forEach(planet => planet.move(this.props.content_open));

@@ -4,25 +4,27 @@ import settings from "../animation_settings.json";
 import Sun from "../classes/Sun.js";
 import Planet from "../classes/Planet.js";
 import Animation from "./Animation.js";
+import Starfield from "../classes/Starfield.js";
 
 class AnimationSatellites extends Animation {
   // state
   planets = [];
+  starfield = [];
 
   constructor(props) {
     super(props);
     this.state = {};
 
-    this.sun = new Sun('sun', settings.colors.active); // create sun
+    this.sun = new Sun('sun', settings.colors.active); // create planet (sun)
+    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary); // create starfield
   }
 
   async componentDidMount() {
+    // create moons (planets)
     this.planets = [];
     this.props.content.files.forEach(file => {
       this.planets.push(new Planet('planet-' + file.id, 1, this.sun));
     });
-    console.log(this.props.content.files);
-    console.log(this.planets);
   }
 
   // p5.setup
@@ -45,7 +47,9 @@ class AnimationSatellites extends Animation {
   // p5.draw
   draw = (p5) => {
     p5.clear();
-    this.sun.render(p5); // render the sun
+
+    this.starfield.render(p5);
+    this.sun.render(p5);
 
     // animate each planet
     this.planets.forEach(planet => planet.move(false));

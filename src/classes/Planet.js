@@ -28,7 +28,11 @@ class Planet {
     planetaryCalculations() {
         this.boundaries = MathBook.getElementBoundaries(this.element);
 
-        if (!this.boundaries) console.warn('Invalid element ID provided: #' + this.id);
+        // check if element was found (failsafe)
+        if (!this.boundaries) {
+            console.warn('Invalid element ID provided: #' + this.id);
+            return null;
+        }
 
         this.center = {
             x: Math.round(this.boundaries.left + this.boundaries.width * 0.5),

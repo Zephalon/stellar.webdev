@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import System from "./System";
 import Planet from "./Planet";
 
-class PlanetarySystem extends System {
+class SystemPlanetary extends System {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,11 +12,11 @@ class PlanetarySystem extends System {
     return (
       <ul className="system planets">
         {this.props.content.map((folder) =>
-          <Planet key={folder.id} id={folder.id} title={folder.title} openWindow={this.props.openWindow} />
+          <Planet key={folder.id} id={folder.id} title={folder.title} openPlanet={this.props.openPlanet} />
         )}
       </ul>
     )
   }
 }
 
-export default PlanetarySystem;
+export default SystemPlanetary;

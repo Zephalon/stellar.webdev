@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Window from "./Window";
 import { remark } from 'remark'
 import re_html from 'remark-html'
 import axios from 'axios';
 
-class FileView extends Window {
+class FileView extends Component {
   constructor(props) {
     super(props);
     this.state = {

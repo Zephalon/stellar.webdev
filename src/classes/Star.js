@@ -1,6 +1,6 @@
 import MathBook from "./MathBook.js";
 
-class MiniStar {
+class Star {
     constructor(size, speed, sun, color) {
         // props
         this.sun = sun;
@@ -35,4 +35,4 @@ class MiniStar {
     }
 }
 
-export default MiniStar;
+export default Star;
