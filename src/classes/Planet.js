@@ -10,7 +10,6 @@ class Planet {
 
         // setup
         this.element = document.getElementById(id);
-        this.base_size = 0; // for animation
 
         this.planetaryCalculations();
 
@@ -55,19 +54,26 @@ class Planet {
     }
 
     // render the planet's orbit (line)
-    renderOrbit(p5, color) {
+    renderOrbit(p5, color, base_size = 1) {
+        if (!base_size) return this;
+
         // draw
         p5.stroke(color);
-        p5.strokeWeight(2 * this.base_size);
+        p5.strokeWeight(2 * base_size);
         p5.noFill();
         p5.ellipse(this.sun.x, this.sun.y, this.orbit * 2);
+
+        return this;
     }
 
     // render the planets shadow, based on the light source
-    renderShadow(p5, color, light_source = this.sun, intensity = 1) {
+    renderShadow(p5, color, base_size = 1, light_source = this.sun, intensity = 1) {
         let position = this.getPosition();
 
-        if (!light_source.x && !light_source.y) return false;
+        // skipt if not visible to improve performance
+        if (!base_size) return this;
+        if (!light_source.x && !light_source.y) return this;
+        if (!MathBook.RectContainsPoint(position.x, position.y, p5.width, p5.height)) return this;
 
         // get distance to light source
         let light_source_distance = MathBook.getDistance(light_source.x, light_source.y, position.x, position.y);
@@ -75,15 +81,15 @@ class Planet {
 
         // get angle to light source and the ray it casts
         let light_angle = Math.round(MathBook.getAngle(light_source.x, light_source.y, position.x, position.y));
-        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), shadow_length * this.base_size);
+        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), shadow_length * base_size);
         let shadow_vector_normalized = shadow_vector.copy().normalize();
 
         // ToDo: move this code to improve performance
         let pattern_density = 8;
         let pattern_size = 10;
 
-        let ray_count = Math.ceil((this.size - 2 - (pattern_size - pattern_density)) * 0.5 * this.base_size / pattern_density);
-        let dot_count = Math.floor(shadow_length * this.base_size / pattern_density);
+        let ray_count = Math.ceil((this.size - 2 - (pattern_size - pattern_density)) * 0.5 * base_size / pattern_density);
+        let dot_count = Math.floor(shadow_length * base_size / pattern_density);
 
         [1, -1].forEach(direction => {
             for (let ray = 0; ray < ray_count; ray++) {
@@ -94,7 +100,7 @@ class Planet {
                 }
 
                 // draw at (approximately...) the planet's border
-                let ray_offset = Math.floor(Math.sin((90 * (1 - (ray + 1) / ray_count)) * (Math.PI / 180)) * this.size * 0.5) * this.base_size * 0.8;
+                let ray_offset = Math.floor(Math.sin((90 * (1 - (ray + 1) / ray_count)) * (Math.PI / 180)) * this.size * 0.5) * base_size * 0.8;
                 ray_offset = Math.round(ray_offset / pattern_size) * pattern_size; // pin to grid
                 ray_offset += ray % 2 === 0 ? 0 : pattern_size * 0.5; // offset every second ray by half density
 
@@ -103,7 +109,7 @@ class Planet {
                     x: position.x + right_angle.x * pattern_density * ray + shadow_vector_normalized.x * ray_offset,
                     y: position.y + right_angle.y * pattern_density * ray + shadow_vector_normalized.y * ray_offset
                 }
-                
+
                 // create the dots
                 for (let dot = 1; dot < dot_count; dot++) {
                     // to postion on ray
@@ -122,18 +128,16 @@ class Planet {
     }
 
     // render the planet
-    renderPlanet(p5, color, light_source = this.sun) {
+    renderPlanet(p5, color, base_size = 1, light_source = this.sun) {
+        if (!base_size) return this;
         let position = this.getPosition();
 
         // draw
         p5.noStroke();
         p5.fill(color);
-        p5.ellipse(position.x, position.y, this.size * this.base_size);
+        p5.ellipse(position.x, position.y, this.size * base_size);
 
-        if (this.base_size < 1) {
-            this.base_size += (1 - this.base_size) * 0.1;
-            if (this.base_size > 1) this.base_size = 1; // cap at 1
-        }
+        return this;
     }
 
     // move the planet
@@ -156,6 +160,8 @@ class Planet {
         }
 
         if (this.angle > 360) this.angle -= 360;
+
+        return this;
     }
 
     // get the planets' position

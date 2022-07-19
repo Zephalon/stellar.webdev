@@ -20,7 +20,7 @@ class AnimationLunar extends Animation {
 
   render() {
     return (
-      <div id="animation-lunar">
+      <div id="animation-lunar" className="animation">
         
       </div>
     );

@@ -47,26 +47,27 @@ class AnimationSatellites extends Animation {
   // p5.draw
   draw = (p5) => {
     p5.clear();
+    this.calculateBaseSize(this.props.content_open);
+    if (!this.base_size) return null;
 
-    this.starfield.render(p5);
+    //this.starfield.render(p5);
     this.sun.render(p5);
 
     // animate each planet
-    this.planets.forEach(planet => planet.move(false));
-    this.planets.forEach(planet => planet.renderOrbit(p5, settings.colors.secondary));
+    this.planets.forEach(planet => planet.move(false).renderOrbit(p5, settings.colors.secondary, this.base_size));
 
     if (!this.props.content_open) {
       let user_light_source = this.getUserLightsource(p5);
-      this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.light, user_light_source));
+      this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.light, this.base_size, user_light_source));
     }
-    this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.black, this.sun, 0.5));
+    this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.black, this.base_size, this.sun, 0.5));
 
-    this.planets.forEach(planet => planet.renderPlanet(p5, settings.colors.light, this.sun));
+    this.planets.forEach(planet => planet.renderPlanet(p5, settings.colors.light, this.base_size, this.sun));
   };
 
   render() {
     return (
-      <div id="animation-satellites">
+      <div id="animation-satellites" className="animation">
         <Sketch setup={this.setup} draw={this.draw} />
       </div>
     );

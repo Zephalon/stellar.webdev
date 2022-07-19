@@ -12,8 +12,10 @@ class Starfield {
         };
     }
 
-    render(p5) {
-        this.stars.forEach(star => star.render(p5)); // render the starfield
+    render(p5, base_size) {
+        this.stars.forEach(star => star.render(p5, base_size)); // render the starfield
+
+        return this;
     }
 }
 

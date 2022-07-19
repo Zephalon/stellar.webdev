@@ -6,6 +6,8 @@ class Animation extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    this.base_size = 0; // for animation
   }
 
   // get user light source for animation
@@ -38,6 +40,21 @@ class Animation extends Component {
     p5.ellipse(light_source.x, light_source.y, 10);
 
     return light_source;
+  }
+
+  // calculate base size for animation
+  calculateBaseSize(hide = false) {
+    if (!hide && this.base_size < 1) {
+      if (this.base_size > 0.95) this.base_size = 1;
+      this.base_size += (1 - this.base_size) * 0.05;
+    }
+    if (hide && this.base_size > 0) {
+      if (this.base_size < 0.05) this.base_size = 0;
+      this.base_size -= this.base_size * 0.05;
+    }
+    this.base_size = MathBook.clamp(this.base_size, 0, 1);
+
+    return this;
   }
 }
 

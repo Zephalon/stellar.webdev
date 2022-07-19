@@ -34,6 +34,12 @@
             },
             {
                 "id": "webdev4"
+            },
+            {
+                "id": "webdev5"
+            },
+            {
+                "id": "webdev6"
             }
         ]
     },
@@ -41,14 +47,14 @@
         "id": "contact",
         "title": "Kontakt",
         "size": 0.7,
-        "render": "satellite",
+        "render": "planet",
         "type": "contact"
     },
     {
         "id": "source",
         "title": "Code",
         "size": 0.5,
-        "render": "stargate",
+        "render": "planet",
         "type": "url",
         "url": "https://github.com/Zephalon/stellar.webdev" 
     }

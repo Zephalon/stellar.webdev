@@ -3,11 +3,16 @@
 @use 'styles/_typography.scss';
 @use 'styles/components/_desktop.scss';
 @use 'styles/components/_system.scss';
+@use 'styles/components/_system_planetary.scss';
+@use 'styles/components/_system_satellite.scss';
+@use 'styles/components/_system_lunar.scss';
 @use 'styles/components/_planet.scss';
 @use 'styles/components/_file_view.scss';
 @use 'styles/components/_logotype.scss';
 @use 'styles/components/_folder_view.scss';
 @use 'styles/components/_file.scss';
 @use 'styles/components/_background_animation.scss';
+@use 'styles/components/_sun.scss';
+@use 'styles/components/_animation.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Playfair+Display:wght@700&family=Syne+Mono&display=swap');

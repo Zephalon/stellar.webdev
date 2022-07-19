@@ -19,19 +19,28 @@ class Star {
     // get the orbit
     getOrbit() {
         this.orbit = this.proportional_orbit * Math.max(document.documentElement.clientWidth, document.documentElement.clientHeight) + Math.max(Math.abs(this.sun.y), Math.abs(this.sun.x));
+
+        return this;
     }
 
-    render(p5) {
+    render(p5, base_size = 1) {
+        if (!base_size) return this;
+
         let position = {
             x: this.sun.x + this.orbit * Math.cos(this.angle),
             y: this.sun.y + this.orbit * Math.sin(this.angle)
         }
 
-        // draw
-        p5.noStroke();
-        p5.fill(this.color); //'#e1bd79'
-        p5.ellipse(position.x, position.y, this.size);
+        // draw - if visible
+        if (MathBook.RectContainsPoint(position.x, position.y, p5.width, p5.height)) {
+            p5.noStroke();
+            p5.fill(this.color);
+            p5.ellipse(position.x, position.y, (this.size * p5.noise(position.x, position.y) * 0.33) + (this.size * 0.67) * base_size);
+        }
+
         this.angle += this.speed;
+
+        return this;
     }
 }
 

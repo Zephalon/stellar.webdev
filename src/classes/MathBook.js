@@ -22,6 +22,10 @@ class MathBook {
     static clamp(number, min, max) {
         return Math.min(Math.max(number, min), max);
     }
+
+    static RectContainsPoint(px, py, rwidth, rheight, rx = 0, ry = 0) {
+        return px > rx && px <= rx + rwidth && py > ry && py <= ry + rheight;
+    }
 }
 
 export default MathBook;
