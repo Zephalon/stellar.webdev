@@ -1,6 +1,6 @@
-.system.planets {
-    .desktop-satellites & {
-        opacity: 0;
-        pointer-events: none;
+#systems .system.planets {
+    .desktop-planetary & {
+        opacity: 1;
+        pointer-events: inherit;
     }
 }

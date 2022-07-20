@@ -27,7 +27,7 @@ class AnimationSystem extends Animation {
       'planet': Planet
     }
     content.forEach(folder => {
-      this.planets.push(new classMap[folder.render]('planet-' + folder.id, folder.size, this.sun));
+      this.planets.push(new classMap[folder.render]('planet-' + folder.id, this.sun));
     });
 
   }
@@ -52,24 +52,24 @@ class AnimationSystem extends Animation {
   // p5.draw
   draw = (p5) => {
     p5.clear();
-    this.calculateBaseSize(this.props.content_open);
+    this.calculateBaseSize(!this.props.show);
     if (!this.base_size) return null;
 
     //console.log(p5.frameRate());
 
     this.starfield.render(p5, this.base_size);
-    this.sun.render(p5);
+    this.sun.render(p5, this.base_size);
 
     // animate each planet
-    this.planets.forEach(planet => planet.move(this.props.content_open).renderOrbit(p5, settings.colors.secondary, this.base_size));
+    this.planets.forEach(planet => planet.move(false).renderOrbit(p5, settings.colors.secondary, this.base_size));
 
-    if (!this.props.content_open) {
+    if (this.props.show) {
       let user_light_source = this.getUserLightsource(p5);
       this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.active, this.base_size, user_light_source));
     }
     this.planets.forEach(planet => planet.renderShadow(p5, settings.colors.black, this.base_size, this.sun, 0.5));
 
-    this.planets.forEach(planet => planet.renderPlanet(p5, settings.colors.active, this.base_size));
+    this.planets.forEach(planet => planet.renderBody(p5, settings.colors.active, this.base_size));
   };
 
   render() {

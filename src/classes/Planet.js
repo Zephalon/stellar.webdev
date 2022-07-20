@@ -1,12 +1,12 @@
 import MathBook from "./MathBook.js";
+import Easing from "./Easing.js";
 import { Vector } from "p5"
 
 class Planet {
-    constructor(id, size_factor, sun) {
+    constructor(id, sun) {
         // props
         this.id = id;
         this.sun = sun;
-        this.size_factor = size_factor ? size_factor : 1;
 
         // setup
         this.element = document.getElementById(id);
@@ -14,7 +14,7 @@ class Planet {
         this.planetaryCalculations();
 
         // current state
-        this.angle = this.default_angle;
+        this.angle = MathBook.randomInt(0,360);
         this.velocity = 0;
         this.speed = 0;
 
@@ -40,7 +40,7 @@ class Planet {
 
         this.orbit = this.getOrbit();
         this.default_angle = Math.round(MathBook.getAngle(this.sun.x, this.sun.y, this.center.x, this.center.y));
-        this.size = Math.round(Math.min(this.boundaries.width, this.boundaries.height) * 1 * this.size_factor);
+        this.size = Math.round(Math.min(this.boundaries.width, this.boundaries.height) * 1);
         this.speed_factor = (this.size + 1 / this.orbit) * 0.01; // ???
         this.acceleration = 0.001 * (1 / Math.sqrt(this.size));
         this.max_speed = (this.size + 1 / this.orbit) * 0.001;
@@ -59,7 +59,7 @@ class Planet {
 
         // draw
         p5.stroke(color);
-        p5.strokeWeight(2 * base_size);
+        p5.strokeWeight(2 * Easing.easeInOutQuad(base_size));
         p5.noFill();
         p5.ellipse(this.sun.x, this.sun.y, this.orbit * 2);
 
@@ -128,14 +128,14 @@ class Planet {
     }
 
     // render the planet
-    renderPlanet(p5, color, base_size = 1, light_source = this.sun) {
+    renderBody(p5, color, base_size = 1, light_source = this.sun) {
         if (!base_size) return this;
         let position = this.getPosition();
 
         // draw
         p5.noStroke();
         p5.fill(color);
-        p5.ellipse(position.x, position.y, this.size * base_size);
+        p5.ellipse(position.x, position.y, this.size * Easing.easeInOutQuad(base_size));
 
         return this;
     }

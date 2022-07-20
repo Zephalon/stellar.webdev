@@ -1,0 +1,7 @@
+#systems .system.lunar {
+    .desktop-lunar & {
+        opacity: 1;
+        pointer-events: inherit;
+        z-index: 1;
+    }
+}

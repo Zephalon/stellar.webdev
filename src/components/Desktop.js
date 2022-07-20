@@ -8,11 +8,13 @@ import AnimationSystem from "./AnimationSystem";
 import AnimationSatellites from "./AnimationSatellites";
 import AnimationLunar from "./AnimationLunar";
 import Sun from "./Sun";
+import MathBook from '../classes/MathBook';
 
 class Desktop extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      frontpage_open: true,
       open_folder_id: null,
       folder_open: false,
       open_file_id: null,
@@ -24,10 +26,6 @@ class Desktop extends Component {
   async componentDidMount() {
     this.navigateHash(); // navigate to folder or page if hash is set
     window.addEventListener('hashchange', this.navigateHash.bind(this), false);
-
-    this.setState((state, props) => {
-      return { loaded: true };
-    });
   }
 
   // navigate to the set location
@@ -37,15 +35,20 @@ class Desktop extends Component {
     [requested_folder, requested_file] = requested_location.split('/');
 
     // set navigation state
+    // keep current folder and file to allow animations
     this.setState((state, props) => {
       return {
-        open_folder_id: requested_folder ? requested_folder : null,
-        open_file_id: requested_file ? requested_file : null
+        frontpage_open: !requested_folder && !requested_file,
+        open_folder_id: requested_folder ? requested_folder : this.state.open_folder_id,
+        folder_open: requested_folder && !requested_file,
+        open_file_id: requested_file ? requested_file : this.state.open_file_id,
+        file_open: requested_file ? true : false,
+        loaded: true
       };
     });
   }
 
-  // open the planetary content
+  // open the planetary content (folder)
   openPlanet(id) {
     // search for the content and open it
     let content = this.getContentById(id);
@@ -57,12 +60,10 @@ class Desktop extends Component {
     }
   }
 
-  // open the lunar content
+  // open the lunar content (file)
   openMoon(id) {
     // search for the content and open it
     let content = this.getContentById(id);
-
-    console.log(content);
 
     if (content && ['file'].includes(content.type)) {
       window.location.hash = '#/' + this.state.open_folder_id + (id ? '/' + id : '');
@@ -114,56 +115,40 @@ class Desktop extends Component {
   }
 
   render() {
-    let { open_folder_id, open_file_id, loaded } = this.state;
+    let { frontpage_open, open_folder_id, open_file_id, loaded, folder_open, file_open } = this.state;
 
-    let window = '';
+    let desktop_class = 'desktop-planetary';
+    let animations = [];
+    let systems = [];
 
-    /*if (open_folder_id) {
-      let content = this.getContentById(open_folder_id);
+    // system: planetary
+    if (loaded) animations.push(<AnimationSystem key="animations-system" show={!folder_open && !file_open} />);
+    systems.push(<SystemPlanetary key="system-planetary" content={content} openPlanet={this.openPlanet.bind(this)} />);
 
-      if (content.type === 'folder') {
-        window = <WindowFolder key={content} id={content.id} title={content.title} files={content.files} closeWindow={this.closeWindow.bind(this)} openFile={open_file_id} />;
-      }
-
-      if (content.type === 'contact') {
-        window = <WindowContact key={content} id={content.id} title={content.title} closeWindow={this.closeWindow.bind(this)} />;
-      }
-    }*/
-
-    let classes = ['desktop'];
-
-    let system_planetary = <SystemPlanetary content={content} openPlanet={this.openPlanet.bind(this)} />;
-    let animation_planetary = loaded ? <AnimationSystem content_open={this.state.open_folder_id ? true : false} /> : '';
-
-    let system = '';
-    let animation = '';
-
-    if (open_file_id) {
-      let content = this.getContentById(open_file_id);
-
-      animation = <AnimationLunar content={content} />;
-      system = <SystemLunar folder={open_folder_id} file={open_file_id} />;
-      classes.push('desktop-lunar');
-    } 
-    
+    // open folder - system: satellite
     if (open_folder_id) {
       let content = this.getContentById(open_folder_id);
 
-      animation = <AnimationSatellites content={content} />;
-      system = <SystemSatellite files={content.files} openPlanet={this.openMoon.bind(this)} />;
-      classes.push('desktop-satellites');
-    } else {
-      classes.push('desktop-planetary');
+      animations.push(<AnimationSatellites key="animation-satellites" id={open_folder_id} content={content} show={folder_open} move_sun={frontpage_open || folder_open && !file_open} />);
+      systems.push(<SystemSatellite key="system-satellites" id={open_folder_id} files={content.files} openPlanet={this.openMoon.bind(this)} />);
+      if (folder_open) desktop_class = 'desktop-satellites';
+    }
+
+    // open file - system: lunar
+    if (open_file_id) {
+      let content = this.getContentById(open_file_id);
+
+      animations.push(<AnimationLunar key="animation-lunar" id={open_file_id} content={content} show={file_open} />);
+      systems.push(<SystemLunar key="system-lunar" id={open_file_id} folder={open_folder_id} file={open_file_id} />);
+      if (file_open) desktop_class = 'desktop-lunar';
     }
 
     return (
-      <div className={classes.join(' ')} key={this.props.id}>
+      <div id="desktop" className={desktop_class} key={this.props.id}>
         <Sun />
-        {animation_planetary}
-        {animation}
         <Logotype />
-        {system_planetary}
-        {system}
+        <div id="animations">{animations}</div>
+        <div id="systems">{systems}</div>
       </div >
     );
   }

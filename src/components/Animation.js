@@ -44,14 +44,12 @@ class Animation extends Component {
 
   // calculate base size for animation
   calculateBaseSize(hide = false) {
-    if (!hide && this.base_size < 1) {
-      if (this.base_size > 0.95) this.base_size = 1;
-      this.base_size += (1 - this.base_size) * 0.05;
+    if (!hide) {
+      this.base_size += settings.animations_speed;
+    } else {
+      this.base_size -= settings.animations_speed;
     }
-    if (hide && this.base_size > 0) {
-      if (this.base_size < 0.05) this.base_size = 0;
-      this.base_size -= this.base_size * 0.05;
-    }
+
     this.base_size = MathBook.clamp(this.base_size, 0, 1);
 
     return this;

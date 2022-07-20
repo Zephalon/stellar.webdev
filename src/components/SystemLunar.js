@@ -10,9 +10,9 @@ class SystemLunar extends System {
 
   render() {
     return (
-      <ul className="system moon">
+      <div className="system lunar">
         <FileView folder={this.props.folder} id={this.props.file} title="" />
-      </ul>
+      </div>
     )
   }
 }
