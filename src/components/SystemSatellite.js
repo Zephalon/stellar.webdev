@@ -10,7 +10,7 @@ class SystemSatellite extends System {
 
   render() {
     return (
-      <ul className="system satellites">
+      <ul className="system system-satellites">
         {this.props.files.map((file) =>
           <Moon key={file.id} id={file.id} title={file.title} openPlanet={this.props.openPlanet} />
         )}

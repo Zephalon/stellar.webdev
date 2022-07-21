@@ -10,6 +10,21 @@ class Animation extends Component {
     this.base_size = 0; // for animation
   }
 
+  // cancas setup
+  createCanvas = (p5, canvasParentRef) => {
+    this.p5 = p5;
+
+    p5.createCanvas(0, 0).parent(canvasParentRef);
+    this.resizeP5Canvas.bind(p5)();
+
+    window.addEventListener('resize', this.resizeP5Canvas.bind(p5), true);
+  };
+
+  // resize canvas on window resize
+  resizeP5Canvas() {
+    this.resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
+  }
+
   // get user light source for animation
   getUserLightsource(p5) {
     // default light source
@@ -34,9 +49,8 @@ class Animation extends Component {
       };
     }
 
-    // set light source dot
     p5.noStroke();
-    p5.fill(settings.colors.active);
+    p5.fill('green');
     p5.ellipse(light_source.x, light_source.y, 10);
 
     return light_source;

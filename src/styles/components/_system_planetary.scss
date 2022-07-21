@@ -1,6 +1,7 @@
-#systems .system.planets {
+#systems .system-planetary {
     .desktop-planetary & {
         opacity: 1;
         pointer-events: inherit;
+        z-index: 1;
     }
 }

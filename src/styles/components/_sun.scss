@@ -1,3 +1,5 @@
+@use '../settings';
+
 #sun {
     // background-color: settings.$color-active;
     position: absolute;
@@ -6,11 +8,19 @@
     left: calc(-200vh + 20vw);
     top: -50vh;
     z-index: 10;
+    border-radius: 100%;
 
     @media (max-aspect-ratio: 1/1) {
         width: 200vw;
         height: 200vw;
         left: -50vw;
         top: calc(-200vw + 10em);
+    }
+
+    .desktop-lunar & {
+        width: 120vw;
+        height: 120vw;
+        left: -10vw;
+        top: -10vw;
     }
 }

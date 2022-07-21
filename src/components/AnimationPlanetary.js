@@ -7,7 +7,7 @@ import Starfield from "../classes/Starfield.js";
 import Planet from "../classes/Planet.js";
 import Animation from "./Animation.js";
 
-class AnimationSystem extends Animation {
+class AnimationPlanetary extends Animation {
   // state
   planets = [];
   rotation = false;
@@ -16,46 +16,34 @@ class AnimationSystem extends Animation {
   constructor(props) {
     super(props);
     this.state = {};
-
-    this.sun = new Sun('sun', settings.colors.secondary); // create sun
-    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary); // create starfield
   }
 
   async componentDidMount() {
+    this.sun = new Sun('sun', settings.colors.secondary); // create sun
+    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary); // create starfield
+
     // create planets
+    this.planets = [];
     const classMap = {
       'planet': Planet
     }
     content.forEach(folder => {
       this.planets.push(new classMap[folder.render]('planet-' + folder.id, this.sun));
     });
-
   }
 
   // p5.setup
   setup = (p5, canvasParentRef) => {
-    this.p5 = p5;
-
-    // ToDo: do not run setup twice!
-    p5.createCanvas(0, 0).parent(canvasParentRef);
-
-    this.resizeP5Canvas.bind(p5)();
-
-    window.addEventListener('resize', this.resizeP5Canvas.bind(p5), true);
+    this.createCanvas(p5, canvasParentRef);
   };
-
-  // resize canvas on window resize
-  resizeP5Canvas() {
-    this.resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
-  }
 
   // p5.draw
   draw = (p5) => {
     p5.clear();
     this.calculateBaseSize(!this.props.show);
     if (!this.base_size) return null;
-
-    //console.log(p5.frameRate());
+    
+    // console.log(p5.frameRate());
 
     this.starfield.render(p5, this.base_size);
     this.sun.render(p5, this.base_size);
@@ -74,11 +62,11 @@ class AnimationSystem extends Animation {
 
   render() {
     return (
-      <div id="animation-system" className="animation">
+      <div id="animation-planetary" className="animation">
         <Sketch setup={this.setup} draw={this.draw} />
       </div>
     );
   }
 }
 
-export default AnimationSystem;
+export default AnimationPlanetary;

@@ -17,7 +17,9 @@ class Sun {
 
     // calculate the suns' center
     getBoundaries() {
-        let { left, top, width, height } = MathBook.getElementBoundaries(this.element);
+        let boundaries = MathBook.getElementBoundaries(this.element);
+        if (!boundaries) return false;
+        let { left, top, width, height } = boundaries;
 
         this.x = Math.round(left + width * 0.5);
         this.y = Math.round(top + height * 0.5);
@@ -50,6 +52,8 @@ class Sun {
         } else {
             size *= Easing.easeInOutQuad(base_size);
         }
+
+        // console.log(x + '/' + y + '/' + size);
 
         // draw
         p5.noStroke();

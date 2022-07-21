@@ -11,5 +11,10 @@
         "size": 8,
         "speed": 0.1
     },
-    "animations_speed": 0.02
+    "animations_speed": 0.05,
+    "user_interaction": {
+        "radius": 100,
+        "size": 12,
+        "density": 8
+    }
 }

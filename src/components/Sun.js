@@ -8,7 +8,7 @@ class Sun extends Component {
 
   render() {
     return (
-      <div id="sun"></div>
+      <div id="sun" className="sun"></div>
     );
   }
 }

@@ -1,6 +1,9 @@
 @use '../settings';
 
 #systems {
+    z-index: 40;
+    position: absolute;
+
     .system {
         z-index: 100;
         display: flex;
@@ -16,6 +19,7 @@
         transition: opacity ease-in 0.25s;
         opacity: 0;
         pointer-events: none;
+        z-index: 0;
 
         @media (max-aspect-ratio: 1/1) {
             flex-direction: column;

@@ -1,6 +1,7 @@
-#systems .system.satellites {
+#systems .system-satellites {
     .desktop-satellites & {
         opacity: 1;
         pointer-events: inherit;
+        z-index: 1;
     }
 }

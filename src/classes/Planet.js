@@ -91,6 +91,9 @@ class Planet {
         let ray_count = Math.ceil((this.size - 2 - (pattern_size - pattern_density)) * 0.5 * base_size / pattern_density);
         let dot_count = Math.floor(shadow_length * base_size / pattern_density);
 
+        p5.noStroke();
+        p5.fill(color);
+
         [1, -1].forEach(direction => {
             for (let ray = 0; ray < ray_count; ray++) {
                 // let right_angle = shadow_vector_normalized.copy().rotate(direction);
@@ -119,8 +122,6 @@ class Planet {
                     }
 
                     // draw
-                    p5.noStroke();
-                    p5.fill(color);
                     p5.ellipse(dot_position.x, dot_position.y, pattern_size * (1 - (dot / dot_count)));
                 }
             }

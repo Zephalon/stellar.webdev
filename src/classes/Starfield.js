@@ -3,12 +3,15 @@ import Star from "../classes/Star.js";
 import settings from "../animation_settings.json";
 
 class Starfield {
-    constructor(size, speed, sun, color, orbital = true) {
+    constructor(size, speed, sun, color, count = settings.starfield.count, orbital = true) {
         this.stars = [];
+        this.orbital = orbital;
+        this.sun = sun;
+        this.color = color;
 
         // create starfield
-        for (let i = 0; i < settings.starfield.count; i++) {
-            this.stars.push(new Star(size, speed, sun, color, orbital));
+        for (let i = 0; i < count; i++) {
+            this.stars.push(new Star(this, size, speed));
         };
     }
 

@@ -14,12 +14,12 @@ class AnimationSatellites extends Animation {
   constructor(props) {
     super(props);
     this.state = {};
-
-    this.sun = new Sun('sun', settings.colors.active, document.getElementById('planet-' + props.id)); // create Moon (sun)
-    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary, false); // create starfield
   }
 
   async componentDidMount() {
+    this.sun = new Sun('sun', settings.colors.active, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
+    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary, settings.starfield.count * 0.25, false); // create starfield
+
     this.populateMoons();
   }
 
@@ -42,34 +42,22 @@ class AnimationSatellites extends Animation {
 
   // p5.setup
   setup = (p5, canvasParentRef) => {
-    this.p5 = p5;
-
-    // ToDo: do not run setup twice!
-    p5.createCanvas(0, 0).parent(canvasParentRef);
-
-    this.resizeP5Canvas.bind(p5)();
-
-    window.addEventListener('resize', this.resizeP5Canvas.bind(p5), true);
+    this.createCanvas(p5, canvasParentRef);
   };
-
-  // resize canvas on window resize
-  resizeP5Canvas() {
-    this.resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
-  }
 
   // p5.draw
   draw = (p5) => {
-    let { show, file_open } = this.props;
+    let { show } = this.props;
 
     p5.clear();
     this.calculateBaseSize(!show);
     if (!this.base_size) return null;
 
-    this.starfield.setAngle(p5, 45).render(p5); // todo
+    this.starfield.setAngle(p5, 45).render(p5, this.base_size);
     this.sun.render(p5, this.base_size, this.props.move_sun);
 
     // animate each Moon
-    this.moons.forEach(moon => moon.move(false).renderOrbit(p5, settings.colors.secondary, this.base_size));
+    this.moons.forEach(moon => moon.move(false).renderOrbit(p5, settings.colors.active, this.base_size));
 
     if (!this.props.content_open) {
       let user_light_source = this.getUserLightsource(p5);

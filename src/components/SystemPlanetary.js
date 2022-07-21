@@ -10,7 +10,7 @@ class SystemPlanetary extends System {
 
   render() {
     return (
-      <ul className="system planets">
+      <ul className="system system-planetary">
         {this.props.content.map((folder) =>
           <Planet key={folder.id} id={folder.id} title={folder.title} openPlanet={this.props.openPlanet} />
         )}
