@@ -19,7 +19,7 @@ class AnimationPlanetary extends Animation {
   }
 
   async componentDidMount() {
-    this.sun = new Sun('sun', settings.colors.secondary); // create sun
+    this.sun = new Sun('celestial-sun', settings.colors.secondary); // create sun
     this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary); // create starfield
 
     // create planets

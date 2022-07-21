@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
-class Sun extends Component {
+class Celestial extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    let { id } = this.props;
+
     return (
-      <div id="sun" className="sun"></div>
+      <div id={id} className="celestial"></div>
     );
   }
 }
 
-export default Sun;
+export default Celestial;

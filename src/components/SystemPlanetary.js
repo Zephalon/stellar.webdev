@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import System from "./System";
 import Planet from "./Planet";
+import Celestial from "./Celestial";
 
 class SystemPlanetary extends System {
   constructor(props) {
@@ -10,11 +11,14 @@ class SystemPlanetary extends System {
 
   render() {
     return (
-      <ul className="system system-planetary">
-        {this.props.content.map((folder) =>
-          <Planet key={folder.id} id={folder.id} title={folder.title} openPlanet={this.props.openPlanet} />
-        )}
-      </ul>
+      <div className="system system-planetary">
+        <Celestial id="celestial-sun" />
+        <ul className="planets">
+          {this.props.content.map((folder) =>
+            <Planet key={folder.id} id={folder.id} title={folder.title} openPlanet={this.props.openPlanet} />
+          )}
+        </ul>
+      </div>
     )
   }
 }

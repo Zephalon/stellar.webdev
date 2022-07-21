@@ -22,7 +22,8 @@
         "type": "folder",
         "files": [
             {
-                "id": "webdev1"
+                "id": "webdev1",
+                "title": "Project"
             },
             {
                 "id": "webdev2"

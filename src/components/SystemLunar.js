@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import System from "./System";
 import FileView from "./FileView";
+import Celestial from "./Celestial";
 
 class SystemLunar extends System {
   constructor(props) {
@@ -11,7 +12,16 @@ class SystemLunar extends System {
   render() {
     return (
       <div className="system system-lunar">
-        <FileView folder={this.props.folder} id={this.props.file} title="" />
+        <Celestial id="celestial-moon" />
+        <div className="headline-container container">
+          <h1 className="headline"><span className="highlight">{this.props.content.title ? this.props.content.title : this.props.id}</span></h1>
+        </div>
+        <div className="file-container container">
+          <FileView folder={this.props.folder} id={this.props.file} title="" />
+        </div>
+        <div className="button-container container">
+          <button className="back" onClick={this.props.closeMoon}>Back</button>
+        </div>
       </div>
     )
   }

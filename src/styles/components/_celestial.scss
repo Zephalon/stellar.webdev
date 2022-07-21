@@ -1,0 +1,44 @@
+@use '../settings';
+
+.celestial {
+    // background-color: settings.$color-active;
+    position: absolute;
+    z-index: 10;
+    border-radius: 100%;
+    pointer-events: none;
+
+    &#celestial-sun {
+        width: 300vh;
+        height: 300vh;
+        left: calc(-300vh + 15vw);
+        top: -100vh;
+    
+        @media (max-aspect-ratio: 1/1) {
+            width: 300vw;
+            height: 300vw;
+            left: -100vw;
+            top: calc(-300vw + 10em);
+        }
+    }
+
+    &#celestial-planet {
+        width: 150vh;
+        height: 150vh;
+        left: calc(-150vh + 15vw);
+        top: -25vh;
+
+        @media (max-aspect-ratio: 1/1) {
+            width: 150vw;
+            height: 150vw;
+            left: -25vw;
+            top: calc(-150vw + 5em);
+        }
+    }
+
+    &#celestial-moon {
+        width: 300vw;
+        height: 300vw;
+        left: -100vw;
+        top: 20em;
+    }
+}

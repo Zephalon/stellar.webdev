@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Sketch from "react-p5";
 import settings from "../animation_settings.json";
 import Animation from "./Animation.js";
-import Sun from "../classes/Sun.js";
+import Celestial from "../classes/Celestial.js";
+import Starfield from "../classes/Starfield.js";
 
 class AnimationLunar extends Animation {
   // state
@@ -12,7 +13,8 @@ class AnimationLunar extends Animation {
   }
 
   async componentDidMount() {
-    this.sun = new Sun('sun', settings.colors.light, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
+    this.sun = new Celestial('celestial-moon', settings.colors.light, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
+    this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary, settings.starfield.count * 0.25, false); // create starfield
   }
 
   async componentDidUpdate(prev_props, prev_state) {
@@ -33,6 +35,7 @@ class AnimationLunar extends Animation {
     this.calculateBaseSize(!show);
     if (!this.base_size) return null;
 
+    this.starfield.setAngle(p5, 60).render(p5, this.base_size);
     this.sun.render(p5, this.base_size, true);
   };
 

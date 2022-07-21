@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sketch from "react-p5";
 import settings from "../animation_settings.json";
-import Sun from "../classes/Sun.js";
+import Celestial from "../classes/Celestial.js";
 import Moon from "../classes/Moon.js";
 import Animation from "./Animation.js";
 import Starfield from "../classes/Starfield.js";
@@ -9,7 +9,6 @@ import Starfield from "../classes/Starfield.js";
 class AnimationSatellites extends Animation {
   // state
   Moons = [];
-  starfield = [];
 
   constructor(props) {
     super(props);
@@ -17,7 +16,7 @@ class AnimationSatellites extends Animation {
   }
 
   async componentDidMount() {
-    this.sun = new Sun('sun', settings.colors.active, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
+    this.sun = new Celestial('celestial-planet', settings.colors.active, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
     this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary, settings.starfield.count * 0.25, false); // create starfield
 
     this.populateMoons();

@@ -9,8 +9,6 @@ import AnimationInteraction from "./AnimationInteraction";
 import AnimationPlanetary from "./AnimationPlanetary";
 import AnimationSatellites from "./AnimationSatellites";
 import AnimationLunar from "./AnimationLunar";
-import Sun from "./Sun";
-import MathBook from '../classes/MathBook';
 
 class Desktop extends Component {
   constructor(props) {
@@ -87,6 +85,11 @@ class Desktop extends Component {
     }
   }
 
+  // close the lunar content (file)
+  closeMoon() {
+    window.location.hash = '#/' + this.state.open_folder_id;
+  }
+
   // close all conent
   reset() {
     window.history.replaceState(null, null, ' '); // reset hash in url
@@ -94,6 +97,8 @@ class Desktop extends Component {
     this.setState((state, props) => {
       return { folder_open: false };
     });
+
+    this.navigateHash();
   }
 
   // fetch content (page, folder) by id
@@ -117,6 +122,7 @@ class Desktop extends Component {
           if (file.id === id) {
             result = {
               id: id,
+              title: file.title ? file.title : id,
               type: 'file',
               folder: content_piece.id,
               path: 'content/' + content_piece.id + '/' + file.id
@@ -149,7 +155,7 @@ class Desktop extends Component {
       let content = this.getContentById(open_folder_id);
 
       animations.push(<AnimationSatellites key="animation-satellites" id={open_folder_id} content={content} show={system === 'satellites'} move_sun={system !== 'lunar' && last_system !== 'lunar'} />);
-      systems.push(<SystemSatellite key="system-satellites" id={open_folder_id} files={content.files} openPlanet={this.openMoon.bind(this)} />);
+      systems.push(<SystemSatellite key="system-satellites" id={open_folder_id} files={content.files} openPlanet={this.openMoon.bind(this)} closePlanet={this.reset.bind(this)} />);
     }
 
     // open file - system: lunar
@@ -157,14 +163,11 @@ class Desktop extends Component {
       let content = this.getContentById(open_file_id);
 
       animations.push(<AnimationLunar key="animation-lunar" id={open_file_id} content={content} show={system === 'lunar'} />);
-      systems.push(<SystemLunar key="system-lunar" id={open_file_id} folder={open_folder_id} file={open_file_id} />);
+      systems.push(<SystemLunar key="system-lunar" id={open_file_id} folder={open_folder_id} file={open_file_id} content={content} closeMoon={this.closeMoon.bind(this)} />);
     }
-
-    console.log(animations);
 
     return (
       <div id="desktop" className={desktop_class} key={this.props.id}>
-        <Sun />
         <Logotype />
         <div id="animations">{animations}</div>
         <div id="systems">{systems}</div>
