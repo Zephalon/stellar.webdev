@@ -12,6 +12,10 @@
             {
                 "id": "cv",
                 "title": "Curriculum Vitae"
+            },
+            {
+                "id": "maker",
+                "title": "Maker"
             }
         ]
     },
@@ -46,13 +50,24 @@
         "id": "contact",
         "title": "Kontakt",
         "render": "planet",
-        "type": "contact"
+        "type": "contact",
+        "files": [
+            {
+                "id": "email",
+                "title": "E-Mail",
+                "link": "mailto:fabian@prinz-arnold.de"
+            },
+            {
+                "id": "xing",
+                "title": "Xing",
+                "link": "https://www.xing.de"
+            }
+        ]
     },
     {
         "id": "source",
         "title": "Code",
         "render": "planet",
-        "type": "url",
-        "url": "https://github.com/Zephalon/stellar.webdev" 
+        "link": "https://github.com/Zephalon/stellar.webdev" 
     }
 ]

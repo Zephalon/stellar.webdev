@@ -1,6 +1,9 @@
 @use 'settings';
 
-html, body, #root, .app {
+html,
+body,
+#root,
+.app {
     padding: 0;
     margin: 0;
     width: 100vw;
@@ -11,7 +14,8 @@ html, body, #root, .app {
     left: 0;
 }
 
-html, body {
+html,
+body {
     font-size: settings.$base-size;
     color: settings.$color-dark;
     font-family: settings.$font-family-text;
@@ -19,4 +23,56 @@ html, body {
 
 .app {
     background-color: settings.$color-dark;
+}
+
+.button,
+button,
+input[type='submit'] {
+    background-color: settings.$color-dark;
+    border: 0.25em solid settings.$color-active;
+    color: settings.$color-light;
+    font-family: settings.$font-family-headline;
+    font-weight: settings.$font-weight-bold;
+    font-size: 1.5em;
+    padding: 0.25em 1em 0.35em 1em;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 150;
+    overflow: hidden;
+    transition: background-color 0.5s ease-in-out;
+
+    .text {
+        position: relative;
+        z-index: 2;
+    }
+
+    &:after {
+        content: '';
+        background-color: settings.$color-active;
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        border-radius: 100%;
+        transition: all 0.25s ease-in-out;
+        z-index: 1;
+    }
+
+    &:hover {
+        background-color: settings.$color-active;
+
+        &:after {
+            width: 20em;
+            height: 20em;
+            transform: translateX(-10em) translateY(-10em);
+        }
+    }
+
+    &.back {
+        position: absolute;
+        left: 50%;
+        bottom: 2.5em;
+        transform: translateX(-50%);
+    }
 }

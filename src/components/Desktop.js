@@ -155,7 +155,7 @@ class Desktop extends Component {
       let content = this.getContentById(open_folder_id);
 
       animations.push(<AnimationSatellites key="animation-satellites" id={open_folder_id} content={content} show={system === 'satellites'} move_sun={system !== 'lunar' && last_system !== 'lunar'} />);
-      systems.push(<SystemSatellite key="system-satellites" id={open_folder_id} files={content.files} openPlanet={this.openMoon.bind(this)} closePlanet={this.reset.bind(this)} />);
+      systems.push(<SystemSatellite key="system-satellites" id={open_folder_id} files={content.files} content={content} openPlanet={this.openMoon.bind(this)} closePlanet={this.reset.bind(this)} />);
     }
 
     // open file - system: lunar

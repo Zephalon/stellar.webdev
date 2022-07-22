@@ -13,6 +13,8 @@
     padding: 0 0 0 25vw;
     flex-direction: row;
     transition: opacity ease-in 0.25s;
+    top: 0;
+    left: 0;
 
     @media (max-aspect-ratio: 1/1) {
         flex-direction: column;

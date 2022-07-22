@@ -9,7 +9,7 @@ class Planet {
         this.sun = sun;
 
         // setup
-        this.element = document.getElementById(id);
+        this.element = document.getElementById(id + '-planet');
 
         this.planetaryCalculations();
 

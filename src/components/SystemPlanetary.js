@@ -10,12 +10,14 @@ class SystemPlanetary extends System {
   }
 
   render() {
+    let { content, openPlanet: open } = this.props;
+
     return (
       <div className="system system-planetary">
         <Celestial id="celestial-sun" />
         <ul className="planets">
-          {this.props.content.map((folder) =>
-            <Planet key={folder.id} id={folder.id} title={folder.title} openPlanet={this.props.openPlanet} />
+          {content.map((folder) =>
+            <Planet key={folder.id} id={folder.id} title={folder.title} link={folder.link ? folder.link : false} openPlanet={open} />
           )}
         </ul>
       </div>

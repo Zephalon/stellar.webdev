@@ -7,6 +7,7 @@
     cursor: pointer;
     width: 100%;
     max-width: 15vw;
+    padding: 5em 0;
 
     @media (max-aspect-ratio: 1/1) {
         width: inherit;
@@ -43,7 +44,7 @@
         position: absolute;
         width: 100%;
         text-align: center;
-        top: 50%;
+        bottom: -3.5em;
         transform: translate(0, -50%);
 
         @media (max-aspect-ratio: 1/1) {}
@@ -55,9 +56,20 @@
             display: inline-block;
             color: settings.$color-light;
             margin: 0;
+            //transition: all 0.25s ease-in-out;
 
             .highlight {
-                background: linear-gradient(180deg, rgba(settings.$color-dark, 0) 60%, settings.$color-dark 50%);
+                background: linear-gradient(180deg, rgba(settings.$color-black, 0) 60%, settings.$color-black 50%);
+            }
+        }
+    }
+
+    &:hover {
+        h2 {
+            background-color: settings.$color-active;
+
+            .highlight {
+                background: linear-gradient(180deg, rgba(settings.$color-active, 0) 30%, settings.$color-active 0%);
             }
         }
     }

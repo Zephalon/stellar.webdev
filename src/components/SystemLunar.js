@@ -10,17 +10,19 @@ class SystemLunar extends System {
   }
 
   render() {
+    let { content, folder, file, closeMoon: close } = this.props;
+
     return (
       <div className="system system-lunar">
         <Celestial id="celestial-moon" />
         <div className="headline-container container">
-          <h1 className="headline"><span className="highlight">{this.props.content.title ? this.props.content.title : this.props.id}</span></h1>
+          <h1 className="headline"><span className="highlight">{content.title}</span></h1>
         </div>
         <div className="file-container container">
-          <FileView folder={this.props.folder} id={this.props.file} title="" />
+          <FileView folder={folder} id={file} title="" />
         </div>
         <div className="button-container container">
-          <button className="back" onClick={this.props.closeMoon}>Back</button>
+          <button className="back" onClick={close}><span className="text">Zurück ⇻</span></button>
         </div>
       </div>
     )

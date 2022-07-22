@@ -13,24 +13,6 @@
         margin: 0 auto;
     }
 
-    .headline-container {
-        height: 20em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        h1 {
-            color: settings.$color-light;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-
-            .highlight {
-                background: linear-gradient(180deg, rgba(settings.$color-active, 0) 60%, settings.$color-active 50%);
-            }
-        }
-    }
-
     .file-container {
         margin-top: 5em;
         overflow-x: hidden;

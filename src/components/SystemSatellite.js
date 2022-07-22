@@ -10,15 +10,20 @@ class SystemSatellite extends System {
   }
 
   render() {
+    let { content, files, openPlanet: open, closePlanet: close } = this.props;
+
     return (
       <div className="system system-satellites">
         <Celestial id="celestial-planet" />
+        <div className="headline-container container">
+          <h1 className="headline"><span className="highlight">{content.title}</span></h1>
+        </div>
         <ul className="planets">
-          {this.props.files.map((file) =>
-            <Moon key={file.id} id={file.id} title={file.title} openPlanet={this.props.openPlanet} />
+          {files.map((file) =>
+            <Moon key={file.id} id={file.id} title={file.title ? file.title : file.id} link={file.link ? file.link : false} openPlanet={open} />
           )}
         </ul>
-        <button className="back2" onClick={this.props.closePlanet}>Back</button>
+        <button className="back" onClick={close}><span className="text">Zurück ⇸</span></button>
       </div>
     )
   }
