@@ -9,6 +9,8 @@
 
     .headline-container {
         h1 {
+            font-family: settings.$font-family-monospace;
+            
             @media (max-aspect-ratio: 1/1) {
                 color: settings.$color-dark;
             }

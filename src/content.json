@@ -26,23 +26,20 @@
         "type": "folder",
         "files": [
             {
-                "id": "webdev1",
-                "title": "Project"
+                "id": "stellar",
+                "title": "Stellar.Webdev"
             },
             {
-                "id": "webdev2"
+                "id": "nintendo",
+                "title": "Nintendo Kids-Club"
             },
             {
-                "id": "webdev3"
+                "id": "frankfurt-minimal",
+                "title": "Frankfurt Minimal"
             },
             {
-                "id": "webdev4"
-            },
-            {
-                "id": "webdev5"
-            },
-            {
-                "id": "webdev6"
+                "id": "misc",
+                "title": "Diverse"
             }
         ]
     },

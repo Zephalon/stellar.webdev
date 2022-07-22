@@ -81,3 +81,7 @@ h4, h5, h6, .h4, .h5, .h6 {
         color: settings.$color-light;
     }
 }
+
+code, kbd, samp {
+    font-family: settings.$font-family-monospace;
+}

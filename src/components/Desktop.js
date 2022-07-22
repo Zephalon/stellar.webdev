@@ -17,22 +17,20 @@ class Desktop extends Component {
       system: 'planetary',
       last_system: null,
       open_folder_id: null,
-      open_file_id: null,
-      loaded: true
+      open_file_id: null
     };
 
     this.last_hash = '';
+    this.loaded = false;
   }
 
   async componentDidMount() {
-    this.navigateHash(); // navigate to folder or page if hash is set
-    window.addEventListener('hashchange', this.navigateHash.bind(this), false);
+      this.navigateHash(); // navigate to folder or page if hash is set
 
-    this.setState((state, props) => {
-      return {
-        loaded: true
-      };
-    });
+    if (!this.loaded) {
+      window.addEventListener('hashchange', this.navigateHash.bind(this), false);
+    }
+    this.loaded = true;
   }
 
   // navigate to the set location
@@ -136,7 +134,7 @@ class Desktop extends Component {
   }
 
   render() {
-    let { system, last_system, open_folder_id, open_file_id, loaded } = this.state;
+    let { system, last_system, open_folder_id, open_file_id } = this.state;
 
     let desktop_class = 'desktop-' + system;
     let animations = [];
@@ -147,7 +145,7 @@ class Desktop extends Component {
     animations.push(<AnimationInteraction key="animations-interaction" />);
 
     // home - system: planetary
-    if (loaded) animations.push(<AnimationPlanetary key="animations-planetary" show={system === 'planetary'} open_folder={open_folder_id} />);
+    animations.push(<AnimationPlanetary key="animations-planetary" show={system === 'planetary'} open_folder={open_folder_id} />);
     systems.push(<SystemPlanetary key="system-planetary" content={content} openPlanet={this.openPlanet.bind(this)} />);
 
     // open folder - system: satellites

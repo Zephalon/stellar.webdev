@@ -3,7 +3,8 @@
 .file_view {
     &-inner {
         padding: 0.5em 0;
-        h1:first-child {
+
+        *:first-child {
             margin-top: 0;
         }
 
@@ -40,6 +41,23 @@
                 bottom: -0.5em;
                 right: 0;
             }
+        }
+
+        img {
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            .highlight {
+                background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
+            }
+        }
+
+        pre {
+            padding: 1em 1.25em 0.8em 1.25em;
+            background-color: darken(settings.$color-light, 5%);
+            position: relative;
+            border-left: 0.25em solid settings.$color-secondary;
         }
     }
 }

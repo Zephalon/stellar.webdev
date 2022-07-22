@@ -18,18 +18,26 @@ class FileView extends Component {
   // load content and convert markdown to html
   async getContent() {
     let content = this.state.content;
-    
+
     if (!this.state.content[this.props.id]) {
-      content[this.props.id] = 'Lade...';
+      content[this.props.id] = '<h2>Lade...</h2>';
 
       (async () => {
         try {
           let markdown = await this.requestData();
           let result = await remark().use(re_html).process(markdown);
-          content[this.props.id] = result.value.toString();
+          let result_string = result.value.toString();
+
+          // add headline highlights
+          ['h1', 'h2', 'h3', 'h4'].forEach(tag => {
+            result_string = result_string.replaceAll('<' + tag + '>', '<' + tag + '><span class="highlight">');
+            result_string = result_string.replaceAll('</' + tag + '>', '<span class="highlight"></' + tag + '>');
+          });
+
+          content[this.props.id] = result_string;
         } catch (e) {
           console.warn(e);
-          content[this.props.id] = '404 - File Not Found';
+          content[this.props.id] = '<h2>Bitte prüfen Sie Ihre Internetverbindung.</h2>';
         }
 
         this.setState((state, props) => ({

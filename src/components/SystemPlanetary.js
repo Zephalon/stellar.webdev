@@ -16,7 +16,7 @@ class SystemPlanetary extends System {
       <div className="system system-planetary">
         <Celestial id="celestial-sun" />
         <div className="headline-container container">
-          <h1 className="headline"><span className="highlight">let me = new&nbsp;<em>Webdev</em>();</span></h1>
+          <h1 className="headline"><span className="highlight">let <em>me</em> = new&nbsp;<em>Webdev</em>();</span></h1>
         </div>
         <ul className="planets">
           {content.map((folder) =>
