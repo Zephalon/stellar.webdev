@@ -7,7 +7,6 @@
     cursor: pointer;
     width: 100%;
     max-width: 15vw;
-    padding: 5em 0;
 
     @media (max-aspect-ratio: 1/1) {
         width: inherit;
@@ -28,8 +27,9 @@
         width: 10em;
         display: inline-block;
 
-        @media (max-aspect-ratio: 1/1) {
-            //max-width: 5vh;
+        @media (max-aspect-ratio: 1/1), (max-height: 720px) {
+            height: 5em;
+            width: 5em;
         }
 
         .system-satellites & {
@@ -47,7 +47,10 @@
         bottom: -3.5em;
         transform: translate(0, -50%);
 
-        @media (max-aspect-ratio: 1/1) {}
+        @media (max-aspect-ratio: 1/1) {
+            bottom: 50%;
+            transform: translate(0, 50%);
+        }
 
         h2 {
             font-size: 1.5em;
@@ -57,6 +60,10 @@
             color: settings.$color-light;
             margin: 0;
             //transition: all 0.25s ease-in-out;
+
+            @media (max-aspect-ratio: 1/1) {
+                background-color: settings.$color-black;
+            }
 
             .highlight {
                 background: linear-gradient(180deg, rgba(settings.$color-black, 0) 60%, settings.$color-black 50%);

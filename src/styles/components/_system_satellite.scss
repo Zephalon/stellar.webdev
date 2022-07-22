@@ -1,7 +1,19 @@
+@use '../settings';
+
 #systems .system-satellites {
     .desktop-satellites & {
         opacity: 1;
         pointer-events: inherit;
         z-index: 1;
+    }
+
+    .headline-container {
+        h1 {
+            .highlight {
+                @media (max-aspect-ratio: 1/1) {
+                    background: linear-gradient(180deg, rgba(settings.$color-dark, 0) 60%, settings.$color-dark 50%);
+                }
+            }
+        }
     }
 }

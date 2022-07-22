@@ -17,7 +17,7 @@
             width: 300vw;
             height: 300vw;
             left: -100vw;
-            top: calc(-300vw + 10em);
+            top: calc(-300vw + 12em);
         }
     }
 
@@ -31,7 +31,7 @@
             width: 150vw;
             height: 150vw;
             left: -25vw;
-            top: calc(-150vw + 5em);
+            top: calc(-150vw + 8em);
         }
     }
 
@@ -40,5 +40,12 @@
         height: 300vw;
         left: -100vw;
         top: 20em;
+
+        @media (max-aspect-ratio: 1/1), (max-height: 720px) {
+            width: 500vw;
+            height: 500vw;
+            left: -200vw;
+            top: 10em;
+        }
     }
 }

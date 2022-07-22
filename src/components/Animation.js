@@ -8,6 +8,7 @@ class Animation extends Component {
     this.state = {};
 
     this.base_size = 0; // for animation
+    this.rotation_x_offset = null; // for gyro animation
   }
 
   // cancas setup
@@ -27,17 +28,17 @@ class Animation extends Component {
 
   // get user light source for animation
   getUserLightsource(p5) {
-    // default light source
+    // the mouse position is the default light source
     let light_source = {
       x: p5.mouseX,
       y: p5.mouseY
     };
 
+    // if the device has an accelerometer, use it instead
     if (p5.rotationX || p5.rotationY) {
-      // device has accelerometer
       let max_angle = 30;
 
-      if (this.rotation_x_offset === null) this.rotation_x_offset = MathBook.clamp(p5.rotationX, 25, 45);
+      if (this.rotation_x_offset === null) this.rotation_x_offset = MathBook.clamp(p5.rotationX, 25, 45); // set offset, depending on initial device angle
 
       let rotation = {
         x: MathBook.clamp(p5.rotationY, max_angle * -1, max_angle),
@@ -48,10 +49,6 @@ class Animation extends Component {
         y: document.documentElement.clientHeight * (0.5 + rotation.y * (0.5 / max_angle))
       };
     }
-
-    p5.noStroke();
-    p5.fill('green');
-    p5.ellipse(light_source.x, light_source.y, 10);
 
     return light_source;
   }

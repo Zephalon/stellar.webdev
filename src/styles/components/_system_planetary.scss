@@ -1,7 +1,29 @@
+@use '../settings';
+
 #systems .system-planetary {
     .desktop-planetary & {
         opacity: 1;
         pointer-events: inherit;
         z-index: 1;
+    }
+
+    .headline-container {
+        h1 {
+            @media (max-aspect-ratio: 1/1) {
+                color: settings.$color-dark;
+            }
+
+            .highlight {
+                @media (max-aspect-ratio: 1/1) {
+                    background: linear-gradient(180deg, rgba(settings.$color-light, 0) 60%, settings.$color-light 50%);
+                }
+            }
+
+            em {
+                @media (max-aspect-ratio: 1/1) {
+                    color: settings.$color-active;
+                }
+            }
+        }
     }
 }

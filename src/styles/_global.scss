@@ -74,5 +74,9 @@ input[type='submit'] {
         left: 50%;
         bottom: 2.5em;
         transform: translateX(-50%);
+
+        @media (max-aspect-ratio: 1/1) {
+            bottom: 5em;
+        }
     }
 }

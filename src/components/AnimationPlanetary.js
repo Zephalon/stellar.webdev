@@ -11,7 +11,6 @@ class AnimationPlanetary extends Animation {
   // state
   planets = [];
   rotation = false;
-  rotation_x_offset = null;
 
   constructor(props) {
     super(props);

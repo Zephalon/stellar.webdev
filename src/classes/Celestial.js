@@ -26,6 +26,7 @@ class Celestial {
         this.size = width;
     }
 
+    // set the animation origin for smooth transition
     setOriginElement(el_origin) {
         if (!el_origin) return null;
 

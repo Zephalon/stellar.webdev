@@ -26,7 +26,6 @@ class AnimationBackground extends Animation {
   draw = (p5) => {
     let { show } = this.props;
 
-    p5.clear();
     this.pattern.render(p5);
   };
 

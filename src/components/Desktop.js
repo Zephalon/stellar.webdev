@@ -171,6 +171,7 @@ class Desktop extends Component {
         <Logotype />
         <div id="animations">{animations}</div>
         <div id="systems">{systems}</div>
+        <div id="console"></div>
       </div >
     );
   }

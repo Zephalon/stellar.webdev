@@ -6,8 +6,8 @@
         "type": "folder",
         "files": [
             {
-                "id": "about_me",
-                "title": "Über mich"
+                "id": "identity",
+                "title": "Identität"
             },
             {
                 "id": "cv",

@@ -19,7 +19,8 @@
     @media (max-aspect-ratio: 1/1) {
         flex-direction: column;
         width: 100vw;
-        height: 75vh;
-        padding: 10em 0 0 0;
+        height: calc(100vh - 15em - 10em);
+        padding: 0;
+        top: 15em;
     }
 }
