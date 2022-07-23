@@ -40,10 +40,13 @@ class Animation extends Component {
 
       if (this.rotation_x_offset === null) this.rotation_x_offset = MathBook.clamp(p5.rotationX, 25, 45); // set offset, depending on initial device angle
 
+      // normalize device rotation
       let rotation = {
         x: MathBook.clamp(p5.rotationY, max_angle * -1, max_angle),
         y: MathBook.clamp(p5.rotationX - this.rotation_x_offset, max_angle * -1, max_angle)
       }
+      
+      // set gyro light source
       light_source = {
         x: document.documentElement.clientWidth * (0.5 + rotation.x * (0.5 / max_angle)),
         y: document.documentElement.clientHeight * (0.5 + rotation.y * (0.5 / max_angle))

@@ -2,6 +2,7 @@ import React from 'react';
 import System from "./System";
 import FileView from "./FileView";
 import Celestial from "./Celestial";
+import Headline from "./Headline";
 
 class SystemLunar extends System {
   constructor(props) {
@@ -20,9 +21,7 @@ class SystemLunar extends System {
     return (
       <div className="system system-lunar">
         <Celestial id="celestial-moon" />
-        <div className="headline-container container">
-          <h1 className="headline"><span className="highlight">{content.title}</span></h1>
-        </div>
+        <Headline title={content.title} />
         <div className="file-container container">
           <FileView folder={folder} id={file} title="" />
         </div>

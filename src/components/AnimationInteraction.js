@@ -28,6 +28,7 @@ class AnimationInteraction extends Animation {
     p5.noStroke();
     p5.fill(settings.colors.active);
 
+    // create dot-pattern
     for (let row = 0; row < count; row++) {
       let y = Math.round((row * setup.density + light_source.y - setup.radius) / setup.density) * setup.density;
       let offset = ((y / setup.density) % 2) ? setup.density * 0.5 : 0;

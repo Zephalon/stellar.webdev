@@ -2,6 +2,7 @@ import React from 'react';
 import System from "./System";
 import Moon from "./Moon";
 import Celestial from "./Celestial";
+import Headline from "./Headline";
 
 class SystemSatellite extends System {
   constructor(props) {
@@ -15,9 +16,7 @@ class SystemSatellite extends System {
     return (
       <div className="system system-satellites">
         <Celestial id="celestial-planet" />
-        <div className="headline-container container">
-          <h1 className="headline"><span className="highlight">{content.title}</span></h1>
-        </div>
+        <Headline title={content.title} />
         <ul className="planets">
           {files.map((file) =>
             <Moon key={file.id} id={file.id} title={file.title ? file.title : file.id} link={file.link ? file.link : false} openPlanet={open} />

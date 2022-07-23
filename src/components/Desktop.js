@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SystemPlanetary from "./SystemPlanetary";
 import SystemSatellite from "./SystemSatellite";
 import SystemLunar from "./SystemLunar";
-import Logotype from "./Logotype";
 import content from "../content.json";
 import AnimationBackground from "./AnimationBackground";
 import AnimationInteraction from "./AnimationInteraction";
@@ -166,7 +165,6 @@ class Desktop extends Component {
 
     return (
       <div id="desktop" className={desktop_class} key={this.props.id}>
-        <Logotype />
         <div id="animations">{animations}</div>
         <div id="systems">{systems}</div>
         <div id="console"></div>
