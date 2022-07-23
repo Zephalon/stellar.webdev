@@ -30,7 +30,7 @@ class Celestial {
     setOriginElement(el_origin) {
         if (!el_origin) return null;
 
-        let { left, top, width, height} = MathBook.getElementBoundaries(el_origin);
+        let { left, top, width, height } = MathBook.getElementBoundaries(el_origin);
 
         this.origin = {
             x: Math.round(left + width * 0.5),

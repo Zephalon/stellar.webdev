@@ -13,13 +13,13 @@ class AnimationLunar extends Animation {
   }
 
   async componentDidMount() {
-    this.sun = new Celestial('celestial-moon', settings.colors.light, document.getElementById('planet-' + this.props.id)); // create Moon (sun)
+    this.sun = new Celestial('celestial-moon', settings.colors.light, document.getElementById('planet-' + this.props.id + '-planet')); // create Moon (sun)
     this.starfield = new Starfield(settings.starfield.size, settings.starfield.speed, this.sun, settings.colors.secondary, settings.starfield.count * 0.25, false); // create starfield
   }
 
   async componentDidUpdate(prev_props, prev_state) {
     if (prev_props.id !== this.props.id) {
-      this.sun.setOriginElement(document.getElementById('planet-' + this.props.id));
+      this.sun.setOriginElement(document.getElementById('planet-' + this.props.id + '-planet'));
     }
   }
 

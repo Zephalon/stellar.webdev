@@ -11,7 +11,7 @@ Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg.
 Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelwohl. Meine Lösungen sind mit einem Auge für's Detail umgesetzt und besitzen eine nachhaltige Code-Basis.
 
     FRONTEND █ █ █ █ █ █ █ █ █ █ 
-    BACKEND  █ █ █ █ █ █ █ _ _ _ 
+    BACKEND  █ █ █ █ █ █ █ ░ ░ ░
 
 ### Level ⤑ Professional
 *   Responsive UI/UX

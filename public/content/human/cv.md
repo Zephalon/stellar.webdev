@@ -3,9 +3,9 @@
 Webdesign und -entwicklung war schon seit der Jugend meine Berufung. Nach meiner Ausbildung zum Mediengestalter habe ich meine Erfahrungen bei mehreren mittelständischen Unternehmen gesammelt.
 
     JOB        █ █ █ █ █ █ █ █ █ █ 
-    PASSION    █ █ █ █ █ _ _ _ _ _ 
-    TRAINEE    █ █ █ _ _ _ _ _ _ _
-
+    PASSION    █ █ █ █ █ ░ ░ ░ ░ ░
+    TRAINEE    █ █ █ ░ ░ ░ ░ ░ ░ ░
+    
 ### Web-Entwickler – Münzenversandhaus Reppa (2011-2012)
 * Weiterentwicklung, Pflege und Administration des Webshops
 * Gestaltung und Entwicklung von Web-Projekten
