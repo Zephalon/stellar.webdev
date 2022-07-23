@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sketch from "react-p5";
 import settings from "../animation_settings.json";
 import Animation from "./Animation.js";
@@ -19,7 +19,6 @@ class AnimationInteraction extends Animation {
 
   // p5.draw
   draw = (p5) => {
-    let { show } = this.props;
     let { user_interaction: setup } = settings;
 
     let light_source = this.getUserLightsource(p5);

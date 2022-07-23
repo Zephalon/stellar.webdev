@@ -1,5 +1,3 @@
-import MathBook from "./MathBook.js";
-
 class Pattern {
     constructor(color) {
         // props

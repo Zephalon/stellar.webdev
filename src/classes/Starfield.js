@@ -1,4 +1,3 @@
-import MathBook from "./MathBook.js";
 import Star from "../classes/Star.js";
 import settings from "../animation_settings.json";
 

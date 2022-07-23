@@ -1,5 +1,3 @@
-import MathBook from "./MathBook.js";
-import Easing from "./Easing.js";
 import Celestial from "./Celestial.js";
 
 class Sun extends Celestial {

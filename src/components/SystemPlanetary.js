@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import System from "./System";
 import Planet from "./Planet";
 import Celestial from "./Celestial";

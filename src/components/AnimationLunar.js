@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sketch from "react-p5";
 import settings from "../animation_settings.json";
 import Animation from "./Animation.js";

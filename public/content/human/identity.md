@@ -1,10 +1,11 @@
 ## Hallo, ich bin Fabian!
 
-Ich entwickle seit über 20 Jahren mit großer Leidenschaft Websites. Im Laufe der Jahre habe ich zusammen mit großen und kleinen Kunden mehr Webprojekte umgesetzt, als ich zählen kann. Meine Stärken sind kreative Lösungen, Flexibilität und eine hohe Lernbereitschaft.
+Ich entwickle seit über 20 Jahren mit großer Leidenschaft Websites. Im Laufe der Jahre habe ich zusammen mit großen und kleinen Kunden zahllose Webprojekte erfolgreich umgesetzt. Meine Stärken sind kreative Lösungen, Flexibilität und eine hohe Lernbereitschaft.
 
 ![Portrait](/images/portrait.jpg)
+*Ego*
 
-Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg. Sollte Zeit übrig bleiben, geht's entweder raus in die Natur oder an den 3D-Drucker und Lötkolben. Außerdem koche ich leidenschaftlich gerne.
+Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg. Sollte Zeit übrig bleiben, geht's entweder raus in die Natur oder an den 3D-Drucker und Lötkolben. Außerdem koche ich leidenschaftlich gerne — man munkelt sogar, dass es schmeckt.
 
 ## Fullstack
 Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelwohl. Meine Lösungen sind mit einem Auge für's Detail umgesetzt und besitzen eine nachhaltige Code-Basis.
@@ -20,7 +21,7 @@ Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelw
 *   PHP, SQL
 *   Versionsverwaltung mit GIT
 *   Wordpress & Contao
-*   Adobe Photoshop
+*   Adobe Photoshop, Illustrator & InDesign
 
 ### Level ⤑ Skilled
 *   Administration von Linux Systemen
@@ -30,4 +31,4 @@ Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelw
 *   Python
 *   C++
 
-Passt das Profil? Einfach mal [Kontakt](#/contact) aufnehmen!
+Klingt gut? Einfach mal [Kontakt](#/contact) aufnehmen!

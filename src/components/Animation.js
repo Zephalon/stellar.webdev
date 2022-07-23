@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import settings from "../animation_settings.json";
 import MathBook from "../classes/MathBook.js";
 

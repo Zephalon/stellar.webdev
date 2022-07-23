@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import './App.scss';
 import Desktop from "./components/Desktop";
-import fs from 'fs';
 
 class App extends Component {
   constructor(props) {

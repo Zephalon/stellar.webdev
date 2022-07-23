@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import Planet from "./Planet";
 
 class Moon extends Planet {

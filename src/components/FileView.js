@@ -55,12 +55,10 @@ class FileView extends Component {
 
   render() {
     let { content } = this.state;
-    let loading = false;
 
     // fetch content if not yet loaded
     if (content[this.props.id] === undefined) {
       this.getContent();
-      loading = true;
     }
 
     return (

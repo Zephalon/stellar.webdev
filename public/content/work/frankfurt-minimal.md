@@ -18,7 +18,7 @@ Im **Backend** habe ich einen neuen Inhalte-Typ mit den ensprechenden Datenbankf
 
 Über die **REST-Schnittstelle** kann man die Produktliste im JSON Format abrufen. Es ist auch möglich diese nach Kriterien wie "Hervorgehoben" oder "Archiviert" zu filtern. Über einen den Sprach-Parameter wird die aktuelle eingestellte Sprache übergeben. Um die Datenmenge zu reduzieren, werden nur die Indices der Eigenschaften wie Designer, Stil oder Hersteller übertagen.
 
-![Produktkonfigurator](/images/frankfurt-minimal-2.png)
+![REST-API](/images/frankfurt-minimal-2.png)
 
 Das **React-Frontend** ruft beim Start die komplette Liste an verfügbaren Produkten auf. Da es sich um eine keine besonders große Datenbank handelt, ist Ladezeit in diesem Anwendungsfall vernachlässigbar (ca. 0,25s für die Datenbank-Abfrage).
 

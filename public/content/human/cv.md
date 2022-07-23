@@ -1,9 +1,9 @@
 ## Berufserfahrung
 
-Webdesign- und entwicklung war schon seit der Jugend meine Berufung. Nach meiner Ausbildung zum Mediengestalter habe ich meine Erfahrungen bei mehreren mittelständischen Unternehmen gesammelt.
+Webdesign und -entwicklung war schon seit der Jugend meine Berufung. Nach meiner Ausbildung zum Mediengestalter habe ich meine Erfahrungen bei mehreren mittelständischen Unternehmen gesammelt.
 
     JOB        █ █ █ █ █ █ █ █ █ █ 
-    PASSION    █ █ █ █ █ █ _ _ _ _ 
+    PASSION    █ █ █ █ █ _ _ _ _ _ 
     TRAINEE    █ █ █ _ _ _ _ _ _ _
 
 ### Web-Entwickler – Münzenversandhaus Reppa (2011-2012)
@@ -25,7 +25,7 @@ Webdesign- und entwicklung war schon seit der Jugend meine Berufung. Nach meiner
 * Kundenbetreuung und Projekt-Koordination
 
 ### Vollzeit-Papa (2021-2022)
-* Product Owner
+* Product Co-Owner
 * Head Of Continuous Delivery
 
 ## Ausbildung
@@ -35,4 +35,4 @@ Webdesign- und entwicklung war schon seit der Jugend meine Berufung. Nach meiner
 ## Auszeichnungen
 * Abschlussprüfung - Landesbester (2011)
 
-Passt? Einfach mal [Kontakt](#/contact) aufnehmen!
+Könnte passen? Einfach mal [Kontakt](#/contact) aufnehmen!

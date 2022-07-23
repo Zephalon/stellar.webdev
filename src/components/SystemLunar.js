@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import System from "./System";
 import FileView from "./FileView";
 import Celestial from "./Celestial";
@@ -7,6 +7,11 @@ class SystemLunar extends System {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  async componentDidUpdate(prev_props, prev_state) {
+    // scroll content window to top
+    document.getElementsByClassName('file-container')[0].scrollTop = 0;
   }
 
   render() {

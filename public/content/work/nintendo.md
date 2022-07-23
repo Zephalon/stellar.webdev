@@ -1,10 +1,10 @@
-## Nintendo Kids Club
+## Großer Fisch
 
-Ich habe schon viele Projekte für Nintendo Europa umgesetzt, vor allem Microsites und Werbemittel. Der Nintendo Kids Club war aber mein mit Abstand größtes Projekt, dessen technische Umsetzung ich federführend begleitet habe.
+Ich habe viele Projekte für Nintendo Europe umgesetzt, vor allem Microsites und Werbemittel. Der Kids Club war aber mein mit Abstand größtes Projekt, das ich federführend für diesen Kunden umgesetzt habe.
 
-Ziel war es, eine Website zu entwickeln, auf der (vor allem) Kinder Inhalte konsumieren oder herunterladen konnten. Das sollte mittelbar die Marke "Nintendo" in der Zielgruppe stärken. Inhalte waren z. B. PDFs zum Ausdrucken, eine YouTube-Show, aber auch Mini-Spiele.
+Ziel war es, eine Website zu entwickeln, auf der (vor allem) Kinder Inhalte konsumieren oder herunterladen konnten. Das sollte die Marke "Nintendo" in der Zielgruppe stärken und die Sichtbarkeit im Web erhöhen. Inhalte waren z. B. PDFs zum Ausdrucken, eine YouTube-Show, aber auch Mini-Spiele.
 
-**Spoiler:** Leider wurden die Inhalte inwzwischen in das "Mutterschiff" integriert und die Website ist nicht mehr erreichbar.
+**Spoiler:** Leider wurden die Inhalte inwzwischen aus diversen Gründen in das "Mutterschiff" integriert und die Website ist nicht mehr erreichbar.
 
 ### Was?
 * Technische Konzeption
@@ -12,6 +12,9 @@ Ziel war es, eine Website zu entwickeln, auf der (vor allem) Kinder Inhalte kons
 
 ### Wie?
 * Custom Framework
+
+![Front Page](/images/nintendo-kids-club-1.jpg)
+*Startseite*
 
 ### Umsetzung
 Bei der Umsetzung gab es strikte technische Vorgaben und diverse Sonderwünsche. Deshalb hatte ich mich entschieden ein eigenes, maßgeschneidertes Framework einzusetzen, das ohne Ballast daher kam und uns maximale Flexibilität ermöglichte. Die gesamte Struktur der Website war zudem relativ simpel.
@@ -25,4 +28,4 @@ Alle Inhalte waren statisch und wurden entsprechend auch als statische Dateien e
 Die Mini-Spiele wurden größtenteils von externen Agenturen geliefert. Um eine abgeschlossene Umgebung zu schaffen, gab es die GameBox. Diese stellte diverse Standard-Methoden, wie z. B. den Start-Bildschirm oder die Schwierigkeitsauswahl bereit. So wurde ein homogenes Nutzererlebnis möglich, ohne dass jedes Mal das Rad neu erfunden (und übersetzt) werden musste.
 
 ### Fazit
-Das eigens dafür entwickelte System war flott, absolut sicher und flexibel. Sonderwünsche einzelner Nintendo Abteilungen konnten wir aufgrund der soliden Basis sauber umsetzen.
+Das eigens dafür entwickelte System war flott, absolut sicher und flexibel. Sonderwünsche einzelner Nintendo Abteilungen konnten wir aufgrund der soliden Basis über mehrere Jahre hinweg sauber umsetzen.
