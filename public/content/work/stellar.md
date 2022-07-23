@@ -25,7 +25,7 @@ Für beides musste ich dann tiefer ins Mathe-Buch schauen und die Performance im
 Grundsätzlich gibt das DOM die Struktur der Seite vor, so kann der Browser die Positionierung der Elemente auf den verschiedenen Endgeräten dynamisch vorgeben. p5.js übernimmt aber die Darstellung vieler UI-Elemente und bieten so ein nahtloses, dynamisches Interface. Und das ohne auf die Flexibilität von React verzichten zu müssen.
 
 ### Fazit
-Bin ich zufrieden mit dem Ergebnis? Ja*. Habe ich noch viele weitere Ideen für diese Website? Ja**.
+Bin ich zufrieden mit dem Ergebnis? Ja*. Die Website ist in [drei Wimpernschlägen](https://www.scinexx.de/news/biowissen/gehirn-macht-beim-blinzeln-pause/) geladen, stilistisch eigenständig und definitiv einzigartig. Habe ich noch viele weitere Ideen für die Zukunft? Klar**.
 
 Wer sich dafür interessiert, kann sich gerne den [Quellcode](https://github.com/Zephalon/stellar.webdev) auf GitHub anschauen.
 

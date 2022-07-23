@@ -1,6 +1,6 @@
 ## Was zum anfassen
 
-### Elektronik
+### Elektroniker
 
 In meiner Freizeit baue ich gerne *echte* Dinge die man anfassen kann, vor allem Sensoren und Aktoren für mein Smart-Home System. Mit Lötkolben und 3D Drucker bewaffnet, verpasse ich dummen Dingen etwas Intelligenz. Auf fertige Lösungen, vor allem solche mit Cloud-Anbindung, verzichte ich weitestgehend. Als Zentrale dient mir ein Raspberry Pi, verbunden wird das System *(Spitzname "Castle")* mit Node-RED via WLAN und Zigbee.
 
@@ -13,12 +13,12 @@ In meiner Freizeit baue ich gerne *echte* Dinge die man anfassen kann, vor allem
 ![Heating Actuator](/images/elektronik-3.jpg)
 *In bester Gesellschaft: WiFi Heizungssteuerung*
 
-### Heimwerk
+### Heimwerker
 
-Heimwerken und hier insbesondere Arbeiten mit Holz sind auch eine meiner Leidenschaften.
+Heimwerken und insbesondere Arbeiten mit Holz sind ebenfalls eine meiner Leidenschaften. Das Material vergibt Fehler, ist leicht in Form zu bringen und nachhaltig. Inzwischen mischt sich aber auch mein 3D Drucker in diese Projekte ein.
 
 ![Loftnet](/images/handyman-1.jpg)
-*Wohnnetz in der Galerie*
+*Das einzige Wohnnetz in der Stadt*
 
 ![Pirate Ship](/images/handyman-2.jpg)
 *Ahoi*

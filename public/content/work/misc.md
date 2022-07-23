@@ -1,8 +1,6 @@
 ## Vielgestaltig
 
-Viele meiner besten Projekte sind leider inzwischen entweder nicht mehr Live, waren nur während eines bestimmten Zeitraums verfügbar oder wurden zwischenzeitlich stark überarbeitet.
-
-Hier sind noch einige meiner Arbeiten mit ein paar erklärenden Worten.
+Viele meiner Lieblings-Projekte sind leider inzwischen entweder nicht mehr verfügbar oder wurden zwischenzeitlich stark überarbeitet. Aber hier findet man trotzdem noch einige meiner Arbeiten mit ein paar erklärenden Worten.
 
 ### Aixterior
 
