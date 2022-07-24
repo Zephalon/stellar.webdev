@@ -2,7 +2,7 @@
 
 ### Elektroniker
 
-In meiner Freizeit baue ich gerne *echte* Dinge die man anfassen kann, vor allem Sensoren und Aktoren für mein Smart-Home System. Mit Lötkolben und 3D Drucker bewaffnet, verpasse ich dummen Dingen etwas Intelligenz. Auf fertige Lösungen, vor allem solche mit Cloud-Anbindung, verzichte ich weitestgehend. Als Zentrale dient mir ein Raspberry Pi, verbunden wird das System *(Spitzname "Castle")* mit Node-RED via WLAN und Zigbee.
+In meiner Freizeit baue ich gerne *echte* Dinge die man anfassen kann, vor allem Sensoren und Aktoren für mein Smart-Home System. Mit Lötkolben und 3D Drucker bewaffnet, verpasse ich dummen Dingen etwas Intelligenz. Auf fertige Lösungen, vor allem solche mit Cloud-Anbindung, verzichte ich weitestgehend. Als Zentrale dient mir ein Raspberry Pi *(Spitzname "Castle")*, verbunden wird das System mit Node-RED via WLAN und Zigbee. Die gemeinsame Sprache aller Geräte ist MQTT.
 
 ![Ender 3](/images/elektronik-1.jpg)
 *Most Valuable Player*

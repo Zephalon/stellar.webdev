@@ -13,6 +13,8 @@ Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelw
     FRONTEND █ █ █ █ █ █ █ █ █ █ 
     BACKEND  █ █ █ █ █ █ █ ░ ░ ░
 
+Meine Entwicklungsumgebung ist **Linux** und auch meine Server *Castle* und *Realm* laufen mit dem freien Betriebssystem.
+
 ### Level ⤑ Professional
 *   Responsive UI/UX
 *   HTML & (S)CSS
@@ -21,7 +23,7 @@ Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelw
 *   PHP, SQL
 *   Versionsverwaltung mit GIT
 *   Wordpress & Contao
-*   Adobe Photoshop, Illustrator & InDesign
+*   Adobe Photoshop
 
 ### Level ⤑ Skilled
 *   Administration von Linux Systemen

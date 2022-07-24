@@ -34,6 +34,6 @@ Die Website hat einen eher beschränkten Umfang, aber die Umsetzung des ungewöh
 ![Hensel Recycling Homepage](/images/hensel-recycling.png)
 *Hensel Recycling Website*
 
-Dieses Projekt war sehr umfangreich. Eine Besonderheit war, dass es einen Ticker für die Edelmetallpreise gibt, die aus einer internen Tabelle gespeist wird.
+Dieses Projekt war sehr umfangreich. Eine Besonderheit war, dass es einen Ticker für die Edelmetallpreise gibt, der aus einer internen Tabelle gespeist wird.
 
 [Website ↝](https://hensel-recycling.com/)
