@@ -46,12 +46,13 @@
         position: absolute;
         width: 100%;
         text-align: center;
-        bottom: -3.5em;
+        top: calc(100% + 2em);
         transform: translate(0, -50%);
 
         @media (max-aspect-ratio: 1/1) {
             bottom: 50%;
             transform: translate(0, 50%);
+            top: auto;
         }
 
         h2 {
