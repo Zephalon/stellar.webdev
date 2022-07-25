@@ -6,6 +6,8 @@ Webdesign und -entwicklung war schon seit der Jugend meine Berufung. Nach meiner
     PASSION    █ █ █ █ █ ░ ░ ░ ░ ░
     TRAINEE    █ █ █ ░ ░ ░ ░ ░ ░ ░
 
+Im Moment befinde ich mich in Elternzeit.
+
 ### Vollzeit-Papa (2021-2022)
 * Product Co-Owner
 * Head Of Continuous Delivery

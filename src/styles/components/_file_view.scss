@@ -58,6 +58,7 @@
             background-color: darken(settings.$color-light, 5%);
             position: relative;
             border-left: 0.25em solid settings.$color-secondary;
+            overflow-x: auto;
         }
     }
 }

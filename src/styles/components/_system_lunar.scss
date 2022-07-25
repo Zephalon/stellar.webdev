@@ -17,7 +17,7 @@
         margin-top: 3em;
         overflow-x: hidden;
         overflow-y: auto;
-        height: calc(100% - 20em - 5em - 10em);
+        height: calc(100% - 20em - 10em);
         z-index: 1;
         position: relative;
 
@@ -34,7 +34,7 @@
         }
 
         @media (max-aspect-ratio: 1/1), (max-height: 720px) {
-            height: calc(100vh - 10em - 13em);
+            height: calc(100% - 10em - 10em);
         }
     }
 }

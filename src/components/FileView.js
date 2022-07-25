@@ -2,49 +2,45 @@ import React, { Component } from 'react';
 import { remark } from 'remark'
 import re_html from 'remark-html'
 import axios from 'axios';
+import { getActiveElement } from '@testing-library/user-event/dist/utils';
 
 class FileView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: {}
+      content: this.getLocalItem(this.props.id)
     };
   }
 
-  async componentDidMount() {
-    this.getContent();
-  }
-
   // load content and convert markdown to html
-  async getContent() {
-    let content = this.state.content;
+  async loadContent() {
+    let { id } = this.props;
+    let content = '<h2>Lade...</h2>';
 
-    if (!this.state.content[this.props.id]) {
-      content[this.props.id] = '<h2>Lade...</h2>';
+    (async () => {
+      try {
+        let markdown = await this.requestData();
+        let result = await remark().use(re_html).process(markdown);
+        let result_string = result.value.toString();
 
-      (async () => {
-        try {
-          let markdown = await this.requestData();
-          let result = await remark().use(re_html).process(markdown);
-          let result_string = result.value.toString();
+        // add headline highlights
+        ['h1', 'h2', 'h3', 'h4'].forEach(tag => {
+          result_string = result_string.replaceAll('<' + tag + '>', '<' + tag + '><span class="highlight">');
+          result_string = result_string.replaceAll('</' + tag + '>', '<span class="highlight"></' + tag + '>');
+        });
 
-          // add headline highlights
-          ['h1', 'h2', 'h3', 'h4'].forEach(tag => {
-            result_string = result_string.replaceAll('<' + tag + '>', '<' + tag + '><span class="highlight">');
-            result_string = result_string.replaceAll('</' + tag + '>', '<span class="highlight"></' + tag + '>');
-          });
+        content = result_string;
 
-          content[this.props.id] = result_string;
-        } catch (e) {
-          console.warn(e);
-          content[this.props.id] = '<h2>Bitte prüfen Sie Ihre Internetverbindung.</h2>';
-        }
+        this.setLocalItem(id, content);
+      } catch (e) {
+        console.warn(e);
+        content = '<h2>Bitte prüfen Sie Ihre Internetverbindung.</h2>';
+      }
 
-        this.setState((state, props) => ({
-          content: content
-        }));
-      })();
-    }
+      this.setState((state, props) => ({
+        content: content
+      }));
+    })();
   }
 
   // request content from markdown file
@@ -53,17 +49,32 @@ class FileView extends Component {
     return await res.data;
   }
 
+  // set local storage
+  setLocalItem(id, content = '') {
+    localStorage.setItem('content-' + id, JSON.stringify({
+      'content': content,
+      'time': new Date().getTime()
+    }));
+  }
+
+  // get local storage if it's not older than seven days
+  getLocalItem(id) {
+    let { content = false, time = 0 } = JSON.parse(localStorage.getItem('content-' + id));
+
+    let age = ((new Date().getTime()) - time) / 1000 / 60 / 60 / 24; // in days
+    return age < 7 ? content : false;
+  }
+
   render() {
+    let { id } = this.props;
     let { content } = this.state;
 
     // fetch content if not yet loaded
-    if (content[this.props.id] === undefined) {
-      this.getContent();
-    }
+    if (!content) this.loadContent();
 
     return (
       <div className="file_view">
-        <div className="file_view-inner" dangerouslySetInnerHTML={{ __html: content[this.props.id] }}></div>
+        <div className="file_view-inner" dangerouslySetInnerHTML={{ __html: content }}></div>
         {/*<button onClick={this.props.closeFile}>
           Close File
     </button>*/}

@@ -1,11 +1,21 @@
 ## Hallo, ich bin Fabian!
 
-Ich entwickle seit über 20 Jahren mit großer Leidenschaft Websites. Im Laufe der Jahre habe ich zusammen mit großen und kleinen Kunden zahllose Webprojekte erfolgreich umgesetzt. Meine Stärken sind kreative Lösungen, Flexibilität und eine hohe Lernbereitschaft.
+Ich entwickle seit über 22 Jahren mit großer Leidenschaft Websites. Schon vor meiner Ausbildung zum Mediengestalter war es lange Zeit mein Hobby, danach habe ich mir Schritt für Schritt die Fähigkeiten angeeignet auch umfangreichte Projekte von der Konzeption bis zur Erfolgsmessung zu begleiten.
+
+Im Laufe der Jahre habe ich zusammen mit großen und kleinen Kunden zahllose Webprojekte erfolgreich umgesetzt. Meine Stärken sind kreative Lösungen, Flexibilität und eine hohe Lernbereitschaft.
+
+    const me = {
+        'name': "Fabian Prinz-Arnold",
+        'born': 1984,
+        'location': 'Aschaffenburg',
+        'profession': 'Fullstack Web Developer',
+        'email_adress': 'fabian@prinz-arnold.de'
+    }
+
+Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg. Sollte Zeit übrig bleiben, geht's entweder raus in die Natur oder an den 3D-Drucker und Lötkolben. Außerdem koche ich leidenschaftlich gerne — man munkelt sogar, dass es schmeckt.
 
 ![Portrait](/images/portrait.jpg)
 *Ego*
-
-Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg. Sollte Zeit übrig bleiben, geht's entweder raus in die Natur oder an den 3D-Drucker und Lötkolben. Außerdem koche ich leidenschaftlich gerne — man munkelt sogar, dass es schmeckt.
 
 ## Fullstack
 Ich bin Experte für's **Frontend**, fühle mich aber auch im **Backend** pudelwohl. Meine Lösungen sind mit einem Auge für's Detail umgesetzt und besitzen eine nachhaltige Code-Basis.
