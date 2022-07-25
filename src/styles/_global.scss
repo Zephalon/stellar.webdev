@@ -6,23 +6,39 @@ body,
 .app {
     padding: 0;
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    overflow: hidden;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
+
 
 html,
 body {
     font-size: settings.$base-size;
     color: settings.$color-dark;
     font-family: settings.$font-family-text;
+    background-color: settings.$color-dark;
 }
 
-.app {
-    background-color: settings.$color-dark;
+.button-back {
+    position: fixed;
+    bottom: 2em;
+    width: 100%;
+    z-index: 200;
+
+    button {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+        bottom: 1em;
+    }
 }
 
 .button,
@@ -66,17 +82,6 @@ input[type='submit'] {
             width: 20em;
             height: 20em;
             transform: translateX(-10em) translateY(-10em);
-        }
-    }
-
-    &.back {
-        position: absolute;
-        left: 50%;
-        bottom: 2.5em;
-        transform: translateX(-50%);
-
-        @media (max-aspect-ratio: 1/1) {
-            bottom: 5em;
         }
     }
 }

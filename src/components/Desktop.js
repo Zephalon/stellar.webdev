@@ -167,7 +167,6 @@ class Desktop extends Component {
       <div id="desktop" className={desktop_class} key={this.props.id}>
         <div id="animations">{animations}</div>
         <div id="systems">{systems}</div>
-        <div id="console"></div>
       </div >
     );
   }

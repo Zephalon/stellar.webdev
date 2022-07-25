@@ -3,6 +3,7 @@ import System from "./System";
 import FileView from "./FileView";
 import Celestial from "./Celestial";
 import Headline from "./Headline";
+import Button from "./Button";
 
 class SystemLunar extends System {
   constructor(props) {
@@ -25,9 +26,7 @@ class SystemLunar extends System {
         <div className="file-container container">
           <FileView folder={folder} id={file} title="" />
         </div>
-        <div className="button-container container">
-          <button className="back" onClick={close}><span className="text">Zurück ⇻</span></button>
-        </div>
+        <Button title="Zurück ⇻" class_name="button-back" action={close} />
       </div>
     )
   }

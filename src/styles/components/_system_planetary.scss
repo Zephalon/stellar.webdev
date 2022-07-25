@@ -10,7 +10,7 @@
     .headline-container {
         h1 {
             font-family: settings.$font-family-monospace;
-            
+
             @media (max-aspect-ratio: 1/1) {
                 color: settings.$color-dark;
             }
@@ -26,6 +26,12 @@
                     color: settings.$color-active;
                 }
             }
+        }
+    }
+
+    .planets {
+        @media (max-aspect-ratio: 1/1) {
+            height: calc(100vh - 10em - 10em)
         }
     }
 }
