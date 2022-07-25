@@ -8,8 +8,8 @@ class Pattern {
         let pattern_density = 8;
         let pattern_size = 10;
 
-        let dots_x = Math.ceil(p5.width / pattern_density);
-        let dots_y = Math.ceil(p5.height / pattern_density);
+        let dots_x = Math.ceil(p5.width / pattern_density) + 1;
+        let dots_y = Math.ceil(p5.height / pattern_density) + 1;
 
         for (let dot_x = 0; dot_x < dots_x; dot_x++) {
             for (let dot_y = 0; dot_y < dots_y; dot_y++) {

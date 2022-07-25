@@ -9,7 +9,7 @@ Im Laufe der Jahre habe ich zusammen mit großen und kleinen Kunden zahllose Web
         'born': 1984,
         'location': 'Aschaffenburg',
         'profession': 'Fullstack Web Developer',
-        'email_adress': 'fabian@prinz-arnold.de'
+        'email_address': 'fabian@prinz-arnold.de'
     }
 
 Ich wohne mit meiner Familie im letzten Winkel vom wunderschönen Aschaffenburg. Sollte Zeit übrig bleiben, geht's entweder raus in die Natur oder an den 3D-Drucker und Lötkolben. Außerdem koche ich leidenschaftlich gerne — man munkelt sogar, dass es schmeckt.
@@ -31,13 +31,14 @@ Meine Entwicklungsumgebung ist **Linux** und auch meine Server *Castle* und *Rea
 *   JavaScript (ES6)
 *   React
 *   PHP, SQL
+*   Bereitstellung & Integration von APIs
 *   Versionsverwaltung mit GIT
 *   Wordpress & Contao
 *   Adobe Photoshop
 
 ### Level ⤑ Skilled
-*   Administration von Linux Systemen
 *   Laravel, Symfony
+*   Administration von Linux Systemen
 
 ### Level ⤑ Aspirant
 *   Python

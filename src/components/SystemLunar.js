@@ -24,7 +24,7 @@ class SystemLunar extends System {
         <Celestial id="celestial-moon" />
         <Headline title={content.title} />
         <div className="file-container container">
-          <FileView folder={folder} id={file} title="" />
+          <FileView folder={folder} id={file} />
         </div>
         <Button title="Zurück ⇻" class_name="button-back" action={close} />
       </div>
