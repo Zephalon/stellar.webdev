@@ -12,11 +12,19 @@ class FileView extends Component {
     };
   }
 
+  async componentDidUpdate(prev_props, prev_state) {
+    // re-set content if a new file is requested
+    if (prev_props.id !== this.props.id) {
+      this.setState((state, props) => ({
+        content: this.getLocalItem(this.props.id)
+      }));
+    }
+  }
+
   // load content and convert markdown to html
   async loadContent() {
     let { id } = this.props;
     let content = '<h2>Lade...</h2>';
-
     (async () => {
       try {
         let markdown = await this.requestData();
@@ -59,7 +67,9 @@ class FileView extends Component {
 
   // get local storage if it's not older than seven days
   getLocalItem(id) {
-    let { content = false, time = 0 } = JSON.parse(localStorage.getItem('content-' + id));
+    let item = localStorage.getItem('content-' + id);
+    if (!item) return false; // not yet set
+    let { content = false, time = 0 } = JSON.parse(item);
 
     let age = ((new Date().getTime()) - time) / 1000 / 60 / 60 / 24; // in days
     return age < 7 ? content : false;
@@ -75,9 +85,6 @@ class FileView extends Component {
     return (
       <div className="file_view">
         <div className="file_view-inner" dangerouslySetInnerHTML={{ __html: content }}></div>
-        {/*<button onClick={this.props.closeFile}>
-          Close File
-    </button>*/}
       </div>
     )
   }
