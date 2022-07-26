@@ -12,7 +12,7 @@ class Celestial {
         this.getBoundaries();
         this.setOriginElement(el_origin);
 
-        window.addEventListener('resize', this.getBoundaries.bind(this), true);
+        // window.addEventListener('resize', this.getBoundaries.bind(this), true);
     }
 
     // calculate the suns' center
@@ -42,8 +42,10 @@ class Celestial {
     render(p5, base_size = 1, animate_origin = false) {
         // get current position
         let {x, y, size} = this;
+        this.getBoundaries(); // recalculate it - for now
 
         if (this.origin && base_size < 1 && animate_origin) {
+            // animate
             let ease = Easing.easeInOutQuad(base_size);
             let ease_inverted = 1 - ease;
 
@@ -51,6 +53,7 @@ class Celestial {
             y = y * ease + this.origin.y * ease_inverted;
             size = this.origin.size + (size - this.origin.size) * ease;
         } else {
+            // static
             size *= Easing.easeInOutQuad(base_size);
         }
 

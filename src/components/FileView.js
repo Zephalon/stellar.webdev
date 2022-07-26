@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { remark } from 'remark'
 import re_html from 'remark-html'
 import axios from 'axios';
-import { version } from "../../package.json";
 
 class FileView extends Component {
   constructor(props) {
@@ -10,21 +9,17 @@ class FileView extends Component {
     this.state = {
       content: null
     };
-    console.log(React);
+    this.storage_version = 2;
   }
 
   async componentDidMount() {
-    this.setState((state, props) => ({
-      content: this.loadContent(this.props.id)
-    }));
+    this.loadContent(this.props.id);
   }
 
   async componentDidUpdate(prev_props, prev_state) {
     // re-set content if a new file is requested
     if (prev_props.id !== this.props.id) {
-      this.setState((state, props) => ({
-        content: this.loadContent(this.props.id)
-      }));
+      this.loadContent(this.props.id);
     }
   }
 
@@ -40,7 +35,6 @@ class FileView extends Component {
     } else {
       // load the file
       (async () => {
-        console.log('loading');
         content = '<h2>Lade...</h2>';
         try {
           let markdown = await this.requestData();
@@ -76,7 +70,7 @@ class FileView extends Component {
 
   // set local storage
   setLocalItem(id, content = '') {
-    localStorage.setItem('content-' + id, JSON.stringify({
+    localStorage.setItem('content-' + this.storage_version + '-' + id, JSON.stringify({
       'content': content,
       'time': new Date().getTime()
     }));
@@ -84,7 +78,7 @@ class FileView extends Component {
 
   // get local storage if it's not older than 'max_age' days
   getLocalItem(id, max_age = 3) {
-    let item = localStorage.getItem('content-' + id);
+    let item = localStorage.getItem('content-' + this.storage_version + '-' + id);
     if (!item) return false; // not yet set
     let { content = false, time = 0 } = JSON.parse(item);
 
