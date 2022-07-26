@@ -1,6 +1,6 @@
 ## Vielgestaltig
 
-Viele meiner Lieblings-Projekte sind leider inzwischen entweder nicht mehr verfügbar oder wurden zwischenzeitlich stark überarbeitet. Aber hier findet man trotzdem noch einige meiner Arbeiten mit ein paar erklärenden Worten.
+Hier findet man trotzdem noch einige meiner Arbeiten mit ein paar erklärenden Worten.Viele meiner Lieblings-Projekte sind leider inzwischen entweder nicht mehr verfügbar oder wurden zwischenzeitlich stark überarbeitet.
 
 ### Aixterior
 

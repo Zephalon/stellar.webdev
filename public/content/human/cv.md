@@ -6,7 +6,7 @@ Webdesign und -entwicklung war schon seit der Jugend meine Berufung. Nach meiner
     PASSION    █ █ █ █ █ ░ ░ ░ ░ ░
     TRAINEE    █ █ █ ░ ░ ░ ░ ░ ░ ░
 
-Im Moment befinde ich mich in Elternzeit.
+Im Moment befinde ich mich in Elternzeit, bin aber auf der Suche nach einer festen Anstellung.
 
 ### Vollzeit-Papa (2021-2022)
 * Product Co-Owner

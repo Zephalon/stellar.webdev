@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { remark } from 'remark'
 import re_html from 'remark-html'
 import axios from 'axios';
+import { version } from "../../package.json";
 
 class FileView extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class FileView extends Component {
     this.state = {
       content: null
     };
+    console.log(React);
   }
 
   async componentDidMount() {
@@ -32,7 +34,6 @@ class FileView extends Component {
 
     if (content) {
       // the content is already in local storage
-      console.log('having');
       this.setState((state, props) => ({
         content: content
       }));
@@ -57,7 +58,7 @@ class FileView extends Component {
           this.setLocalItem(id, content);
         } catch (e) {
           console.warn(e);
-          content = '<h2>Bitte prüfen Sie Ihre Internetverbindung.</h2>';
+          content = this.getLocalItem(id, 99) ? this.getLocalItem(id, 99) : '<h2>Bitte prüfen Sie Ihre Internetverbindung.</h2>'; // show last version instead of error message
         }
 
         this.setState((state, props) => ({
@@ -81,14 +82,14 @@ class FileView extends Component {
     }));
   }
 
-  // get local storage if it's not older than seven days
-  getLocalItem(id) {
+  // get local storage if it's not older than 'max_age' days
+  getLocalItem(id, max_age = 3) {
     let item = localStorage.getItem('content-' + id);
     if (!item) return false; // not yet set
     let { content = false, time = 0 } = JSON.parse(item);
 
     let age = ((new Date().getTime()) - time) / 1000 / 60 / 60 / 24; // in days
-    return age < 7 ? content : false;
+    return age < max_age ? content : false;
   }
 
   render() {

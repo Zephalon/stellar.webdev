@@ -10,6 +10,10 @@
                 "title": "Identität"
             },
             {
+                "id": "talents",
+                "title": "Talente"
+            },
+            {
                 "id": "cv",
                 "title": "Curriculum Vitae"
             },
