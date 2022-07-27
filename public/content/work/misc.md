@@ -1,6 +1,6 @@
 ## Vielgestaltig
 
-Hier findet man trotzdem noch einige meiner Arbeiten mit ein paar erklärenden Worten.Viele meiner Lieblings-Projekte sind leider inzwischen entweder nicht mehr verfügbar oder wurden zwischenzeitlich stark überarbeitet.
+Hier sind noch einige meiner Arbeiten mit ein paar erklärenden Worten. Viele meiner Lieblings-Projekte sind leider inzwischen entweder nicht mehr verfügbar oder wurden zwischenzeitlich stark überarbeitet.
 
 ### Aixterior
 
@@ -22,7 +22,7 @@ Aixterior bietet 3D-Assets zum herunterladen an. Der Produkt-Filter ist sehr umf
 ![Marbach Elektronik Homepage](/images/marbach-elektronik.png)
 *Die Startseite ist gleichzeitig auch das Menü*
 
-Die Website hat einen eher beschränkten Umfang, aber die Umsetzung des ungewöhnlichen Navigations-Konzepts für andere Geräte war eine Herausforderung.
+Die Website hat einen eher beschränkten Umfang, aber die Umsetzung des ungewöhnlichen Navigations-Konzepts für kleinere Bildschirme war eine Herausforderung.
 
 [Website ↝](https://www.marbach-elektronik.de/)
 
