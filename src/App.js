@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.scss';
-import Desktop from "./components/Desktop";
+import SolarSystem from "./components/SolarSystem";
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="app" key={this.props.id}>
         <header className="app-header"></header>
-        <Desktop />
+        <SolarSystem />
       </div>
     );
   }

@@ -7,11 +7,14 @@ class Planet {
         // props
         this.id = id;
         this.sun = sun;
+        this.boundaries = null;
 
         // setup
         this.element = document.getElementById(id + '-planet');
 
-        this.planetaryCalculations();
+        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y) <= 0) {
+            this.planetaryCalculations(); // wait until DOM is really loaded
+        }
 
         // current state
         this.angle = MathBook.randomInt(0,360);
