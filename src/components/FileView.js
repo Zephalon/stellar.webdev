@@ -33,13 +33,14 @@ class FileView extends Component {
         content: content
       }));
     } else {
+      // show "loading" message
+      content = '<h2>Lade...</h2>';
+      this.setState((state, props) => ({
+        content: content
+      }));
+
       // load the file
       (async () => {
-        content = '<h2>Lade...</h2>';
-        this.setState((state, props) => ({
-          content: content
-        }));
-        
         try {
           let markdown = await this.requestData();
           let result = await remark().use(re_html).process(markdown);

@@ -12,9 +12,7 @@ class Planet {
         // setup
         this.element = document.getElementById(id + '-planet');
 
-        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y) <= 0) {
-            this.planetaryCalculations(); // wait until DOM is really loaded
-        }
+        this.planetaryCalculations();
 
         // current state
         this.angle = MathBook.randomInt(0,360);
@@ -27,13 +25,19 @@ class Planet {
     precalculated_positons = {}; // position lookup table
 
     // calculate the planets' center
-    planetaryCalculations() {
+    async planetaryCalculations() {
         this.boundaries = MathBook.getElementBoundaries(this.element);
 
         // check if element was found (failsafe)
         if (!this.boundaries) {
             console.warn('Invalid element ID provided: #' + this.id);
             return null;
+        }
+
+        // TBD: sometimes the css position is not yet set on load
+        // brute force it (for now) - retry until it is
+        while (Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
+            this.boundaries = MathBook.getElementBoundaries(this.element);
         }
 
         this.center = {
