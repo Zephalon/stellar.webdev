@@ -23,8 +23,9 @@ class Planet extends Component {
         <div className="planet-inner">
           <div id={"planet-" + id + '-planet'} className="planet-planet"></div>
           <div className="planet-title">
-            {title + (link ? ' ↝' : '')}
-            <span className="highlight"></span>
+            <div className="planet-title-inner">
+              {title + (link ? ' ↝' : '')}
+            </div>
           </div>
         </div>
       </li>

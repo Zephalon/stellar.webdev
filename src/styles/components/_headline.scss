@@ -25,6 +25,7 @@
         .highlight {
             background: linear-gradient(180deg, rgba(settings.$color-active, 0) 60%, settings.$color-active 50%);
             border-radius: 0.15em;
+            box-decoration-break: clone;
         }
     }
 

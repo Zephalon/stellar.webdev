@@ -9,7 +9,7 @@ import AnimationPlanetary from "./AnimationPlanetary";
 import AnimationSatellites from "./AnimationSatellites";
 import AnimationLunar from "./AnimationLunar";
 
-class Desktop extends Component {
+class SolarSystem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -172,4 +172,4 @@ class Desktop extends Component {
   }
 }
 
-export default Desktop;
+export default SolarSystem;

@@ -29,7 +29,8 @@
         width: 10em;
         display: inline-block;
 
-        @media (max-aspect-ratio: 1/1), (max-height: 720px) {
+        @media (max-aspect-ratio: 1/1),
+        (max-height: 720px) {
             height: 5em;
             width: 5em;
         }
@@ -46,47 +47,46 @@
         position: absolute;
         text-align: center;
         top: calc(100% + 2em);
-        transform: translate(-50%, -50%);
-        border-radius: 0.15em;
+        transform: translate(0, -50%);
         font-size: 1.5em;
-        display: inline-block;
+        display: block;
         color: settings.$color-light;
         margin: 0;
         font-family: settings.$font-family-headline;
         font-weight: settings.$font-weight-bold;
-        left: 50%;
-        background-color: transparent;
-        transition: background-color 0.25s ease-in-out;
+        width: 100%;
+        left: 0;
 
         @media (max-aspect-ratio: 1/1) {
             bottom: 50%;
-            transform: translate(-50%, 50%);
+            transform: translate(0, 50%);
             top: auto;
-            background-color: settings.$color-black;
-
         }
 
-        .highlight {
-            background: linear-gradient(180deg, rgba(settings.$color-black, 0) 60%, settings.$color-black 50%);
-            border-radius: 0.15em;
-            width: 100%;
-            height: 100%;
-            position: absolute;
+        &-inner {
+            display: inline;
             left: 0;
             top: 0;
-            z-index: -1;
             transition: all 0.25s ease-in-out;
+            position: relative;
+            line-height: 1.1;
+            border-radius: 0.15em;
+            box-decoration-break: clone;
+            background: linear-gradient(180deg, rgba(settings.$color-black, 0) 60%, settings.$color-black 50%);
+            background-repeat: repeat-x;
+            background-position: 0 0;
+
+            @media (max-aspect-ratio: 1/1) {
+                background: none;
+                background-color: settings.$color-black;
+            }
         }
     }
 
     &:hover {
-        .planet-title {
+        .planet-title-inner {
+            background-position: 0 1em;
             background-color: settings.$color-active;
-
-            .highlight {
-                height: 0;
-                top: 100%;
-            }
         }
     }
 }
