@@ -26,6 +26,7 @@ class Planet {
 
     // calculate the planets' center
     async planetaryCalculations() {
+        console.log('test');
         this.boundaries = MathBook.getElementBoundaries(this.element);
 
         // check if element was found (failsafe)

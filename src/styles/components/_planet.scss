@@ -75,7 +75,7 @@
             left: 0;
             top: 0;
             z-index: -1;
-            transition: transform 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
         }
     }
 
@@ -84,7 +84,8 @@
             background-color: settings.$color-active;
 
             .highlight {
-                transform: scale(0);
+                height: 0;
+                top: 100%;
             }
         }
     }
