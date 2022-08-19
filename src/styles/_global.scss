@@ -56,6 +56,7 @@ input[type='submit'] {
     z-index: 150;
     overflow: hidden;
     transition: background-color 0.5s ease-in-out;
+    border-radius: 2em;
 
     .text {
         position: relative;
@@ -65,13 +66,14 @@ input[type='submit'] {
     &:after {
         content: '';
         background-color: settings.$color-active;
-        left: 0;
-        top: 0;
+        left: calc(50% - 10em);
+        top: calc(50% - 10em);
         position: absolute;
-        width: 1px;
-        height: 1px;
+        width: 20em;
+        height: 20em;
         border-radius: 100%;
-        transition: all 0.25s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        transform: scale(0);
         z-index: 1;
     }
 
@@ -79,9 +81,7 @@ input[type='submit'] {
         background-color: settings.$color-active;
 
         &:after {
-            width: 20em;
-            height: 20em;
-            transform: translateX(-10em) translateY(-10em);
+            transform: scale(1);
         }
     }
 }

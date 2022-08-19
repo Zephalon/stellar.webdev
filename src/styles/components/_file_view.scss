@@ -23,7 +23,8 @@
             padding: 0 2.5em;
             position: relative;
 
-            &:before, &:after {
+            &:before,
+            &:after {
                 position: absolute;
                 font-size: 3em;
                 font-family: settings.$font-family-headline;
@@ -35,7 +36,7 @@
                 top: -0.75em;
                 left: 0;
             }
-            
+
             &:after {
                 content: '“';
                 bottom: -0.5em;
@@ -47,9 +48,13 @@
             width: 100%;
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             .highlight {
                 background: linear-gradient(180deg, rgba(settings.$color-secondary, 0) 60%, settings.$color-secondary 50%);
+                border-radius: 0.15em;
             }
         }
 
