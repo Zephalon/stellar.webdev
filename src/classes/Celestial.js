@@ -12,14 +12,17 @@ class Celestial {
         this.getBoundaries();
         this.setOriginElement(el_origin);
 
-        // window.addEventListener('resize', this.getBoundaries.bind(this), true);
+        window.addEventListener('resize', this.getBoundaries.bind(this), true);
     }
 
     // calculate the suns' center
     getBoundaries() {
-        let boundaries = MathBook.getElementBoundaries(this.element);
-        if (!boundaries) return false;
-        let { left, top, width, height } = boundaries;
+        // Safari Bug: sometimes the css position is not yet set correctly on load
+        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
+            this.boundaries = MathBook.getElementBoundaries(this.element);
+
+        }
+        let { left, top, width, height } = this.boundaries;
 
         this.x = Math.round(left + width * 0.5);
         this.y = Math.round(top + height * 0.5);
@@ -41,8 +44,7 @@ class Celestial {
 
     render(p5, base_size = 1, animate_origin = false) {
         // get current position
-        let {x, y, size} = this;
-        this.getBoundaries(); // recalculate it - for now
+        let { x, y, size } = this;
 
         if (this.origin && base_size < 1 && animate_origin) {
             // animate

@@ -25,19 +25,9 @@ class Planet {
     precalculated_positons = {}; // position lookup table
 
     // calculate the planets' center
-    async planetaryCalculations() {
-        console.log('test');
-        this.boundaries = MathBook.getElementBoundaries(this.element);
-
-        // check if element was found (failsafe)
-        if (!this.boundaries) {
-            console.warn('Invalid element ID provided: #' + this.id);
-            return null;
-        }
-
-        // TBD: sometimes the css position is not yet set on load
-        // brute force it (for now) - retry until it is
-        while (Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
+    planetaryCalculations() {
+        // Safari Bug: sometimes the css position is not yet set correctly on load
+        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
             this.boundaries = MathBook.getElementBoundaries(this.element);
         }
 
