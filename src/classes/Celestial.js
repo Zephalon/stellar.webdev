@@ -9,24 +9,23 @@ class Celestial {
 
         // setup
         this.element = document.getElementById(id);
-        this.getBoundaries();
         this.setOriginElement(el_origin);
 
-        window.addEventListener('resize', this.getBoundaries.bind(this), true);
+        this.setBoundaries();
     }
 
     // calculate the suns' center
-    getBoundaries() {
-        // Safari Bug: sometimes the css position is not yet set correctly on load
-        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
-            this.boundaries = MathBook.getElementBoundaries(this.element);
+    setBoundaries() {
+        let boundaries = MathBook.getElementBoundaries(this.element);
 
+        if (!this.boundaries || this.boundaries.x + this.boundaries.y - boundaries.x - boundaries.y !== 0) {
+            this.boundaries = boundaries;
+            let { left, top, width, height } = this.boundaries;
+
+            this.x = Math.round(left + width * 0.5);
+            this.y = Math.round(top + height * 0.5);
+            this.size = width;
         }
-        let { left, top, width, height } = this.boundaries;
-
-        this.x = Math.round(left + width * 0.5);
-        this.y = Math.round(top + height * 0.5);
-        this.size = width;
     }
 
     // set the animation origin for smooth transition
@@ -44,6 +43,7 @@ class Celestial {
 
     render(p5, base_size = 1, animate_origin = false) {
         // get current position
+        this.setBoundaries(); // fix for Chrome bug
         let { x, y, size } = this;
 
         if (this.origin && base_size < 1 && animate_origin) {

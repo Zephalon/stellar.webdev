@@ -12,38 +12,37 @@ class Planet {
         // setup
         this.element = document.getElementById(id + '-planet');
 
-        this.planetaryCalculations();
-
         // current state
         this.angle = MathBook.randomInt(0,360);
         this.velocity = 0;
         this.speed = 0;
 
-        window.addEventListener('resize', this.planetaryCalculations.bind(this), true);
+        this.doPlanetaryCalculations();
     }
 
     precalculated_positons = {}; // position lookup table
 
     // calculate the planets' center
-    planetaryCalculations() {
-        // Safari Bug: sometimes the css position is not yet set correctly on load
-        while (!this.boundaries || Math.min(this.boundaries.x, this.boundaries.y, this.boundaries.width, this.boundaries.height) <= 0) {
-            this.boundaries = MathBook.getElementBoundaries(this.element);
+    doPlanetaryCalculations() {
+        let boundaries = MathBook.getElementBoundaries(this.element);
+
+        if (!this.boundaries || this.boundaries.x + this.boundaries.y - boundaries.x - boundaries.y !== 0) {
+            this.boundaries = boundaries;
+
+            this.center = {
+                x: Math.round(this.boundaries.left + this.boundaries.width * 0.5),
+                y: Math.round(this.boundaries.top + this.boundaries.height * 0.5)
+            };
+
+            this.orbit = this.getOrbit();
+            this.default_angle = Math.round(MathBook.getAngle(this.sun.x, this.sun.y, this.center.x, this.center.y));
+            this.size = Math.round(Math.min(this.boundaries.width, this.boundaries.height) * 1);
+            this.speed_factor = (this.size + 1 / this.orbit) * 0.01; // ???
+            this.acceleration = 0.001 * (1 / Math.sqrt(this.size));
+            this.max_speed = (this.size + 1 / this.orbit) * 0.001;
+
+            this.precalculated_positons = {}; // reset lookup table
         }
-
-        this.center = {
-            x: Math.round(this.boundaries.left + this.boundaries.width * 0.5),
-            y: Math.round(this.boundaries.top + this.boundaries.height * 0.5)
-        };
-
-        this.orbit = this.getOrbit();
-        this.default_angle = Math.round(MathBook.getAngle(this.sun.x, this.sun.y, this.center.x, this.center.y));
-        this.size = Math.round(Math.min(this.boundaries.width, this.boundaries.height) * 1);
-        this.speed_factor = (this.size + 1 / this.orbit) * 0.01; // ???
-        this.acceleration = 0.001 * (1 / Math.sqrt(this.size));
-        this.max_speed = (this.size + 1 / this.orbit) * 0.001;
-
-        this.precalculated_positons = {};
     }
 
     // get the orbit
@@ -129,6 +128,7 @@ class Planet {
     // render the planet
     renderBody(p5, color, base_size = 1, light_source = this.sun) {
         if (!base_size) return this;
+        this.doPlanetaryCalculations();
         let position = this.getPosition();
 
         // draw

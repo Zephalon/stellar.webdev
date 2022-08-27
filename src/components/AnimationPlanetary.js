@@ -23,11 +23,8 @@ class AnimationPlanetary extends Animation {
 
     // create planets
     this.planets = [];
-    const classMap = {
-      'planet': Planet
-    }
     content.forEach(folder => {
-      this.planets.push(new classMap[folder.render]('planet-' + folder.id, this.sun));
+      this.planets.push(new Planet('planet-' + folder.id, this.sun));
     });
   }
 
