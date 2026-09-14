@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../settings';
 
 .file_view {
@@ -63,7 +64,7 @@
 
         pre {
             padding: 1em 1.25em 0.8em 1.25em;
-            background-color: darken(settings.$color-light, 5%);
+            background-color: color.adjust(settings.$color-light, $lightness: -5%);
             position: relative;
             border-left: 0.25em solid settings.$color-secondary;
             overflow-x: auto;

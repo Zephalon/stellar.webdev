@@ -1,0 +1,22 @@
+@use '../settings';
+
+// the CRA version crashed on unknown hashes, so this page is new
+.not_found {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: settings.$color-light;
+
+    .not_found-code {
+        font-family: settings.$font-family-monospace;
+        color: settings.$color-secondary;
+    }
+}

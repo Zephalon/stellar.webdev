@@ -7,9 +7,9 @@ $color-black: #120e08;
 
 // fonts
 $base-size: 14px;
-$font-family-text: 'Fira Sans', sans-serif;
-$font-family-headline: 'Playfair Display', serif;
-$font-family-monospace: 'Fira Mono', monospace;
+$font-family-text: var(--font-text), 'Fira Sans', sans-serif;
+$font-family-headline: var(--font-headline), 'Playfair Display', serif;
+$font-family-monospace: var(--font-monospace), 'Fira Mono', monospace;
 
 $font-weight-normal: 400;
 $font-weight-bold: 700;
