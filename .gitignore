@@ -8,6 +8,9 @@
 # production
 /build
 
+# copied from node_modules by `npm run vendor`
+/public/vendor
+
 # misc
 .DS_Store
 *.pem

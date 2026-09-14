@@ -1,6 +1,5 @@
 import MathBook from "./MathBook.js";
 import Easing from "./Easing.js";
-import { Vector } from "p5"
 
 class Planet {
     constructor(id, sun) {
@@ -78,7 +77,7 @@ class Planet {
 
         // get angle to light source and the ray it casts
         let light_angle = Math.round(MathBook.getAngle(light_source.x, light_source.y, position.x, position.y));
-        let shadow_vector = Vector.fromAngle(p5.radians(light_angle), shadow_length * base_size);
+        let shadow_vector = MathBook.vectorFromAngle(p5, light_angle, shadow_length * base_size);
         let shadow_vector_normalized = shadow_vector.copy().normalize();
 
         // ToDo: move this code to improve performance

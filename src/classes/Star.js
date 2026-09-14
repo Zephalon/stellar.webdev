@@ -1,5 +1,4 @@
 import MathBook from "./MathBook.js";
-import { Vector } from "p5"
 
 class Star {
     constructor(parent, size, speed) {
@@ -32,7 +31,7 @@ class Star {
     // set starfield angle
     setAngle(p5, angle) {
         this.angel = angle;
-        this.vector = Vector.fromAngle(p5.radians(angle), this.speed);
+        this.vector = MathBook.vectorFromAngle(p5, angle, this.speed);
 
         return this;
     }

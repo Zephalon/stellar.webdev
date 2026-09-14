@@ -1,0 +1,14 @@
+# The static export ships its own not-found page
+ErrorDocument 404 /404.html
+
+# Everything under /_next/static carries a content hash in its file name, so a
+# changed file always arrives under a new URL and may be cached forever.
+SetEnvIf Request_URI "^/_next/static/" IMMUTABLE_ASSET
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=IMMUTABLE_ASSET
+
+  # Everything else (HTML above all) keeps its name across deploys and has to be
+  # revalidated, otherwise a new build stays invisible until the cache expires.
+  Header set Cache-Control "no-cache" env=!IMMUTABLE_ASSET
+</IfModule>

@@ -26,6 +26,12 @@ class MathBook {
     static RectContainsPoint(px, py, rwidth, rheight, rx = 0, ry = 0) {
         return px > rx && px <= rx + rwidth && py > ry && py <= ry + rheight;
     }
+
+    // p5 is loaded as an external script (see P5Canvas), so its statics are only
+    // reachable through a sketch instance instead of an import
+    static vectorFromAngle(p5, angle, length) {
+        return p5.constructor.Vector.fromAngle(p5.radians(angle), length);
+    }
 }
 
 export default MathBook;
