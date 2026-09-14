@@ -8,7 +8,7 @@ Im Laufe der Jahre habe ich die gesamte Bandbreite der Webentwicklung kennen ler
 
 **KI-Tools** sind bei mir fester Teil des Werkzeugkastens: für Recherche, Refactorings und Boilerplate. Ich arbeite mit versionierten Projektregeln, kleinen überprüfbaren Schritten und einem gesunden Misstrauen – die Architektur-Entscheidungen und die Verantwortung für den Code bleiben bei mir.
 
-Die Entwicklungsumgebung meiner Wahl ist **Linux**, das freie Betriebsystem benutze ich sowohl auf meinem Arbeitsrechner *Knight*, als auch für meine Server *Castle* und *Realm*.
+Die Entwicklungsumgebung meiner Wahl ist **Linux**.
 
 ### Level ⤑ Professional
 *   Responsive UI/UX
@@ -19,8 +19,8 @@ Die Entwicklungsumgebung meiner Wahl ist **Linux**, das freie Betriebsystem benu
 *   PHP, SQL
 *   Bereitstellung & Integration von APIs
 *   Versionsverwaltung mit GIT
-*   Wordpress & Contao
-*   Adobe Photoshop
+*   Wordpress & Statamic
+*   Adobe Suite
 
 ### Level ⤑ Skilled
 *   Laravel, Symfony

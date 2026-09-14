@@ -12,7 +12,7 @@ Webdesign und -entwicklung war schon seit der Jugend meine Berufung. Nach meiner
 
 ### Vollzeit-Papa (2021-2022)
 * Product Co-Owner
-* Continuous Delivery Organisator
+* Continuous Delivery Organizer
 
 ### Web-Entwickler – Die Schittigs (2019-2020)
 * Konzeption und Entwicklung von Web-Projekten
